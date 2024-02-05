@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 function CreatedAdvertsTable() {
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const data = [{}, {}];
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) {
+      return;
+    }
+    setCurrentPage(page);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentPageData = data.slice(startIndex, endIndex);
   return (
     <div className="bg-white rounded-lg mx-5">
       <div className="main">
-        <div className="titleAndButtons flex justify-between items-center m-4 px-4 py-6">
-          <h1 className="text-xl font-bold">Oluşturulan Reklamlar</h1>
-          <div className="buttons flex">
-            <button className="flex items-center justify-center py-2 px-6 text-premiumOrange bg-white border-2 border-premiumOrange rounded-lg font-semibold text-sm mr-4">
+        <div className="titleAndButtons lg:flex justify-between items-center m-4 px-4 py-6">
+          <h1 className="text-[4vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.3vw] font-bold text-center mb-3 lg:mb-0">
+            Oluşturulan Reklamlar
+          </h1>
+          <div className="buttons lg:flex text-[3vw] md:text-[1.2vw] lg:text-[1.1vw] xl:text-[0.9vw]">
+            <button className="flex items-center justify-center w-full text-center py-1 px-5 text-premiumOrange bg-white border-2 border-premiumOrange rounded-lg font-semibold mr-4">
               <i class="fa-solid fa-circle-plus mr-2 "></i>
               Hızlı Reklam Oluştur
             </button>
-            <button className="flex py-2 px-6 text-white bg-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold text-sm">
+            <button className="flex mt-4 lg:mt-0 items-center justify-center w-full text-center py-1 px-5 text-white bg-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold ">
               Yeni Reklam Oluştur
             </button>
           </div>
@@ -100,18 +120,20 @@ function CreatedAdvertsTable() {
                     7.8
                   </h1>
                 </td>
-                <td className="px-2 py-3 flex items-center justify-center ">
-                  <button className="text-gray-400 mr-4">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                  <button className="text-gray-400 ">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
+                <td className="px-2 py-3">
+                  <div className="flex items-center justify-center">
+                    <button className="text-gray-400 mr-4">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                    <button className="text-gray-400 ">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
           </table>
-          {/* <div className="flex justify-end m-3">
+          <div className="flex justify-end m-3">
             <ul className="flex space-x-2">
               <li
                 onClick={() => handlePageChange(currentPage - 1)}
@@ -161,7 +183,7 @@ function CreatedAdvertsTable() {
                 </button>
               </li>
             </ul>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

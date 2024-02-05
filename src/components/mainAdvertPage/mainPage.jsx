@@ -5,7 +5,7 @@ import WhyUseAdvert from "./whyUseAdvert";
 
 function MainPage() {
   return (
-    <div className="bg-gray-200">
+    <div>
       <AdvertTitleArea />
       <WhyUseAdvert />
       <CreatedAdvertsTable />

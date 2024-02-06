@@ -6,13 +6,13 @@ function AdvertTitleArea() {
   };
 
   return (
-    <div className="lg:flex m-5">
-      <div className="titleArea flex items-center lg:justify-start justify-center my-4 lg:my-0 lg:w-1/4">
-        <h1 className="md:text-[1.8vw] lg:text-[1.6vw] xl:text-[1.2vw] font-extrabold text-center">
+    <div className="lg:flex m-5 justify-around">
+      <div className="titleArea flex items-center justify-center my-4 lg:my-0 lg:w-1/4 bg-white rounded-lg lg:mr-5">
+        <h1 className="md:text-[1.8vw] lg:text-[1.6vw] xl:text-[1.2vw] font-extrabold text-center py-2">
           Reklam Yönetimi
         </h1>
       </div>
-      <div className="announcmentArea flex bg-white rounded-lg px-5 lg:px-10 my-4 lg:my-0 py-3 lg:py-5 justify-between mr-5 w-full">
+      <div className="announcmentArea flex bg-white rounded-lg px-3 lg:px-10 my-4 lg:my-0 py-3 lg:py-5 justify-between mr-5 w-full">
         <i className="fa-solid fa-bullhorn text-[6vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.8vw] text-premiumOrange mr-2 lg:mr-4 flex items-center justify-center"></i>
         <h1 className="md:text-[1.3vw] text-[3vw] lg:text-[1.1vw] xl:text-[0.9vw] flex items-center justify-center font-medium">
           Çok satan ürünlerin dahil edildiği reklamlar daha iyi performans

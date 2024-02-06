@@ -27,7 +27,7 @@ function AdvertTitleArea() {
       </div>
       <div className="walletArea flex bg-greenForButton rounded-lg px-10 py-2 lg:py-0 items-center justify-center lg:w-1/4">
         <div className="infoArea text-white mr-8">
-          <h1 className="md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] font-semibold">
+          <h1 className="md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs font-semibold">
             Toplam Reklam Bakiyesi: 250 ₺
           </h1>
         </div>

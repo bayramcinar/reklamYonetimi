@@ -18,17 +18,17 @@
   }
   
   .highlight-on-hover:hover {
-    box-shadow: 0 0 10px yellow; 
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.7); 
   }
 
-  .round-light-effect {
+  /* .round-light-effect {
     cursor: pointer;
     position: relative;
     display: inline-block;
-    padding: 20px; /* İçeriği ayırmak için biraz boşluk ekleyebilirsiniz. */
+    padding: 20px; 
     transition: box-shadow 0.3s ease;
   }
   
  .round-light-effect:hover {
-    box-shadow: 0 0 30px 10px rgba(255, 255, 0, 0.7); /* Yuvarlak bir sarı ışık efekti ekleyin. */
-  }
+    box-shadow: 0 0 30px 10px rgba(255, 255, 0, 0.7);
+  } */

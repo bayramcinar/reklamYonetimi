@@ -2,7 +2,7 @@ import React from "react";
 
 function IconComponent({ icon, text }) {
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center flex-col  animate__animated animate__zoomIn">
       <div className="imageArea bg-grayBg rounded-full w-[27.5vw] h-[27.5vw] md:w-[14.5vw] md:h-[14.5vw] xl:w-[8.5vw] xl:h-[8.5vw] lg:w-[9.5vw] lg:h-[9.5vw]">
         <img src={icon} className="p-8" alt="" />
       </div>

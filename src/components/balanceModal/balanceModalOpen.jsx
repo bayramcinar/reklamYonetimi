@@ -5,7 +5,7 @@ import { SlPresent } from "react-icons/sl";
 import { CiCircleInfo } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
 
-const BalanceModal = ({ isOpen, onClose }) => {
+const BalanceModalOpen = ({ isOpen, onClose }) => {
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";
@@ -40,35 +40,12 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     <CiCircleInfo className="mx-2 text-greenDark text-lg" />
                   </span>
                 </div>
-                <div
-                  class="w-10 h-10 rounded-md p-4 cursor-pointer transition-all duration-700 relative  bg-gray-200/50 hover:bg-red-500 group"
+                <button
+                  className="flex border-2 border-gray-300 rounded-lg mb-3 md:mb-0 p-2"
                   onClick={onClose}
                 >
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    class="text-red-500 transition-all duration-700 rotate-180 flex absolute group-hover:opacity-0 group-hover:rotate-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                    height="30"
-                    width="30"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
-                  </svg>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 24 24"
-                    class="text-white rotate-0 transition-all duration-700 opacity-0 group-hover:block group-hover:rotate-180 group-hover:opacity-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                    height="30"
-                    width="30"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M4.5 12.75a.75.75 0 0 1 .75-.75h13.5a.75.75 0 0 1 0 1.5H5.25a.75.75 0 0 1-.75-.75Z"></path>
-                  </svg>
-                </div>
+                  <RxCross1 />
+                </button>
               </div>
               <div className="py-10">
                 <div className="tabs flex justify-start items-center relative">
@@ -158,4 +135,4 @@ const BalanceModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default BalanceModal;
+export default BalanceModalOpen;

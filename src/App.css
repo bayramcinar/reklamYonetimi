@@ -1,13 +1,17 @@
 body {
-  background-color: rgb(229 231 235);
+  background-color: rgb(229, 231, 235);
   height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
+
 * {
   font-family: "Poppins", sans-serif;
 }
+
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #d1d5db;
   border-radius: 4px;

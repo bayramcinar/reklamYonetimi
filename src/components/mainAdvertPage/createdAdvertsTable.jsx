@@ -26,12 +26,12 @@ function CreatedAdvertsTable() {
           <h1 className="text-[4vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.3vw] font-bold text-center mb-3 lg:mb-0">
             Oluşturulan Reklamlar
           </h1>
-          <div className="buttons lg:flex text-[3vw] md:text-[1.2vw] lg:text-[1.1vw] xl:text-[0.9vw]">
-            <button className="flex items-center justify-center w-full text-center py-1 px-5 text-premiumOrange bg-white border-2 border-premiumOrange rounded-lg font-semibold mr-4">
+          <div className="buttons lg:flex text-[3vw] md:text-[1.1vw] lg:text-[1vw] xl:text-[0.8vw]">
+            <button className="flex items-center justify-center w-full text-center py-2 px-10 text-premiumOrange bg-white border-2 border-premiumOrange rounded-lg font-semibold mr-4">
               <i class="fa-solid fa-circle-plus mr-2 "></i>
-              Hızlı Reklam Oluştur
+              <span style={{ whiteSpace: "nowrap" }}>Hızlı Reklam Oluştur</span>
             </button>
-            <button className="flex mt-4 lg:mt-0 items-center justify-center w-full text-center py-1 px-5 text-white bg-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold ">
+            <button className="flex mt-4 lg:mt-0 items-center justify-center w-full text-center py-2 px-6 text-white bg-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold ">
               Yeni Reklam Oluştur
             </button>
           </div>

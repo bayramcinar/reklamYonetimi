@@ -1,8 +1,10 @@
 import React from "react";
 
+
 function AdvertTitleArea() {
   const OpenWalletModal = () => {
     //BAKİYE MODALINI AÇACAK FONKSİYON
+   
   };
 
   return (

@@ -14,6 +14,7 @@ module.exports = {
         borderGrey: "#BAB2B5",
         bgOrange: "	hsl(32, 98%, 93%)",
         lghtOrange: "#fdba74",
+        txtRed:"#ef4444",
       },
     },
   },

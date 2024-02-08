@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Pages from "./pages";
 import CreateAdvertTitleArea from "./createAdvertTitle";
+import AdvertInfo from "../advertInfo/advertInfo";
 
 function MainCreateAdvert() {
   const [activePage, setActivePage] = useState(1);
@@ -16,7 +17,9 @@ function MainCreateAdvert() {
         <div className="block lg:flex">
           <Pages active={activePage} />
           {/* FORUM YERİ GELECEK ALAN (ACTİVE PAGE E GÖRE DEĞİŞECEK ALAN)*/}
-          <div>deneme</div>
+          <div>
+            <AdvertInfo/>
+          </div>
         </div>
         <div className="flex items-center justify-end border-t-2 border-gray-100 text-[3vw] md:text-[1.1vw] lg:text-[1vw] xl:text-[0.8vw]">
           <button

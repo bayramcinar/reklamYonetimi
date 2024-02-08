@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities{
+    /* .tabs{
+      @apply ps-2 pe-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out
+    }
+    .tabs-text{
+       @apply bg-right-bottom bg-gradient-to-l from-blue-500 to-blue-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out 
+    } */
+    
+  }

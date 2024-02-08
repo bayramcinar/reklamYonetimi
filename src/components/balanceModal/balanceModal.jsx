@@ -49,7 +49,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                   </span>
                 </div>
                 <div
-                  class="w-10 h-10 rounded-md p-4 cursor-pointer transition-all duration-700 relative  bg-gray-200/50 hover:bg-red-500 group"
+                  className="w-10 h-10 rounded-md p-4 cursor-pointer transition-all duration-700 relative  bg-gray-200/50 hover:bg-red-500 group"
                   onClick={onClose}
                 >
                   <svg
@@ -69,7 +69,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     fill="currentColor"
                     stroke-width="0"
                     viewBox="0 0 24 24"
-                    class="text-white rotate-0 transition-all duration-700 opacity-0 group-hover:block group-hover:rotate-180 group-hover:opacity-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    className="text-white rotate-0 transition-all duration-700 opacity-0 group-hover:block group-hover:rotate-180 group-hover:opacity-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                     height="30"
                     width="30"
                     xmlns="http://www.w3.org/2000/svg"

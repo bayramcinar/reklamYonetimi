@@ -22,7 +22,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
       <div className="absolute w-full h-full flex items-center justify-center">
         <div className="relative px-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
           <div>
-            <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
+          <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
               <div className="flex flex-col md:flex-row justify-between items-center gap-x-2 lg:gap-x-5 mt-10 text-xs lg:text-sm">
                 <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl">
                   Bakiye Detay
@@ -106,16 +106,16 @@ const BalanceModal = ({ isOpen, onClose }) => {
                 <button className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(100)}>
                   100₺
                 </button>
-                <button className="border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(250)}>
+                <button className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(250)}>
                   250₺
                 </button>
-                <button className="border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(500)}>
+                <button className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(500)}>
                   500₺
                 </button>
-                <button className="border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(750)}>
+                <button className="border-2 border-borderGray p-2 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(750)}>
                   750₺
                 </button>
-                <button className="border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(1000)}>
+                <button className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" onClick={() => handleAmount(1000)}>
                   1000₺
                 </button>
                 <input type="number" placeholder="Farklı miktar gir" className="border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs ease-in duration-500" value={farkliMiktar} onChange={handleAmountChange} />

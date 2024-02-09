@@ -39,7 +39,7 @@ function CreatedAdvertsTable() {
             </Link>
           </div>
         </div>
-        <div className="tableArea m-4 px-4 pb-5">
+        <div className="tableArea m-4 px-4 pb-5 hidden lg:block">
           <table className="rounded-xl w-full ">
             <thead className="text-sm">
               <tr className="sticky top-0 bg-lightGray text-gray-600">

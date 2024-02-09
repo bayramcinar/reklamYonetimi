@@ -8,14 +8,28 @@ const BalanceModal = ({ isOpen, onClose }) => {
   const [amount, setAmount] = useState(null);
   const [farkliMiktar, setFarkliMiktar] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  console.log(amount);
-  console.log(farkliMiktar);
+  const [selectedAmount, setSelectedAmount] = useState(null);
+  const [activePage, setActivePage] = useState(null);
+
+  console.log("amount", amount);
+  console.log("farkliMiktar", farkliMiktar);
+  console.log("selectedAmount", selectedAmount)
+  console.log("activePage",activePage);
+
   const handleAmount = (miktar) => {
     setAmount(miktar);
   };
   const handleAmountChange = (e) => {
     setFarkliMiktar(e.target.value);
   };
+
+  const handleSelectedAmount = (amount) => {
+    setSelectedAmount(selectedAmount === amount ? null : amount);
+  }
+  const handleActivePage=(value)=>{
+    setActivePage(value);
+  }
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -44,7 +58,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                 )}
                 {isMobile && (
                   <div className="flex items-center justify-center relative w-full">
-                    <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl">
+                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mb-0 text-sm lg:text-2xl">
                       Bakiye Detay
                     </div>
                     <div
@@ -131,16 +145,16 @@ const BalanceModal = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
-              <div className="py-10">
+              <div className="py-5 lg:py-10">
                 <div className="tabs tab-group flex justify-start items-center relative">
-                  <button className="tabs ps-2 pe-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out">
-                    <span className="bg-left-bottom bg-gradient-to-r hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
+                  <button className="tabs ps-2 pe-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out" onClick={()=>handleActivePage(1)}>
+                    <span className={`bg-left-bottom bg-gradient-to-r hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]`} >
                       Bakiye Satın Al
                     </span>
                     <span className="absolute left-0 buttom-0 w-0 h-1 bg-premiumOrange transition-all duration-300 hover:w-full"></span>
                   </button>
                   <div className="vertical-line"></div>
-                  <button className="tabs px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out ">
+                  <button className="tabs px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out " onClick={()=>handleActivePage(2)}>
                     <span className="tabs-text bg-left-bottom bg-gradient-to-r  hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
                       Hediye Bakiye
                     </span>
@@ -152,56 +166,57 @@ const BalanceModal = ({ isOpen, onClose }) => {
                   </button>
 
                   <div className="vertical-line"></div>
-                  <button className="tabs px-10 relative group transition-all duration-300 ease-in-out text-xs ">
+                  <button className="tabs px-10 relative group transition-all duration-300 ease-in-out text-xs" onClick={()=>handleActivePage(3)}>
                     <span className="bg-left-bottom bg-gradient-to-r  hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
                       Hesap Hareketleri
                     </span>
                   </button>
                 </div>
-                <div className="border mt-4"></div>
+                <div className="border mt-2 lg:mt-4"></div>
               </div>
 
-              <div className="grid grid-cols lg:grid-cols-3  gap-y-5 gap-x-10 mb-10">
+              <div className="grid grid-cols-2 lg:grid-cols-3  gap-y-5 gap-x-10 mb-5 lg:mb-10">
                 <button
-                  className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500"
-                  onClick={() => handleAmount(100)}
+                  className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 100 ? 'bg-bgOrange border-b-premiumOrange' : 'bg-transparent'}`}
+                  onClick={() => { handleAmount(100); handleSelectedAmount(100) }}
                 >
                   100₺
                 </button>
                 <button
-                  className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500"
-                  onClick={() => handleAmount(250)}
+                  className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 250 ? 'bg-bgOrange border-b-premiumOrange' : 'bg-transparent'}`}
+                  onClick={() => { handleAmount(250); handleSelectedAmount(250) }}
                 >
                   250₺
                 </button>
                 <button
-                  className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500"
-                  onClick={() => handleAmount(500)}
+                  className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 500 ? 'bg-bgOrange border-b-premiumOrange' : 'bg-transparent'}`}
+                  onClick={() => { handleAmount(500); handleSelectedAmount(500) }}
                 >
                   500₺
                 </button>
                 <button
-                  className="border-2 border-borderGray p-2 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500"
-                  onClick={() => handleAmount(750)}
+                  className={`border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 750 ? 'bg-bgOrange border-b-premiumOrange' : 'bg-transparent '}`}
+                  onClick={() => { handleAmount(750); handleSelectedAmount(750) }}
                 >
                   750₺
                 </button>
                 <button
-                  className="border-2 border-borderGray p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500"
-                  onClick={() => handleAmount(1000)}
+                  className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 1000 ? 'bg-bgOrange border-b-premiumOrange' : 'bg-transparent'}`}
+                  onClick={() => { handleAmount(1000); handleSelectedAmount(1000) }}
                 >
                   1000₺
                 </button>
                 <input
                   type="number"
                   placeholder="Farklı miktar gir"
-                  className="border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500"
+                  className={`placeholder:text-sm border-2   p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500  focus:border-red- ${selectedAmount === farkliMiktar ? 'bg-bgOrange border-premiumOrange' : 'bg-transparent border-borderGrey'} `}
                   value={farkliMiktar}
                   onChange={handleAmountChange}
+                  onClick={() => handleSelectedAmount(farkliMiktar)}
                 />
               </div>
               <h4 className="mb-2 font-bold">Ödeme Seçenekleri</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 mb-10 md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 lg:gap-y-5 mb-5 lg:mb-10 md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-xs">
                 <div className="flex border-2 border-gray-300 p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold">
                   <input
                     type="radio"
@@ -213,37 +228,39 @@ const BalanceModal = ({ isOpen, onClose }) => {
                 <div className="flex border-2 border-gray-300 p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold relative ">
                   <input
                     type="radio"
-                    className="me-2 relative md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] text-xs"
+                    className="me-2 relative md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] text-xs "
                     name="buy"
                   />
                   Kredi Kartı ile Satın Al
                   <div
                     className={`inline-block bg-premiumOrange text-white text-[9px] rounded 
-                        p-1 absolute top-1 left-52`}
+                        p-1 absolute top-1 left-56`}
                   >
                     YENİ
                   </div>
                 </div>
               </div>
               <div className="border"></div>
-              <div className="flex justify-between items-center py-10">
+              <div className="flex flex-col md:flex-row items-center justify-between  py-3 lg:py-10">
                 <div className="flex justify-center items-center ps-2">
                   <input
                     type="checkbox"
-                    className="flex items-center justify-center size-7"
+                    className="flex items-center justify-center size-5"
                   />
-                  <span className="p-2 items-start md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-xs">
+                  <span className="p-2 items-start md:text-[1.1vw] lg:text-[1vw] xl:text-[0.8vw] text-xs">
                     Ödeme işlemine devam edimesi halinde tahsil edilen
                     tutarların iadesi mümkün olmayacaktır.İşleme devam ederek bu
                     hususu kabul etmiş sayılacağını kabul ediyorum.
                   </span>
                 </div>
-                <button
-                  className="flex-col items-center justify-center px-4 py-3 w-48 overflow-hidden md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-xs font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none focus:ring"
-                  href="/satınal"
-                >
-                  Satın Al
-                </button>
+                <div className="flex justify-center items-center">
+                  <button
+                    className="flex items-center justify-center px-4 py-3 w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none focus:ring"
+                    href="/satınal"
+                  >
+                    Satın Al
+                  </button>
+                </div>
               </div>
             </div>
           </div>

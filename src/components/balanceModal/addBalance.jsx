@@ -4,6 +4,7 @@ function AddBalance() {
   const [amount, setAmount] = useState(null);
   const [farkliMiktar, setFarkliMiktar] = useState();
   const [selectedAmount, setSelectedAmount] = useState(null);
+  const [odemeTuru, setOdemeTuru] = useState(null);
   console.log("amount", amount);
   console.log("farkliMiktar", farkliMiktar);
   console.log("selectedAmount", selectedAmount);
@@ -18,15 +19,36 @@ function AddBalance() {
   const handleSelectedAmount = (amount) => {
     setSelectedAmount(selectedAmount === amount ? null : amount);
   };
+
+  function saveDataToLocalStorage(hesapNumarası, miktar, odemeTuru) {
+    const existingData = localStorage.getItem('balanceData')
+    let newData = [];
+
+    if (existingData) {
+      newData = JSON.parse(existingData)
+    }
+    const newEntry = {
+      hesapNumarası: Number(hesapNumarası),
+      miktar: miktar,
+      odemeTuru: odemeTuru,
+    }
+
+    newData.push(newEntry);
+
+    localStorage.setItem("balanceData", JSON.stringify(newData))
+
+  }
+  const handleOdemeTuruChange=(e)=>{
+    setOdemeTuru(e.target.value)
+  }
   return (
     <>
       <div className="grid grid-cols-2 lg:grid-cols-3  gap-y-2 lg:gap-y-5 gap-x-4 lg:gap-x-10 mb-5 lg:mb-10">
         <button
-          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${
-            selectedAmount === 100
+          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 100
               ? "bg-bgOrange border-b-premiumOrange"
               : "bg-transparent"
-          }`}
+            }`}
           onClick={() => {
             handleAmount(100);
             handleSelectedAmount(100);
@@ -35,11 +57,10 @@ function AddBalance() {
           100₺
         </button>
         <button
-          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${
-            selectedAmount === 250
+          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 250
               ? "bg-bgOrange border-b-premiumOrange"
               : "bg-transparent"
-          }`}
+            }`}
           onClick={() => {
             handleAmount(250);
             handleSelectedAmount(250);
@@ -48,11 +69,10 @@ function AddBalance() {
           250₺
         </button>
         <button
-          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${
-            selectedAmount === 500
+          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 500
               ? "bg-bgOrange border-b-premiumOrange"
               : "bg-transparent"
-          }`}
+            }`}
           onClick={() => {
             handleAmount(500);
             handleSelectedAmount(500);
@@ -61,11 +81,10 @@ function AddBalance() {
           500₺
         </button>
         <button
-          className={`border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${
-            selectedAmount === 750
+          className={`border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 750
               ? "bg-bgOrange border-b-premiumOrange"
               : "bg-transparent "
-          }`}
+            }`}
           onClick={() => {
             handleAmount(750);
             handleSelectedAmount(750);
@@ -74,11 +93,10 @@ function AddBalance() {
           750₺
         </button>
         <button
-          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${
-            selectedAmount === 1000
+          className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 1000
               ? "bg-bgOrange border-b-premiumOrange"
               : "bg-transparent"
-          }`}
+            }`}
           onClick={() => {
             handleAmount(1000);
             handleSelectedAmount(1000);
@@ -89,11 +107,10 @@ function AddBalance() {
         <input
           type="number"
           placeholder="Farklı miktar gir"
-          className={`placeholder:text-sm border-2   p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500  focus:border-red- ${
-            selectedAmount === farkliMiktar
+          className={`placeholder:text-sm border-2   p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] ease-in duration-500  focus:border-red- ${selectedAmount === farkliMiktar
               ? "bg-bgOrange border-premiumOrange"
               : "bg-transparent border-borderGrey"
-          } `}
+            } `}
           value={farkliMiktar}
           onChange={handleAmountChange}
           onClick={() => handleSelectedAmount(farkliMiktar)}
@@ -106,6 +123,9 @@ function AddBalance() {
             type="radio"
             className="me-2 md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw]"
             name="buy"
+            value="hesap"
+            onChange={handleOdemeTuruChange}
+            checked={odemeTuru==='hesap'}
           />
           Hesaptan Satın Al
         </div>
@@ -114,6 +134,9 @@ function AddBalance() {
             type="radio"
             className="me-2 relative md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] text-xs "
             name="buy"
+            value="krediKarti"
+            onChange={handleOdemeTuruChange}
+            checked={odemeTuru==='krediKarti'}
           />
           Kredi Kartı ile Satın Al
           <div
@@ -140,7 +163,7 @@ function AddBalance() {
         <div className="flex w-full md:w-auto justify-center items-center flex-grow">
           <button
             className="flex items-center mt-4 md:mt-0 w-full justify-center px-4 py-3 md:w-60 lg:w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none"
-            href="/satınal"
+            href="/satınal" onClick={saveDataToLocalStorage("12345", amount || farkliMiktar, odemeTuru)}
           >
             Satın Al
           </button>

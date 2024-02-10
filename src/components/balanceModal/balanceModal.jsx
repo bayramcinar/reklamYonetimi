@@ -255,7 +255,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                 </div>
                 <div className="flex justify-center items-center">
                   <button
-                    className="flex items-center justify-center px-4 py-3 w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none focus:ring"
+                    className="flex items-center justify-center px-4 py-3 w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none"
                     href="/satınal"
                   >
                     Satın Al

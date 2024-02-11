@@ -10,6 +10,7 @@ function MainCreateAdvert() {
     setActivePage((prevActivePage) => (prevActivePage % 3) + 1);
   };
 
+  
   return (
     <>
       <CreateAdvertTitleArea />

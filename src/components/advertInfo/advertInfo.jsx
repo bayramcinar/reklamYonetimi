@@ -1,10 +1,49 @@
 import React, { useState } from 'react'
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
 
 const AdvertInfo = () => {
     const [selectedOption, setSelectedOption] = useState('');
+   
+
+    const baslangicTarihiErrorMessage = "Başlangıç tarihi ileri bir tarih olmalıdır."
+    const gunlukButceMiktarıErrorMessage = "Günlük bütçe miktarı sayı olmalıdır"
+
+
+    const initialValues = {
+        reklamTipi: selectedOption,
+        reklamAdi: "",
+        baslangicTarihi: "",
+        bitisTarihi: "",
+        butceTipi: "",
+        gunlukButceMiktarı: "",
+    }
+    const validationSchema = Yup.object({
+        reklamTipi: Yup.string().required("Lütfen en az birini seçiniz"),
+        reklamAdi: Yup.string().required("Lütfen Reklam Adını yazınız"),
+        baslangicTarihi: Yup.date().required("Başlangıç tarihi zorunludur").min(new Date()),
+        bitisTarihi: Yup.date().min(Yup.ref('baslangicTarihi'), 'Bitiş tarihi başlangıç tarihinden önce olamaz'),
+        butceTipi: Yup.string().required("Lütfen bütçe tipini seçiniz"),
+        gunlukButceMiktarı: Yup.number().required("Lütfen Miktarı Giriniz"),
+    })
+    const onSubmit=async(values)=>{
+        try {
+            console.log("form gönderildi", values)
+        } catch (error) {
+            console.log(error.message)
+        }
+       
+    }
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit,
+    })
     console.log("selectedOption=>", selectedOption)
+  
     return (
-        <div className='flex flex-col lg:flex-row px-3 py-4 max-w-[1200px] gap-x-3'>
+        <form noValidate onSubmit={formik.handleSubmit}>
+            <div className='flex flex-col lg:flex-row px-3 py-4 max-w-[1200px] gap-x-3'>
             <div className='flex flex-col md:flex-col lg:flex-col flex-auto w-full lg:w-3/4'>
                 <div className='flex-col lg:flex lg:flex-row flex-auto p-2 gap-x-10'>
                     <div className='flex-col flex-auto w-full lg:w-1/2 py-1'>
@@ -12,18 +51,25 @@ const AdvertInfo = () => {
                         <p className='text-txtGrey'>Oluşturmak istediğiniz reklam tipini belirleyiniz</p>
                         <div className='mt-3 lg:mt-10'>
                             <select
+                                type="text"
                                 id="reklam"
-                                name="reklam"
-                                autoComplete="reklam-name"
-                                onChange={(e) => setSelectedOption(e.target.value)}
-                                // className="block w-full rounded-md border-0 py-2 px-5 text-txtGrey shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-premiumOrange sm:max-w-xs sm:text-sm sm:leading-6"
-                                className='w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md'
+                                name="reklamTipi"
+                                {...formik.getFieldProps("reklamTipi")}
+                                onChange={(e) => {
+                                    setSelectedOption(e.target.value)
+                                    formik.handleChange(e)
+                                }}
+                                value={formik.values.reklamTipi}
+                                className={`w-full rounded-md border ${formik.touched.reklamTipi && formik.errors.reklamTipi ? 'border-b-red-500' : 'border-[#e0e0e0]'} bg-white py-2 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                             >
-                                <option value="">Reklam Türünü Seçiniz</option>
+                                <option value="">Reklam Tipini Seçiniz</option>
                                 <option value="Ürün Reklamı">Ürün Reklamı Seç</option>
                                 <option value="Hizmet Reklamı">Hizmet Reklamı</option>
                                 <option value="Profil Reklamı">Profil Reklamı</option>
                             </select>
+                            {formik.touched.reklamTipi && formik.errors.reklamTipi && (
+                                <p className="mt-1 text-sm text-red-500">{formik.errors.reklamTipi}</p>
+                            )}
                         </div>
                     </div>
                     <div className='flex-col flex-auto w-full lg:w-1/2 py-1'>
@@ -32,16 +78,22 @@ const AdvertInfo = () => {
                         <div className='relative'>
                             <input
                                 type="text"
-                                name="rName"
-                                id="rName"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-1.5 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md"
+                                name="reklamAdi"
+                                id="reklamAdi"
+                                {...formik.getFieldProps("reklamAdi")}
+                                data-isvalid={formik.touched.reklamAdi && !formik.errors.reklamAdi}
+                                isinvalid={formik.touched.butce && !!formik.errors.butce ? "true" : "false"} 
+                                className={`w-full rounded-md border ${formik.touched.reklamAdi && formik.errors.reklamAdi ? 'border-b-red-500' : 'border-[#e0e0e0]'} bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                             />
                             <label
-                                for="rName"
+                                htmlFor="reklamAdi"
                                 className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
                             >
                                 Reklam Adı
                             </label>
+                            {formik.touched.reklamAdi && formik.errors.reklamAdi && (
+                                <p className="mt-1 text-sm text-red-500">{formik.errors.reklamAdi}</p>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -50,42 +102,73 @@ const AdvertInfo = () => {
                     <div className='flex-col flex-auto w-full lg:w-1/2 py-0 lg:py-1'>
                         <h3 className='font-bold'>Tarih Aralığı</h3>
                         <p className='text-txtGrey mb-4'>Reklam başlangıç ve bitiş tarihlerini belirleyin.Dilerseniz bitiş tarihi olmayan süresiz reklam verebilirsiniz.</p>
+
                         <div className='flex-col lg:flex lg:flex-row justify-between items-center gap-x-10'>
                             <div className='relative flex flex-auto mb-3'>
-                                <input
-                                    type="date"
-                                    name="sDate"
-                                    id="sDate"
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-1.5 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md"
-                                />
-                                <label
-                                    for="sDate"
-                                    className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                                >
-                                    Başlangıç Tarihi
-                                </label>
-                            </div>
+                                <div className='flex-col flex-auto'>
+                                    <div className='flex'>
+                                        <input
+                                            type="date"
+                                            name="baslangicTarihi"
+                                            id="baslangicTarihi"
+                                            {...formik.getFieldProps("baslangicTarihi")}
+                                            data-isvalid={formik.touched.baslangicTarihi && !formik.errors.baslangicTarihi}
+                                            isinvalid={formik.touched.baslangicTarihi && !!formik.errors.baslangicTarihi}
+                                            className={`w-full rounded-md border ${formik.touched.baslangicTarihi && formik.errors.baslangicTarihi ? 'border-b-red-500' : 'border-[#e0e0e0]'} bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
+                                        />
+                                        <label
+                                            htmlFor="baslangicTarihi"
+                                            className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
+                                        >
+                                            Başlangıç Tarihi
+                                        </label>
+                                    </div>
+                                    <div className='flex'>
+                                        {formik.touched.baslangicTarihi && formik.errors.baslangicTarihi && (
+                                            <p className="mt-1 text-sm text-red-500">
+                                                {baslangicTarihiErrorMessage}
+                                            </p>
+                                        )}
 
+                                    </div>
+                                </div>
+                            </div>
+                           
                             <div className='relative flex flex-auto mb-3'>
-                                <input
-                                    type="date"
-                                    name="eDate"
-                                    id="eDate"
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-1.5 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md"
-                                />
-                                <label
-                                    for="eDate"
-                                    className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                                >
-                                    Bitiş Tarihi
-                                </label>
+                                <div className='flex-col flex-auto'>
+                                    <div className='flex'>
+                                        <input
+                                            type="date"
+                                            name="bitisTarihi"
+                                            id="bitisTarihi"
+                                            {...formik.getFieldProps("bitisTarihi")}
+                                            data-isvalid={formik.touched.bitisTarihi && !formik.errors.bitisTarihi}
+                                            isinvalid={formik.touched.bitisTarihi && !!formik.errors.bitisTarihi}
+                                            className={`w-full rounded-md border ${formik.touched.bitisTarihi && formik.errors.bitisTarihi ? 'border-b-red-500' : 'border-[#e0e0e0]'} bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
+                                        />
+                                        <label
+                                            htmlFor="baslangicTarihi"
+                                            className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
+                                        >
+                                            Bitiş Tarihi
+                                        </label>
+                                    </div>
+                                    <div className='flex'>
+                                        {formik.touched.bitisTarihi && formik.errors.bitisTarihi && (
+                                            <p className="mt-1 text-sm text-red-500">
+                                                {formik.errors.bitisTarihi}
+                                            </p>
+                                        )}
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div className='flex-col lg:flex lg:flex-row flex-auto w-full p-2'>
-                     <div className='flex-col flex-auto w-full lg:w-1/2 py-1'>
+                    <div className='flex-col flex-auto w-full lg:w-1/2 py-1'>
                         <div className='flex-col lg:flex lg:flex-row justify-between items-center gap-x-10'>
                             <div className='butce flex-col flex-auto w-full lg:w-1/2 mb-1'>
                                 <div className='flex-col mb-3 lg:mb-8'>
@@ -100,8 +183,13 @@ const AdvertInfo = () => {
                                     <div className='flex flex-row'>
                                         <input
                                             type="radio"
-                                            name="butce"
+                                            name="butceTipi"
                                             id="butce1"
+                                            value="GunlukButce"
+                                            checked={formik.values.butce === "GunlukButce"}
+                                            data-isvalid={formik.touched.butceTipi && !formik.errors.butceTipi}
+                                            isinvalid={formik.touched.butceTipi && !!formik.errors.butce}
+                                            onChange={formik.handleChange}
                                             className="rounded-md border border-[#e0e0e0] bg-white py-1 px-6 text-base font-medium outline-none focus:border-lightGray focus:shadow-md mr-2"
                                         />
                                         <label>Günlük Bütçe</label>
@@ -109,13 +197,19 @@ const AdvertInfo = () => {
                                     <div className='flex flex-row'>
                                         <input
                                             type="radio"
-                                            name="butce"
                                             id="butce2"
+                                            name="butceTipi"
+                                            value="ToplamButce"
+                                            data-isvalid={formik.touched.butceTipi && !formik.errors.butceTipi}
+                                            isinvalid={formik.touched.butceTipi && !!formik.errors.butceTipi}
+                                            checked={formik.values.butceTipi === "ToplamButce"}
+                                            onChange={formik.handleChange}
                                             className="rounded-md border border-[#e0e0e0] bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md mr-2"
                                         />
                                         <label>Toplam Bütçe</label>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div className='butce flex-col flex-auto w-full lg:w-1/2 mb-1'>
@@ -131,25 +225,39 @@ const AdvertInfo = () => {
                                 </div>
                                 <div className='flex flex-row'>
                                     <div className='flex flex-auto relative'>
-                                        <input
-                                            type="text"
-                                            name="gButce"
-                                            id="gButce"
-                                            placeholder='Her ürün için minimum 10₺'
-                                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-1.5 px-10 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md"
-                                        />
-                                        <label
-                                            for="gButce"
-                                            className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                                        >
-                                            Günlük Bütçe(₺)
-                                        </label>
+                                        <div className="flex-col flex-auto">
+                                            <div className="flex">
+                                                <input
+                                                    type="text"
+                                                    name="gunlukButceMiktarı"
+                                                    id="gunlukButceMiktarı"
+                                                    {...formik.getFieldProps("gunlukButceMiktarı")}
+                                                    data-isvalid={formik.touched.gunlukButceMiktarı && !formik.errors.gunlukButceMiktarı}
+                                                    isinvalid={formik.touched.gunlukButceMiktarı && !!formik.errors.gunlukButceMiktarı}
+                                                    placeholder='Her ürün için minimum 10₺'
+                                                    className={`w-full rounded-md border ${formik.touched.gunlukButceMiktarı && formik.errors.gunlukButceMiktarı ? 'border-b-red-500' : 'border-[#e0e0e0]'} bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
+                                                />
+                                                <label
+                                                    htmlFor="gunlukButce"
+                                                    className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
+                                                >
+                                                    Günlük Bütçe(₺)
+                                                </label>
+                                            </div>
+                                            <div className="flex">
+                                                {formik.touched.gunlukButceMiktarı && formik.errors.gunlukButceMiktarı && (
+                                                    <p className="mt-1 text-sm text-red-500">
+                                                        {gunlukButceMiktarıErrorMessage}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> 
-                    
+                    </div>
+
                 </div>
             </div>
             <div className='flex flex-col lg:flex-col flex-auto w-full lg:w-1/4'>
@@ -163,9 +271,12 @@ const AdvertInfo = () => {
                     <p className='text-txtGrey'>Belirlenen günlük bütçe miktarı reklam oluşturulduğu an reklam bakiyenizden çekilir, reklam süresi boyunca gün sonunda harcanamayan günlük bütçe miktarı reklam bakiyenize iade edilir. Reklam bakiyenizde yeterli tutar olduğu takdirde reklam süresi boyunca hergün bu işlem tekrarlanır.</p>
                 </div>
             </div>
-        </div>
+            <div>
+                <button type="submit" className='bg-red-300 border-red-600'>Submit</button>
+            </div>
+            </div>  
+        </form>
     )
 }
 export default AdvertInfo
-
-
+ 

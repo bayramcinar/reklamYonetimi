@@ -26,7 +26,7 @@ function AddBalance() {
   
   dataToSave.push({
     hesapNumarası:Number(hesapNumarası),
-    miktar:selectedAmount,
+    miktar:Number(selectedAmount),
     odemeTuru:Number(odemeTuru),
   })
  }

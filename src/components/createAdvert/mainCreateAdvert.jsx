@@ -6,10 +6,9 @@ import AdvertInfo from "../advertInfo/advertInfo";
 function MainCreateAdvert() {
   const [activePage, setActivePage] = useState(1);
 
-  const handleButtonClick = () => {
-    setActivePage((prevActivePage) => (prevActivePage % 3) + 1);
+  const handleButtonClick = (formik) => {
+        setActivePage((prevActivePage) => (prevActivePage % 3) + 1);
   };
-
   return (
     <>
       <CreateAdvertTitleArea />
@@ -18,7 +17,7 @@ function MainCreateAdvert() {
           <Pages active={activePage} />
           {/* FORUM YERİ GELECEK ALAN (ACTİVE PAGE E GÖRE DEĞİŞECEK ALAN)*/}
           <div>
-            <AdvertInfo/>
+            <AdvertInfo handleButtonClick={handleButtonClick}/>
           </div>
         </div>
         <div className="flex items-center justify-end border-t-2 border-gray-100 text-[3vw] md:text-[1.1vw] lg:text-[1vw] xl:text-[0.8vw]">

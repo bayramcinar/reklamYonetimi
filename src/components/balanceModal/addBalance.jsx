@@ -8,6 +8,7 @@ function AddBalance() {
   console.log("amount", amount);
   console.log("farkliMiktar", farkliMiktar);
   console.log("selectedAmount", selectedAmount);
+  console.log("odeme turu",odemeTuru)
 
   const handleAmount = (miktar) => {
     setAmount(miktar);
@@ -20,26 +21,42 @@ function AddBalance() {
     setSelectedAmount(selectedAmount === amount ? null : amount);
   };
 
-  function saveDataToLocalStorage(hesapNumarası, miktar, odemeTuru) {
-    const existingData = localStorage.getItem('balanceData')
-    let newData = [];
-
-    if (existingData) {
-      newData = JSON.parse(existingData)
+ let dataToSave=[];
+ function addToDataToSave(hesapNumarası,selectedAmount,odemeTuru){
+  
+  dataToSave.push({
+    hesapNumarası:Number(hesapNumarası),
+    miktar:selectedAmount,
+    odemeTuru:Number(odemeTuru),
+  })
+ }
+  function saveDataToLocalStorage() {
+    if(dataToSave.length===0){
+      console.log("hiç veri girilmedi")
+      return
     }
-    const newEntry = {
-      hesapNumarası: Number(hesapNumarası),
-      miktar: miktar,
-      odemeTuru: odemeTuru,
-    }
+    const existingData=JSON.parse(localStorage.getItem('balanceData')) || [];
+    const newData=existingData.concat(dataToSave);
 
-    newData.push(newEntry);
-
-    localStorage.setItem("balanceData", JSON.stringify(newData))
-
+    localStorage.setItem("balanceData",JSON.stringify(newData))
+    dataToSave = [];
+    console.log("Veriler local storage'a kaydedildi.")
   }
   const handleOdemeTuruChange=(e)=>{
     setOdemeTuru(e.target.value)
+  }
+  function handleClick(){
+    let miktar;
+    if(amount){
+      miktar=amount;
+    }else if(farkliMiktar){
+      miktar=farkliMiktar;
+    }else{
+      console.log("miktar bilgisi eksik")
+      return;
+    }
+    addToDataToSave(12345, miktar, odemeTuru);
+    saveDataToLocalStorage();
   }
   return (
     <>
@@ -122,10 +139,10 @@ function AddBalance() {
           <input
             type="radio"
             className="me-2 md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw]"
-            name="buy"
-            value="hesap"
+            name="0"
+            value="0"
             onChange={handleOdemeTuruChange}
-            checked={odemeTuru==='hesap'}
+            checked={odemeTuru==="0"}
           />
           Hesaptan Satın Al
         </div>
@@ -133,10 +150,10 @@ function AddBalance() {
           <input
             type="radio"
             className="me-2 relative md:text-[0.9vw] lg:text-[1vw] xl:text-[1.1vw] text-xs "
-            name="buy"
-            value="krediKarti"
+            name="1"
+            value="1"
             onChange={handleOdemeTuruChange}
-            checked={odemeTuru==='krediKarti'}
+            checked={odemeTuru==="1"}
           />
           Kredi Kartı ile Satın Al
           <div
@@ -163,7 +180,7 @@ function AddBalance() {
         <div className="flex w-full md:w-auto justify-center items-center flex-grow">
           <button
             className="flex items-center mt-4 md:mt-0 w-full justify-center px-4 py-3 md:w-60 lg:w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none"
-            href="/satınal" onClick={saveDataToLocalStorage("12345", amount || farkliMiktar, odemeTuru)}
+            href="/satınal" onClick={handleClick}
           >
             Satın Al
           </button>

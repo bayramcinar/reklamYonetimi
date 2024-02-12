@@ -28,7 +28,7 @@ function CreatedAdvertsTable() {
           </h1>
           <div className="buttons lg:flex text-[3vw] md:text-[1.1vw] lg:text-[1vw] xl:text-[0.8vw]">
             <Link className="flex items-center justify-center w-full text-center py-2 px-10 text-premiumOrange bg-white hover:text-white border-2 border-premiumOrange rounded-lg font-semibold mr-4 overflow-hidden relative transition-all will-change-transform after:bg-premiumOrange z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-white after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:scale-105 hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform">
-              <i class="fa-solid fa-circle-plus mr-2 "></i>
+              <i className="fa-solid fa-circle-plus mr-2 "></i>
               <span style={{ whiteSpace: "nowrap" }}>Hızlı Reklam Oluştur</span>
             </Link>
             <Link

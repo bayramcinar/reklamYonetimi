@@ -6,7 +6,7 @@ import AdvertInfo from "../advertInfo/advertInfo";
 function MainCreateAdvert() {
   const [activePage, setActivePage] = useState(1);
 
-  const handleButtonClick = (formik) => {
+  const handleButtonClick = () => {
         setActivePage((prevActivePage) => (prevActivePage % 3) + 1);
   };
   return (

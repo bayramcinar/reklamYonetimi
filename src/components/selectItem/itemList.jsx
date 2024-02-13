@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-function ItemList({ itemList, selectedMethod, amount, time }) {
+function ItemList({
+  itemList,
+  selectedMethod,
+  amount,
+  time,
+  initialValues,
+  setInitialValues,
+}) {
   const [selectedItems, setSelectedItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
@@ -10,17 +17,15 @@ function ItemList({ itemList, selectedMethod, amount, time }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleCheckboxChange = (item) => {
-    if (selectedItems.includes(item)) {
-      setSelectedItems(
-        selectedItems.filter((selectedItem) => selectedItem !== item)
-      );
-    } else {
-      setSelectedItems([...selectedItems, item]);
-    }
-  };
+    const newValues = { ...initialValues };
 
-  const logSelectedItems = () => {
-    console.log(selectedItems);
+    newValues.hizmetler = selectedItems.includes(item)
+      ? selectedItems.filter((selectedItem) => selectedItem !== item)
+      : [...selectedItems, item];
+
+    setInitialValues(newValues);
+
+    setSelectedItems(newValues.hizmetler);
   };
 
   const handlePageChange = (pageNumber) => {
@@ -56,7 +61,7 @@ function ItemList({ itemList, selectedMethod, amount, time }) {
             </div>
             <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
               <h1 className="text-sm md:text-[1vw] lg:text-[1vw] xl:text-[1vw]">
-                {selectedMethod}
+                {selectedMethod === "1" ? "Günlük Bütçe" : "Toplam Bütçe"}
               </h1>
               <h1 className="text-md md:text-[1.5vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold">
                 {amount} ₺

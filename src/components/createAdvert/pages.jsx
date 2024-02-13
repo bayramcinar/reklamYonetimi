@@ -2,7 +2,7 @@ import React from "react";
 
 function Pages({ active }) {
   return (
-    <div className=" lg:w-72 lg:h-[700px] p-8 border-b-2 lg:border-r-2 lg:border-b-0 border-gray-100 flex lg:block">
+    <div className=" lg:w-80 lg:h-[520px] p-8 border-b-2 lg:border-r-2 lg:border-b-0 border-gray-100 flex lg:block">
       <div className="firstOne lg:flex md:text-[1.4vw] lg:text-[1.2vw] xl:text-[0.95vw] text-sm animate__animated animate__zoomIn">
         <span
           className={`xl:w-[2.5vw] xl:h-[2.5vw] lg:w-[3.2vw] lg:h-[3.2vw] md:w-[3.7vw] mx-auto lg:mx-0 md:h-[3.7vw] w-[8.8vw] h-[8.8vw] ${

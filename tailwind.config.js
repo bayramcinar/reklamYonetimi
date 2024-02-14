@@ -18,6 +18,7 @@ module.exports = {
         txtRed: "#ef4444",
         txtGrey: "#6B7280",
         premiumOrangeBg: "hsl(8, 90%, 68%)",
+        greenForPagination: "hsl(147, 58%, 56%)",
       },
     },
   },

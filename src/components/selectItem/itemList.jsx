@@ -17,15 +17,24 @@ function ItemList({
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleCheckboxChange = (item) => {
+    const isSelected = selectedItems.some(
+      (selectedItem) => selectedItem.id === item.id
+    );
+
+    let updatedSelectedItems;
+    if (isSelected) {
+      updatedSelectedItems = selectedItems.filter(
+        (selectedItem) => selectedItem.id !== item.id
+      );
+    } else {
+      updatedSelectedItems = [...selectedItems, item];
+    }
+
+    setSelectedItems(updatedSelectedItems);
+
     const newValues = { ...initialValues };
-
-    newValues.hizmetler = selectedItems.includes(item)
-      ? selectedItems.filter((selectedItem) => selectedItem !== item)
-      : [...selectedItems, item];
-
+    newValues.hizmetler = updatedSelectedItems;
     setInitialValues(newValues);
-
-    setSelectedItems(newValues.hizmetler);
   };
 
   const handlePageChange = (pageNumber) => {
@@ -50,7 +59,7 @@ function ItemList({
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-
+  console.log(selectedItems);
   return (
     <div className="w-full">
       <div className="selectedInfos my-2 mx-6">
@@ -124,7 +133,9 @@ function ItemList({
                 <td className="px-2 py-3 flex items-center justify-center">
                   <input
                     type="checkbox"
-                    checked={selectedItems.includes(item)}
+                    checked={selectedItems.some(
+                      (selectedItem) => selectedItem.id === item.id
+                    )}
                     onChange={() => handleCheckboxChange(item)}
                   />
                 </td>

@@ -81,7 +81,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-                <div className="flex justify-between items-center px-2. lg:px-5  py-1 lg:py-2 border-2 border-gray-300 rounded-lg mb-3 md:mb-0">
+                <div className="flex justify-between items-center px-2 lg:px-5  py-1 lg:py-2 border-2 border-gray-300 rounded-lg mb-3 md:mb-0">
                   <LuScreenShare className="flex items-center me-2 text-lg lg:text-2xl text-premiumOrange" />
                   <span className="flex items-center mx-1 font-bold md:text-md">
                     Reklam Bakiyesi Artırılabilir Tutar:

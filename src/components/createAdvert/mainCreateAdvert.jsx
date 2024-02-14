@@ -4,14 +4,18 @@ import CreateAdvertTitleArea from "./createAdvertTitle";
 import AdvertInfo from "../advertInfo/advertInfo";
 import MainSelectItemPage from "../selectItem/mainSelectItemPage";
 import Swal from "sweetalert2";
+import MainConfirmArea from "../confirmArea/mainConfirmArea";
 
-function MainCreateAdvert({ setInitialValueAdded, initialValueAdded }) {
+function MainCreateAdvert({
+  setInitialValueAdded,
+  initialValueAdded,
+  itemList,
+}) {
   const [activePage, setActivePage] = useState(1);
   const [valuesForContent, setValuesForContent] = useState("");
   const [complatedPages, setComplatedPages] = useState([false, false, false]);
 
   const handleButtonBackClick = () => {
-    console.log(activePage);
     if (activePage === 2) {
       setComplatedPages([false, false, false]);
       setValuesForContent("");
@@ -51,7 +55,14 @@ function MainCreateAdvert({ setInitialValueAdded, initialValueAdded }) {
       return updatedComplatedPages;
     });
   };
-
+  const day = (date1, date2) => {
+    //REKLAM SÜRESİNİ BULAN FONKSİYON
+    const oneDay = 24 * 60 * 60 * 1000;
+    const firstDate = new Date(date1);
+    const secondDate = new Date(date2);
+    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+    return diffDays;
+  };
   const renderPage = () => {
     switch (activePage) {
       case 1:
@@ -61,6 +72,24 @@ function MainCreateAdvert({ setInitialValueAdded, initialValueAdded }) {
           <MainSelectItemPage
             initialValues={valuesForContent}
             setInitialValueAdded={setInitialValueAdded}
+            itemList={itemList}
+          />
+        );
+      case 3:
+        return (
+          <MainConfirmArea
+            advertEndDate={initialValueAdded.bitisTarihi}
+            advertName={initialValueAdded.reklamAdi}
+            advertStartDate={initialValueAdded.baslangicTarihi}
+            advertType={initialValueAdded.reklamTipi}
+            amount={initialValueAdded.gunlukButceMiktarı}
+            selectedMethod={initialValueAdded.reklamTipi}
+            time={day(
+              initialValueAdded.baslangicTarihi,
+              initialValueAdded.bitisTarihi
+            )}
+            total={itemList}
+            selectedItems={initialValueAdded.hizmetler}
           />
         );
       default:
@@ -68,15 +97,38 @@ function MainCreateAdvert({ setInitialValueAdded, initialValueAdded }) {
     }
   };
 
-  const finish = () => {
+  const finish = async () => {
     try {
-      const serializedValue = JSON.stringify(initialValueAdded);
-      const existingAdverts = localStorage.getItem("adverts");
-      const advertsArray = existingAdverts ? JSON.parse(existingAdverts) : [];
-      const parsedValue = JSON.parse(serializedValue);
-      advertsArray.push(parsedValue);
-      localStorage.setItem("adverts", JSON.stringify(advertsArray));
-      setInitialValueAdded(null);
+      await Swal.fire({
+        title: `Emin misiniz ?`,
+        text: "Girilen bilgiler ile reklam oluşturuluyor. Bir hata olduğunu düşünüyorsanız iptal edip düzenleyebilirsiniz.",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Oluştur",
+        cancelButtonText: "İptal et",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const serializedValue = JSON.stringify(initialValueAdded);
+          const existingAdverts = localStorage.getItem("adverts");
+          const advertsArray = existingAdverts
+            ? JSON.parse(existingAdverts)
+            : [];
+          const parsedValue = JSON.parse(serializedValue);
+          advertsArray.push(parsedValue);
+          localStorage.setItem("adverts", JSON.stringify(advertsArray));
+          Swal.fire({
+            text: "Reklam Başarı ile oluşturuldu !",
+            icon: "success",
+            confirmButtonText: "Tamam",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/";
+            }
+          });
+        }
+      });
     } catch (error) {
       console.error("Error saving advert to localStorage:", error);
     }

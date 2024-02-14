@@ -59,7 +59,6 @@ function ItemList({
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(selectedItems);
   return (
     <div className="w-full">
       <div className="selectedInfos my-2 mx-6">
@@ -69,10 +68,10 @@ function ItemList({
               <i className="fa-solid fa-coins lg:m-6 text-xs lg:text-lg"></i>
             </div>
             <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
-              <h1 className="text-sm md:text-[1vw] lg:text-[1vw] xl:text-[1vw]">
+              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw]">
                 {selectedMethod === "1" ? "Günlük Bütçe" : "Toplam Bütçe"}
               </h1>
-              <h1 className="text-md md:text-[1.5vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold">
+              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold">
                 {amount} ₺
               </h1>
             </div>
@@ -82,10 +81,10 @@ function ItemList({
               <i className="fa-regular fa-calendar m-3 lg:m-6 text-xs lg:text-lg"></i>
             </div>
             <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
-              <h1 className="text-sm md:text-[1vw] lg:text-[1vw] xl:text-[1vw]">
+              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw]">
                 Reklam Süresi
               </h1>
-              <h1 className="text-md md:text-[1.5vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold">
+              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold">
                 {time} Gün
               </h1>
             </div>
@@ -95,10 +94,10 @@ function ItemList({
               <i className="fa-solid fa-boxes-stacked  m-3 lg:m-6 text-xs lg:text-lg"></i>
             </div>
             <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
-              <h1 className="text-sm md:text-[1vw] lg:text-[1vw] xl:text-[1vw]">
+              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw]">
                 Ürün Sayısı
               </h1>
-              <h1 className="text-md md:text-[1.5vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold">
+              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold">
                 {selectedItems.length} / {itemList.length}
               </h1>
             </div>

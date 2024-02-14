@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 function CreatedAdvertsTable() {
-  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
-
-  const data = [{}, {}];
-
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [data, setData] = useState([]);
+  const [totalPages, setTotalPages] = useState(
+    Math.ceil(data.length / itemsPerPage)
+  );
+  useEffect(() => {
+    const storedData = localStorage.getItem("adverts");
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    }
+  }, []);
 
   const handlePageChange = (page) => {
     if (page < 1 || page > totalPages) {
@@ -17,6 +23,12 @@ function CreatedAdvertsTable() {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  const handlePageNumberChange = (e) => {
+    const value = parseInt(e.target.value);
+    setItemsPerPage(value);
+    setTotalPages(Math.ceil(data.length / value));
+    setCurrentPage(1);
+  };
 
   const currentPageData = data.slice(startIndex, endIndex);
   return (
@@ -46,7 +58,7 @@ function CreatedAdvertsTable() {
                   <i class="fa-solid fa-circle-info text-gray-400 ml-2 cursor-pointer"></i>
                 </th>
                 <th className="py-3 px-1">
-                  Harcanan Bütçe{" "}
+                  Reklam Tipi{" "}
                   <i class="fa-solid fa-circle-info text-gray-400 ml-2  cursor-pointer"></i>
                 </th>
                 <th className="py-3 px-1">
@@ -73,68 +85,108 @@ function CreatedAdvertsTable() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="px-2 py-3">
-                  <div className="advertInfos flex items-center justify-start flex-col">
-                    <h1 className="name text-md">Depresyon Tedavi</h1>
-                    <h1 className="status text-sm text-gray-400">Tamamlandı</h1>
-                    <h1 className="dates text-sm text-gray-400">
-                      20.01.2024 - 03.02.2024
+              {currentPageData.map((item, index) => (
+                <tr key={index}>
+                  <td className="px-2 py-3">
+                    <div className="advertInfos flex items-center justify-start flex-col">
+                      <h1 className="name text-md">{item.reklamAdi}</h1>
+                      <div className="flex items-center w-[150px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
+                        <div className="flex p-1">
+                          <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
+                          <h1 className="text-center text-[0.65rem] lg:text-xs text-gray-500">
+                            Tamamlandı
+                          </h1>
+                        </div>
+                      </div>
+                      <h1 className="dates text-sm text-gray-400">
+                        {item.baslangicTarihi} - {item.bitisTarihi}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="px-2 py-3">
+                    <div className="flex items-center justify-center">
+                      <h1 className="text-sm text-gray-400">Toplam : </h1>
+                      <h1 className="text-sm font-semibold">
+                        {item.gunlukButceMiktarı}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="px-2 py-3">
+                    <div className="flex items-center justify-center">
+                      <h1 className="text-sm text-gray-400">
+                        {item.reklamTipi === "1"
+                          ? "Hizmet Reklamı"
+                          : "Profil Reklamı"}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="px-2 py-3">
+                    <h1 className="text-sm flex items-center justify-center">
+                      4.310
                     </h1>
-                  </div>
-                </td>
-                <td className="px-2 py-3">
-                  <div className="flex items-center justify-center">
-                    <h1 className="text-sm text-gray-400">Toplam : </h1>
-                    <h1 className="text-sm font-semibold">100 ₺</h1>
-                  </div>
-                </td>
-                <td className="px-2 py-3">
-                  <div className="flex items-center justify-center">
-                    <h1 className="text-sm text-gray-400">Toplam : </h1>
-                    <h1 className="text-sm font-semibold">75 ₺</h1>
-                  </div>
-                </td>
-                <td className="px-2 py-3">
-                  <h1 className="text-sm flex items-center justify-center">
-                    4.310
-                  </h1>
-                </td>
-                <td className="px-2 py-3">
-                  <h1 className="text-sm flex items-center justify-center">
-                    94
-                  </h1>
-                </td>
-                <td className="px-2 py-3">
-                  <h1 className="text-sm flex items-center justify-center">
-                    5
-                  </h1>
-                </td>
-                <td className="px-2 py-3">
-                  <h1 className="text-sm font-semibold flex items-center justify-center">
-                    322,2 ₺
-                  </h1>
-                </td>
-                <td className="px-2 py-3">
-                  <h1 className="text-sm flex items-center justify-center">
-                    7.8
-                  </h1>
-                </td>
-                <td className="px-2 py-3">
-                  <div className="flex items-center justify-center">
-                    <button className="text-gray-400 mr-4">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                    <button className="text-gray-400 ">
-                      <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                  <td className="px-2 py-3">
+                    <h1 className="text-sm flex items-center justify-center">
+                      94
+                    </h1>
+                  </td>
+                  <td className="px-2 py-3">
+                    <h1 className="text-sm flex items-center justify-center">
+                      5
+                    </h1>
+                  </td>
+                  <td className="px-2 py-3">
+                    <h1 className="text-sm font-semibold flex items-center justify-center">
+                      322,2 ₺
+                    </h1>
+                  </td>
+                  <td className="px-2 py-3">
+                    <h1 className="text-sm flex items-center justify-center">
+                      7.8
+                    </h1>
+                  </td>
+                  <td className="px-2 py-3">
+                    <div className="flex items-center justify-center">
+                      <button className="text-gray-400 mr-4">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <button className="text-gray-400 ">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          <div className="flex justify-end m-3">
-            <ul className="flex space-x-2">
+          <div className="lg:flex justify-between m-3 text-sm md:text-[1vw] lg:text-[1vw] xl:text-[0.8vw]">
+            <div className="flex items-center justify-center">
+              <select
+                id="pageNumberSelect"
+                className="px-2 py-1 text-sm font-medium rounded-lg bg-white border-2 border-gray-200 text-gray-600"
+                onChange={handlePageNumberChange}
+                value={itemsPerPage}
+              >
+                <option value="">Sayfa Sayısı</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+              </select>
+              <h1 className="text-xs lg:text-sm text-gray-500 ml-2">
+                Şuanda Gösterilen Sayı {itemsPerPage}
+              </h1>
+            </div>
+            <ul className="flex space-x-2 mt-4 lg:mt-0">
               <li
                 onClick={() => handlePageChange(currentPage - 1)}
                 className={`px-5 py-2 border w-[80px] h-[40px] flex items-center justify-center cursor-pointer rounded-xl ${
@@ -166,7 +218,6 @@ function CreatedAdvertsTable() {
                   </button>
                 </li>
               ))}
-
               <li
                 onClick={() => handlePageChange(currentPage + 1)}
                 className={`px-5 py-2 border w-[80px] h-[40px] flex items-center justify-center cursor-pointer rounded-xl ${

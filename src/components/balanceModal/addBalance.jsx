@@ -9,6 +9,9 @@ function AddBalance() {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [odemeTuru, setOdemeTuru] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [totalBalance, setTotalBalance] = useState(null)
+
+  console.log("totalBalance",totalBalance)
   const initialValues = {
     selectedAmount: 0,
     odemeTuru: 0,
@@ -37,8 +40,7 @@ function AddBalance() {
       }).then((result) => {
         if (result.isConfirmed) {
           // Kullanıcı onayladıysa, verileri localStorage'a kaydet.
-          addToDataToSave(12345, selectedAmount, odemeTuru);
-          saveDataToLocalStorage();
+          addToDataToSave(1234850, selectedAmount, odemeTuru);
           setIsSubmitting(true);
           console.log(values);
           Swal.fire({
@@ -66,6 +68,7 @@ function AddBalance() {
 
   const handleSelectedAmount = (amount) => {
     setSelectedAmount(selectedAmount === amount ? null : amount);
+    formik.setFieldValue('selectedAmount', selectedAmount === amount ? null : amount)
   };
 
   let dataToSave = [];
@@ -76,39 +79,47 @@ function AddBalance() {
       odemeTuru: Number(odemeTuru),
     });
   }
-  function saveDataToLocalStorage() {
-    if (dataToSave.length === 0) {
-      console.log("hiç veri girilmedi");
-      return;
-    }
-    const existingData = JSON.parse(localStorage.getItem("balanceData")) || [];
-    const newData = existingData.concat(dataToSave);
 
-    localStorage.setItem("balanceData", JSON.stringify(newData));
-    dataToSave = [];
-    console.log("Veriler local storage'a kaydedildi.");
+  function addToDataToSave(hesapNumarası, selectedAmount, odemeTuru) {
+    //hesap localStorage de varsa alalım yoksa yeni hesap için boş dizi oluştur
+    const dataToSave = JSON.parse(localStorage.getItem('totalBalance')) || [];
+    const existingAccount = dataToSave.find((data) => data.hesapNumarası === hesapNumarası);
+
+    if (existingAccount) {
+      // Hesap numarası varsa, bakiyeyi(miktarı) toplam bakiyeye ekle
+      const sum=existingAccount.miktar += Number(selectedAmount);
+      setTotalBalance(sum);
+    } else {
+      // Hesap numarası yoksa, yeni bir hesap {obje} oluştur
+      dataToSave.push({
+        hesapNumarası: Number(hesapNumarası),
+        miktar: Number(selectedAmount),
+        odemeTuru: Number(odemeTuru),
+      });
+    }
+
+    localStorage.setItem('totalBalance', JSON.stringify(dataToSave));
+    console.log('Veriler local storage\'a kaydedildi.');
   }
 
   return (
     <form noValidate onSubmit={formik.handleSubmit}>
       <div
-        className={`amount-group px-2 pt-2 mb-5 ${
-          (formik.errors.selectedAmount || !formik.values.selectedAmount) &&
+        className={`amount-group px-2 pt-2 mb-5 ${(formik.errors.selectedAmount || !formik.values.selectedAmount) &&
           formik.touched.selectedAmount
-            ? "border border-x-white border-t-white border-b-red-500"
-            : "border-[#e0e0e0] rounded-lg"
-        }`}
+          ? "border border-x-white border-t-white border-b-red-500"
+          : "border-[#e0e0e0] rounded-lg"
+          }`}
       >
         <div className="grid grid-cols-2 lg:grid-cols-3  gap-y-2 lg:gap-y-5 gap-x-4 lg:gap-x-10 lg:mb-10 ">
           <button
             type="button"
             value="100"
             name="miktar"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
-              selectedAmount === 100
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
-            }`}
+            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 100
+              ? "bg-bgOrange border-b-premiumOrange"
+              : "bg-transparent"
+              }`}
             onClick={() => {
               handleAmount(100);
               handleSelectedAmount(100);
@@ -119,11 +130,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
-              selectedAmount === 250
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
-            }`}
+            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 250
+              ? "bg-bgOrange border-b-premiumOrange"
+              : "bg-transparent"
+              }`}
             onClick={() => {
               handleAmount(250);
               handleSelectedAmount(250);
@@ -134,11 +144,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
-              selectedAmount === 500
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
-            }`}
+            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 500
+              ? "bg-bgOrange border-b-premiumOrange"
+              : "bg-transparent"
+              }`}
             onClick={() => {
               handleAmount(500);
               handleSelectedAmount(500);
@@ -149,11 +158,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
-              selectedAmount === 750
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent "
-            }`}
+            className={`border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 750
+              ? "bg-bgOrange border-b-premiumOrange"
+              : "bg-transparent "
+              }`}
             onClick={() => {
               handleAmount(750);
               handleSelectedAmount(750);
@@ -164,11 +172,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
-              selectedAmount === 1000
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
-            }`}
+            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${selectedAmount === 1000
+              ? "bg-bgOrange border-b-premiumOrange"
+              : "bg-transparent"
+              }`}
             onClick={() => {
               handleAmount(1000);
               handleSelectedAmount(1000);
@@ -181,11 +188,10 @@ function AddBalance() {
             type="number"
             placeholder="Farklı miktar gir"
             min="0"
-            className={`placeholder:text-sm border-2 p-1 rounded-lg hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
-              selectedAmount === farkliMiktar
-                ? "bg-bgOrange border-premiumOrange"
-                : "bg-transparent border-borderGrey"
-            } `}
+            className={`placeholder:text-sm border-2 p-1 rounded-lg hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${selectedAmount === farkliMiktar
+              ? "bg-bgOrange border-premiumOrange"
+              : "bg-transparent border-borderGrey"
+              } `}
             value={farkliMiktar}
             onChange={handleAmountChange}
             onClick={() => {
@@ -208,21 +214,19 @@ function AddBalance() {
       </div>
 
       <div
-        className={`odeme-secenekleri px-2 mt-2 ${
-          (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
+        className={`odeme-secenekleri px-2 mt-2 ${(formik.errors.odemeTuru || !formik.values.odemeTuru) &&
           formik.touched.odemeTuru
-            ? "border border-x-white border-t-white border-b-red-500"
-            : "border-[#e0e0e0] rounded-lg"
-        }`}
+          ? "border border-x-white border-t-white border-b-red-500"
+          : "border-[#e0e0e0] rounded-lg"
+          }`}
       >
         <h4 className="mb-2 font-bold">Ödeme Seçenekleri</h4>
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 lg:gap-y-5  md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-sm ${
-            (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
+          className={`grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 lg:gap-y-5  md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-sm ${(formik.errors.odemeTuru || !formik.values.odemeTuru) &&
             formik.touched.odemeTuru
-              ? "mb-1 lg:mb-1"
-              : "mb-5 lg:mb-10"
-          }`}
+            ? "mb-1 lg:mb-1"
+            : "mb-5 lg:mb-10"
+            }`}
         >
           <div className="flex border-2 border-gray-300 p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold">
             <input
@@ -265,12 +269,11 @@ function AddBalance() {
       <div className="border"></div>
       <div className="flex flex-col md:flex-row items-center justify-between  py-3 lg:py-10">
         <div
-          className={`p-2 ${
-            (formik.errors.isApproved || !formik.values.isApproved) &&
+          className={`p-2 ${(formik.errors.isApproved || !formik.values.isApproved) &&
             formik.touched.isApproved
-              ? "border border-x-white border-t-white border-b-red-500"
-              : "border-[#e0e0e0] rounded-lg"
-          }`}
+            ? "border border-x-white border-t-white border-b-red-500"
+            : "border-[#e0e0e0] rounded-lg"
+            }`}
         >
           <div className="flex justify-center items-center ps-2">
             <input
@@ -310,3 +313,15 @@ function AddBalance() {
 }
 
 export default AddBalance;
+// function saveDataToLocalStorage() {
+//   if (dataToSave.length === 0) {
+//     console.log("hiç veri girilmedi");
+//     return;
+//   }
+//   const existingData = JSON.parse(localStorage.getItem("totalBalance")) || [];
+//   const newData = existingData.concat(dataToSave);
+
+//   localStorage.setItem("totalBalance", JSON.stringify(newData));
+//   dataToSave = [];
+//   console.log("Veriler local storage'a kaydedildi.");
+// }

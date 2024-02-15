@@ -11,7 +11,7 @@ function AddBalance() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [totalBalance, setTotalBalance] = useState(null)
 
-  console.log("totalBalance",totalBalance)
+  console.log("totalBalance", totalBalance)
   const initialValues = {
     selectedAmount: 0,
     odemeTuru: 0,
@@ -39,8 +39,8 @@ function AddBalance() {
         cancelButtonText: "İptal et",
       }).then((result) => {
         if (result.isConfirmed) {
-          // Kullanıcı onayladıysa, verileri localStorage'a kaydet.
-          addToDataToSave(1234850, selectedAmount, odemeTuru);
+          addToAddBalance(123456, selectedAmount, odemeTuru);
+          addToTotalBalance(123456, selectedAmount);       
           setIsSubmitting(true);
           console.log(values);
           Swal.fire({
@@ -70,36 +70,30 @@ function AddBalance() {
     setSelectedAmount(selectedAmount === amount ? null : amount);
     formik.setFieldValue('selectedAmount', selectedAmount === amount ? null : amount)
   };
+  function addToAddBalance(hesapNumarası, selectedAmount, odemeTuru) {
+    const addBalanceData = JSON.parse(localStorage.getItem('addBalance')) || [];
 
-  let dataToSave = [];
-  function addToDataToSave(hesapNumarası, selectedAmount, odemeTuru) {
-    dataToSave.push({
-      hesapNumarası: Number(hesapNumarası),
-      miktar: Number(selectedAmount),
-      odemeTuru: Number(odemeTuru),
-    });
-  }
-
-  function addToDataToSave(hesapNumarası, selectedAmount, odemeTuru) {
-    //hesap localStorage de varsa alalım yoksa yeni hesap için boş dizi oluştur
-    const dataToSave = JSON.parse(localStorage.getItem('totalBalance')) || [];
-    const existingAccount = dataToSave.find((data) => data.hesapNumarası === hesapNumarası);
-
-    if (existingAccount) {
-      // Hesap numarası varsa, bakiyeyi(miktarı) toplam bakiyeye ekle
-      const sum=existingAccount.miktar += Number(selectedAmount);
-      setTotalBalance(sum);
-    } else {
-      // Hesap numarası yoksa, yeni bir hesap {obje} oluştur
-      dataToSave.push({
+      addBalanceData.push({
         hesapNumarası: Number(hesapNumarası),
         miktar: Number(selectedAmount),
-        odemeTuru: Number(odemeTuru),
+        odemeTuru: Number(odemeTuru)
+      });
+    
+    localStorage.setItem('addBalance', JSON.stringify(addBalanceData));
+  }
+  
+  function addToTotalBalance(hesapNumarası, selectedAmount) {
+    const totalBalanceData = JSON.parse(localStorage.getItem('totalBalance')) || [];
+    const existingAccountIndex = totalBalanceData.findIndex(data => data.hesapNumarası === hesapNumarası);
+    if (existingAccountIndex !== -1) {
+      totalBalanceData[existingAccountIndex].miktar += selectedAmount;
+    } else {
+      totalBalanceData.push({
+        hesapNumarası: hesapNumarası,
+        miktar: selectedAmount
       });
     }
-
-    localStorage.setItem('totalBalance', JSON.stringify(dataToSave));
-    console.log('Veriler local storage\'a kaydedildi.');
+    localStorage.setItem('totalBalance', JSON.stringify(totalBalanceData));
   }
 
   return (
@@ -297,7 +291,6 @@ function AddBalance() {
             )}
         </div>
         <div className="flex w-full md:w-auto justify-center items-center flex-grow">
-          {/* onClick={handleClick} bunu sildim */}
           <button
             type="submit"
             className={`flex items-center mt-4 md:mt-0 w-full justify-center px-4 py-3 md:w-60 lg:w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none `}
@@ -313,15 +306,3 @@ function AddBalance() {
 }
 
 export default AddBalance;
-// function saveDataToLocalStorage() {
-//   if (dataToSave.length === 0) {
-//     console.log("hiç veri girilmedi");
-//     return;
-//   }
-//   const existingData = JSON.parse(localStorage.getItem("totalBalance")) || [];
-//   const newData = existingData.concat(dataToSave);
-
-//   localStorage.setItem("totalBalance", JSON.stringify(newData));
-//   dataToSave = [];
-//   console.log("Veriler local storage'a kaydedildi.");
-// }

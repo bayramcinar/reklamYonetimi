@@ -3,7 +3,7 @@ import BalanceModal from "../balanceModal/balanceModal";
 
 function AdvertTitleArea() {
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
-  const [localAmount, setLocalAmount] = useState(null)
+  const [totalBalance, setTotalBalance] = useState(null)
 
   const openWalletModal = () => {
     setIsWalletModalOpen(true);
@@ -11,20 +11,21 @@ function AdvertTitleArea() {
 
   function getTotalBalance(hesapNumarası) {
     const dataToSave = JSON.parse(localStorage.getItem('totalBalance')) || [];
-    const existingAccount = dataToSave.find((data) => data.hesapNumarası === hesapNumarası);
     console.log(dataToSave,"dataToSave")
+    const existingAccount = dataToSave.find((data) => data.hesapNumarası === hesapNumarası);
+    
     if (existingAccount) {
-      return existingAccount.miktar
+      return existingAccount.miktar; 
     } else {
       return 0;
     }
   }
 
   const loadData=()=>{
-    const accountNumber=1234850;
+    const accountNumber=123456;
     const miktar = getTotalBalance(accountNumber);
     console.log(miktar,"miktar")
-    setLocalAmount(miktar);
+    setTotalBalance(miktar);
   }
   useEffect(() => {
     loadData();
@@ -54,7 +55,7 @@ function AdvertTitleArea() {
         <div className="animate__animated animate__zoomIn border-2 border-greenForButton walletArea flex group text-white hover:text-greenForButton bg-greenForButton rounded-lg px-4 py-2 lg:py-0 items-center justify-between lg:w-1/3 overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-greenForButton after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform group-hover:after:bg-white">
           <div className="infoArea  mr-8">
             <h1 className="md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs font-semibold">
-              Toplam Reklam Bakiyesi: {localAmount!==null ? `${localAmount}₺` : "Yükleniyor"}
+              Toplam Reklam Bakiyesi: {totalBalance!==null ? `${totalBalance}₺` : "Yükleniyor"}
             </h1>
             <div className="giftWallet flex mt-2">
               <i className="fa-solid fa-gift mr-2"></i>

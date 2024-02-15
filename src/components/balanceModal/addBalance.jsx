@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 function AddBalance() {
   const [amount, setAmount] = useState(null);
-  const [farkliMiktar, setFarkliMiktar] = useState();
+  const [farkliMiktar, setFarkliMiktar] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [odemeTuru, setOdemeTuru] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,6 +70,7 @@ function AddBalance() {
     setSelectedAmount(selectedAmount === amount ? null : amount);
     formik.setFieldValue('selectedAmount', selectedAmount === amount ? null : amount)
   };
+ 
   function addToAddBalance(hesapNumarası, selectedAmount, odemeTuru) {
     const addBalanceData = JSON.parse(localStorage.getItem('addBalance')) || [];
 
@@ -86,11 +87,11 @@ function AddBalance() {
     const totalBalanceData = JSON.parse(localStorage.getItem('totalBalance')) || [];
     const existingAccountIndex = totalBalanceData.findIndex(data => data.hesapNumarası === hesapNumarası);
     if (existingAccountIndex !== -1) {
-      totalBalanceData[existingAccountIndex].miktar += selectedAmount;
+      totalBalanceData[existingAccountIndex].miktar += Number(selectedAmount);
     } else {
       totalBalanceData.push({
-        hesapNumarası: hesapNumarası,
-        miktar: selectedAmount
+        hesapNumarası: Number(hesapNumarası),
+        miktar: Number(selectedAmount)
       });
     }
     localStorage.setItem('totalBalance', JSON.stringify(totalBalanceData));

@@ -16,16 +16,15 @@ const AdvertInfo = ({ onSubmit }) => {
 
   const validationSchema = Yup.object().shape({
     reklamTipi: Yup.string().required("Lütfen en az birini seçiniz"),
-    reklamAdi: Yup.string().required("Lütfen Reklam Adını yazınız"),
+    reklamAdi: Yup.string().required("Lütfen reklam adını yazınız"),
     baslangicTarihi: Yup.date()
       .required("Başlangıç tarihi zorunludur")
       .min(new Date(), "Başlangıç tarihi bugünden ileri bir tarih olmalıdır"),
-    bitisTarihi: Yup.date().min(
-      Yup.ref("baslangicTarihi"),
-      "Bitiş tarihi başlangıç tarihinden önce olamaz"
-    ),
+    bitisTarihi: Yup.date().required("Başlangıç tarihi zorunludur")
+    .min(Yup.ref("baslangicTarihi"),
+      "Bitiş tarihi başlangıç tarihinden önce olamaz"),
     butceTipi: Yup.string().required("Lütfen bütçe tipini seçiniz"),
-    gunlukButceMiktarı: Yup.number().required("Lütfen Miktarı Giriniz"),
+    gunlukButceMiktarı: Yup.number().required("Lütfen miktarı giriniz"),
   });
 
   return (
@@ -45,6 +44,12 @@ const AdvertInfo = ({ onSubmit }) => {
                     Oluşturmak istediğiniz reklam tipini belirleyiniz
                   </p>
                   <div className="mt-3 lg:mt-10">
+                  <label
+                      htmlFor="reklamTipi"
+                      className="block text-xs lg:text-sm font-medium text-txtGrey"
+                    >
+                      Reklam Adı
+                    </label>
                     <select
                       type="text"
                       id="reklam"
@@ -60,7 +65,7 @@ const AdvertInfo = ({ onSubmit }) => {
                           : "border-[#e0e0e0]"
                       } bg-white py-2 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                     >
-                      <option value="">Reklam Tipini Seçiniz</option>
+                      <option value=""></option>
                       <option value="0">Ürün Reklamı Seç</option>
                       <option value="1">Hizmet Reklamı</option>
                       <option value="2">Profil Reklamı</option>
@@ -78,7 +83,13 @@ const AdvertInfo = ({ onSubmit }) => {
                     Reklam adı müşteriye gönderilmeyecektir,kendi kontrolünüz
                     için bir isim belirleyebilirsiniz
                   </p>
-                  <div className="relative">
+                  <div className="">
+                  <label
+                      htmlFor="reklamAdi"
+                      className="block text-xs lg:text-sm font-medium text-txtGrey"
+                    >
+                      Reklam Adı
+                    </label>
                     <Field
                       type="text"
                       name="reklamAdi"
@@ -97,12 +108,7 @@ const AdvertInfo = ({ onSubmit }) => {
                           : "border-[#e0e0e0]"
                       } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                     />
-                    <label
-                      htmlFor="reklamAdi"
-                      className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                    >
-                      Reklam Adı
-                    </label>
+                   
                     {formik.touched.reklamAdi && formik.errors.reklamAdi && (
                       <p className="mt-1 text-sm text-red-500">
                         {formik.errors.reklamAdi}
@@ -124,7 +130,13 @@ const AdvertInfo = ({ onSubmit }) => {
                   <div className="flex-col lg:flex lg:flex-row justify-between items-center gap-x-10">
                     <div className="relative flex flex-auto mb-3">
                       <div className="flex-col flex-auto">
-                        <div className="flex">
+                        <div className="flex-col">
+                        <label
+                            htmlFor="baslangicTarihi"
+                            className=" block text-xs lg:text-sm font-medium text-txtGrey "
+                          >
+                            Başlangıç Tarihi
+                          </label>
                           <Field
                             type="date"
                             name="baslangicTarihi"
@@ -144,12 +156,7 @@ const AdvertInfo = ({ onSubmit }) => {
                                 : "border-[#e0e0e0]"
                             } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                           />
-                          <label
-                            htmlFor="baslangicTarihi"
-                            className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                          >
-                            Başlangıç Tarihi
-                          </label>
+                          
                         </div>
                         <div className="flex">
                           {formik.touched.baslangicTarihi &&
@@ -164,7 +171,13 @@ const AdvertInfo = ({ onSubmit }) => {
 
                     <div className="relative flex flex-auto mb-3">
                       <div className="flex-col flex-auto">
-                        <div className="flex">
+                        <div className="flex-col">
+                        <label
+                            htmlFor="bitisTarihi"
+                            className="block text-xs lg:text-sm font-medium text-txtGrey "
+                          >
+                            Bitiş Tarihi
+                          </label>
                           <Field
                             type="date"
                             name="bitisTarihi"
@@ -184,12 +197,7 @@ const AdvertInfo = ({ onSubmit }) => {
                                 : "border-[#e0e0e0]"
                             } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                           />
-                          <label
-                            htmlFor="bitisTarihi"
-                            className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                          >
-                            Bitiş Tarihi
-                          </label>
+                        
                         </div>
                         <div className="flex">
                           {formik.touched.bitisTarihi &&
@@ -215,13 +223,13 @@ const AdvertInfo = ({ onSubmit }) => {
                           <h3 className="font-bold">Bütçe Tipi</h3>
                         </div>
                         <div className=" flex flex-auto ">
-                          <p className="text-txtGrey">
+                          <p className="text-txtGrey mb-7">
                             Oluşturmak istediğiniz reklamın bütçe tipini seçiniz
                           </p>
                         </div>
                       </div>
                       <div
-                        className={`flex flex-auto justify-around items-center px-1 lg:px-5 py-2.5 bg-grayBg rounded-lg border ${
+                        className={`flex flex-auto justify-around items-center px-1 lg:px-5 py-1.5 bg-grayBg rounded-lg border ${
                           formik.touched.butceTipi && formik.errors.butceTipi
                             ? "border-b-red-500"
                             : "border-[#e0e0e0]"
@@ -277,7 +285,13 @@ const AdvertInfo = ({ onSubmit }) => {
                       <div className="flex flex-row">
                         <div className="flex flex-auto relative">
                           <div className="flex-col flex-auto">
-                            <div className="flex">
+                            <div className="flex-col">
+                            <label
+                                htmlFor="gunlukButce"
+                                className="block text-xs lg:text-sm font-medium text-txtGrey"
+                              >
+                                Günlük Bütçe(₺)
+                              </label>
                               <Field
                                 type="text"
                                 name="gunlukButceMiktarı"
@@ -290,12 +304,7 @@ const AdvertInfo = ({ onSubmit }) => {
                                     : "border-[#e0e0e0]"
                                 } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                               />
-                              <label
-                                htmlFor="gunlukButce"
-                                className="mb-3 block text-xs lg:text-sm font-medium text-txtGrey absolute -top-2 left-3"
-                              >
-                                Günlük Bütçe(₺)
-                              </label>
+                             
                             </div>
                             <div className="flex">
                               {formik.touched.gunlukButceMiktarı &&

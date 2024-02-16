@@ -5,10 +5,13 @@ import * as Yup from "yup";
 
 function AddBalance() {
   const [amount, setAmount] = useState(null);
-  const [farkliMiktar, setFarkliMiktar] = useState();
+  const [farkliMiktar, setFarkliMiktar] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [odemeTuru, setOdemeTuru] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [totalBalance, setTotalBalance] = useState(null);
+
+  console.log("totalBalance", totalBalance);
   const initialValues = {
     selectedAmount: 0,
     odemeTuru: 0,
@@ -36,9 +39,8 @@ function AddBalance() {
         cancelButtonText: "İptal et",
       }).then((result) => {
         if (result.isConfirmed) {
-          // Kullanıcı onayladıysa, verileri localStorage'a kaydet.
-          addToDataToSave(12345, selectedAmount, odemeTuru);
-          saveDataToLocalStorage();
+          addToAddBalance(123456, selectedAmount, odemeTuru);
+          addToTotalBalance(123456, selectedAmount);
           setIsSubmitting(true);
           console.log(values);
           Swal.fire({
@@ -66,27 +68,39 @@ function AddBalance() {
 
   const handleSelectedAmount = (amount) => {
     setSelectedAmount(selectedAmount === amount ? null : amount);
+    formik.setFieldValue(
+      "selectedAmount",
+      selectedAmount === amount ? null : amount
+    );
   };
 
-  let dataToSave = [];
-  function addToDataToSave(hesapNumarası, selectedAmount, odemeTuru) {
-    dataToSave.push({
+  function addToAddBalance(hesapNumarası, selectedAmount, odemeTuru) {
+    const addBalanceData = JSON.parse(localStorage.getItem("addBalance")) || [];
+
+    addBalanceData.push({
       hesapNumarası: Number(hesapNumarası),
       miktar: Number(selectedAmount),
       odemeTuru: Number(odemeTuru),
     });
-  }
-  function saveDataToLocalStorage() {
-    if (dataToSave.length === 0) {
-      console.log("hiç veri girilmedi");
-      return;
-    }
-    const existingData = JSON.parse(localStorage.getItem("balanceData")) || [];
-    const newData = existingData.concat(dataToSave);
 
-    localStorage.setItem("balanceData", JSON.stringify(newData));
-    dataToSave = [];
-    console.log("Veriler local storage'a kaydedildi.");
+    localStorage.setItem("addBalance", JSON.stringify(addBalanceData));
+  }
+
+  function addToTotalBalance(hesapNumarası, selectedAmount) {
+    const totalBalanceData =
+      JSON.parse(localStorage.getItem("totalBalance")) || [];
+    const existingAccountIndex = totalBalanceData.findIndex(
+      (data) => data.hesapNumarası === hesapNumarası
+    );
+    if (existingAccountIndex !== -1) {
+      totalBalanceData[existingAccountIndex].miktar += Number(selectedAmount);
+    } else {
+      totalBalanceData.push({
+        hesapNumarası: Number(hesapNumarası),
+        miktar: Number(selectedAmount),
+      });
+    }
+    localStorage.setItem("totalBalance", JSON.stringify(totalBalanceData));
   }
 
   return (
@@ -208,7 +222,7 @@ function AddBalance() {
       </div>
 
       <div
-        className={`odeme-secenekleri text-gray-600 px-2 mt-2 ${
+        className={`odeme-secenekleri px-2 mt-2 ${
           (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
           formik.touched.odemeTuru
             ? "border border-x-white border-t-white border-b-red-500"

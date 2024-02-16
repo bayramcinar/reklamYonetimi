@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import BalanceTransactionsCard from "./balanceTransactionsCard";
 
 function BalanceTransactions() {
+  const [activePage, setActivePage] = useState(1);
   const [transactions, setTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
-  const [totalPages, setTotalPages] = useState(
-    Math.ceil(transactions.length / itemsPerPage)
-  );
-  useEffect(() => {
-    setTotalPages(Math.ceil(transactions.length / itemsPerPage));
-  }, [transactions, itemsPerPage]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
   useEffect(() => {
     const localStorageDataAddBalance =
@@ -24,7 +21,13 @@ function BalanceTransactions() {
     ];
 
     setTransactions(mergedTransactions);
+    setFilteredTransactions(mergedTransactions);
+    setTotalPages(Math.ceil(mergedTransactions.length / itemsPerPage));
   }, []);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(filteredTransactions.length / itemsPerPage));
+  }, [filteredTransactions, itemsPerPage]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -36,15 +39,63 @@ function BalanceTransactions() {
     setCurrentPage(1);
   };
 
+  const handleFilterClick = (filterIndex) => {
+    setActivePage(filterIndex);
+
+    if (filterIndex === 1) {
+      setFilteredTransactions(transactions);
+    } else if (filterIndex === 2) {
+      setFilteredTransactions(
+        transactions.filter((transaction) => transaction.miktar > 0)
+      );
+    } else if (filterIndex === 3) {
+      setFilteredTransactions(
+        transactions.filter((transaction) => transaction.gunlukButceMiktarı > 0)
+      );
+    }
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentTransactions = transactions.slice(
+  const currentTransactions = filteredTransactions.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
 
   return (
     <div>
+      <div className="bg-gray-100 p-2 mx-4 rounded-md flex ">
+        <div
+          className={`flex flex-1 items-center transition-all duration-200 ease-in-out cursor-pointer py-2 lg:py-3 rounded-xl text-sm font-semibold justify-center ${
+            activePage === 1
+              ? "bg-premiumOrange shadow-xl text-white"
+              : "text-gray-500"
+          }`}
+          onClick={() => handleFilterClick(1)}
+        >
+          Tümü
+        </div>
+        <div
+          className={`flex flex-1 items-center transition-all duration-200 ease-in-out cursor-pointer py-2 lg:py-3 rounded-xl text-sm font-semibold justify-center ${
+            activePage === 2
+              ? "bg-premiumOrange shadow-xl text-white"
+              : "text-gray-500"
+          }`}
+          onClick={() => handleFilterClick(2)}
+        >
+          Gelen
+        </div>
+        <div
+          className={`flex flex-1 items-center transition-all duration-200 ease-in-out cursor-pointer py-2 lg:py-3 rounded-xl text-sm font-semibold justify-center ${
+            activePage === 3
+              ? "bg-premiumOrange shadow-xl text-white"
+              : "text-gray-500"
+          }`}
+          onClick={() => handleFilterClick(3)}
+        >
+          Giden
+        </div>
+      </div>
       {currentTransactions.map((transaction, index) => (
         <BalanceTransactionsCard
           key={index}
@@ -63,19 +114,11 @@ function BalanceTransactions() {
             value={itemsPerPage}
           >
             <option value="">Sayfa Sayısı</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
+            {[...Array(15).keys()].map((num) => (
+              <option key={num + 1} value={num + 1}>
+                {num + 1}
+              </option>
+            ))}
           </select>
           <h1 className="text-xs lg:text-sm text-gray-500 ml-2">
             Şuanda Gösterilen Sayı {itemsPerPage}

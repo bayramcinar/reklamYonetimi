@@ -44,7 +44,7 @@ function BalanceTransactionsCard({ amount, name, type, date }) {
           </div>
         </div>
         <div className="date text-gray-500 flex justify-end">
-          <h1 className="text-xs mt-1">{formatTarih(date)}</h1>
+          <h1 className="text-xs mt-1 mr-1">{formatTarih(date)}</h1>
         </div>
       </div>
     </div>

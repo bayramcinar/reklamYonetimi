@@ -29,7 +29,7 @@ function AdvertTitleArea() {
   }
   useEffect(() => {
     loadData();
-  }, [])
+  }, [totalBalance])
 
   return (
     <>

@@ -99,7 +99,7 @@ function AddBalance() {
             : "border-[#e0e0e0] rounded-lg"
         }`}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-3  gap-y-2 lg:gap-y-5 gap-x-4 lg:gap-x-10 lg:mb-10 ">
+        <div className="grid grid-cols-2 lg:grid-cols-3  gap-y-2 lg:gap-y-5 gap-x-4 lg:gap-x-10 lg:mb-10 text-gray-500">
           <button
             type="button"
             value="100"
@@ -208,7 +208,7 @@ function AddBalance() {
       </div>
 
       <div
-        className={`odeme-secenekleri px-2 mt-2 ${
+        className={`odeme-secenekleri text-gray-600 px-2 mt-2 ${
           (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
           formik.touched.odemeTuru
             ? "border border-x-white border-t-white border-b-red-500"
@@ -245,12 +245,6 @@ function AddBalance() {
               checked={formik.values.odemeTuru === "1"}
             />
             Kredi Kartı ile Satın Al
-            <div
-              className={`inline-block bg-premiumOrange text-white text-[9px] rounded 
-                        p-1 absolute top-1 left-56`}
-            >
-              YENİ
-            </div>
           </div>
 
           {(formik.errors.odemeTuru || !formik.values.odemeTuru) &&
@@ -263,7 +257,7 @@ function AddBalance() {
       </div>
 
       <div className="border"></div>
-      <div className="flex flex-col md:flex-row items-center justify-between  py-3 lg:py-10">
+      <div className="flex flex-col md:flex-row items-center justify-between  py-3 lg:py-5 text-gray-700">
         <div
           className={`p-2 ${
             (formik.errors.isApproved || !formik.values.isApproved) &&
@@ -294,14 +288,14 @@ function AddBalance() {
             )}
         </div>
         <div className="flex w-full md:w-auto justify-center items-center flex-grow">
-          {/* onClick={handleClick} bunu sildim */}
           <button
-            type="submit"
-            className={`flex items-center mt-4 md:mt-0 w-full justify-center px-4 py-3 md:w-60 lg:w-48 overflow-hidden text-xs md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] font-bold text-txtWhite bg-premiumOrange border border-5 border-premiumOrange rounded hover:bg-transparent hover:text-premiumOrange focus:outline-none `}
             href="/satınal"
             disabled={isSubmitting}
+            type="submit"
+            className="flex items-center justify-center text-center py-2 px-14 text-white bg-premiumOrange hover:text-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold  overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-white after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:scale-105 hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform"
+            to={"/reklamOlustur"}
           >
-            Satın Al
+            <span style={{ whiteSpace: "nowrap" }}>Satın Al</span>
           </button>
         </div>
       </div>

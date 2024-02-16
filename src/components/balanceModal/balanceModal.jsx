@@ -4,6 +4,8 @@ import { LuScreenShare } from "react-icons/lu";
 import { SlPresent } from "react-icons/sl";
 import { CiCircleInfo } from "react-icons/ci";
 import AddBalance from "./addBalance";
+import GiftBalance from "./giftBalance";
+import BalanceTransactions from "./balanceTransactions";
 
 const BalanceModal = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -13,7 +15,10 @@ const BalanceModal = ({ isOpen, onClose }) => {
     switch (activePage) {
       case 0:
         return <AddBalance />;
-
+      case 1:
+        return <GiftBalance />;
+      case 2:
+        return <BalanceTransactions />;
       default:
         return null;
     }
@@ -41,13 +46,13 @@ const BalanceModal = ({ isOpen, onClose }) => {
             <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
               <div className="flex flex-col md:flex-row justify-between items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
                 {!isMobile && (
-                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl">
+                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl text-gray-600">
                     Bakiye Detay
                   </div>
                 )}
                 {isMobile && (
                   <div className="flex items-center justify-center relative w-full">
-                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mb-0 text-sm lg:text-2xl">
+                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mb-0 text-sm lg:text-2xl text-gray-600">
                       Bakiye Detay
                     </div>
                     <div
@@ -81,7 +86,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-                <div className="flex justify-between items-center px-2 lg:px-5  py-1 lg:py-2 border-2 border-gray-300 rounded-lg mb-3 md:mb-0">
+                <div className="flex justify-between items-center px-2 lg:px-5  py-1 lg:py-2 border-2 text-gray-600 border-gray-300 rounded-lg mb-3 md:mb-0">
                   <LuScreenShare className="flex items-center me-2 text-lg lg:text-2xl text-premiumOrange" />
                   <span className="flex items-center mx-1 font-bold md:text-md">
                     Reklam Bakiyesi Artırılabilir Tutar:
@@ -89,7 +94,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                   </span>
                   <CiCircleInfo className="mx-2 text-lg" />
                 </div>
-                <div className="flex justify-between items-center px-1 lg:px-5 py-1 lg:py-2 border-2     border-gray-300 rounded-lg mb-3 md:mb-0">
+                <div className="flex justify-between items-center px-1 lg:px-5 py-1 lg:py-2 border-2  text-gray-600 border-gray-300 rounded-lg mb-3 md:mb-0">
                   <span className="mx-2 font-bold">
                     Toplam Reklam Bakiyesi:
                   </span>
@@ -135,43 +140,52 @@ const BalanceModal = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
-              <div className="py-4 lg:py-10">
-                <div className="tabs tab-group flex justify-start items-center relative">
+              <div className="py-3 lg:pt-5">
+                <div className="tabs tab-group flex justify-center items-center relative">
                   <button
-                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
+                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
                     onClick={() => setActivePage(0)}
                   >
-                    <span
-                      className={`bg-left-bottom bg-gradient-to-r hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]`}
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activePage === 0
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
                     >
                       Bakiye Satin Al
-                    </span>
-                    <span className="absolute left-0 buttom-0 w-0 h-1 bg-premiumOrange transition-all duration-300 hover:w-full"></span>
+                    </h1>
                   </button>
-                  <div className="vertical-line"></div>
                   <button
-                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "
+                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "
                     onClick={() => setActivePage(1)}
                   >
-                    <span className="tabs-text bg-left-bottom bg-gradient-to-r  hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
-                      Hediye Bakiye
-                    </span>
-                    <div
-                      className={`inline-block bg-premiumOrange text-white text-[9px] font-bold px-1 py-0 rounded absolute right-1 -top-3`}
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activePage === 1
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
                     >
-                      YENİ
-                    </div>
+                      Hediye Bakiye
+                    </h1>
                   </button>
-                  <div className="vertical-line"></div>
                   <button
-                    className="tabs px-3 lg:px-10 relative group transition-all duration-300 ease-in-out text-xs"
+                    className="tabs px-3md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] lg:px-10 relative group transition-all duration-300 ease-in-out text-xs"
                     onClick={() => setActivePage(2)}
                   >
-                    <span className="bg-left-bottom bg-gradient-to-r  hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activePage === 2
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
+                    >
                       Hesap Hareketleri
-                    </span>
+                    </h1>
                   </button>
                 </div>
+
                 <div className="border mt-2 lg:mt-4"></div>
               </div>
               {renderPage()}

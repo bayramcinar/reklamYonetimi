@@ -5,6 +5,8 @@ import * as Yup from "yup";
 const AdvertInfo = ({ onSubmit }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split("T")[0];
   const initialValues = {
     reklamTipi: selectedOption,
     reklamAdi: "",
@@ -12,6 +14,7 @@ const AdvertInfo = ({ onSubmit }) => {
     bitisTarihi: "",
     butceTipi: "",
     gunlukButceMiktarı: "",
+    reklamTarihi: formattedDate,
   };
 
   const validationSchema = Yup.object().shape({
@@ -20,9 +23,12 @@ const AdvertInfo = ({ onSubmit }) => {
     baslangicTarihi: Yup.date()
       .required("Başlangıç tarihi zorunludur")
       .min(new Date(), "Başlangıç tarihi bugünden ileri bir tarih olmalıdır"),
-    bitisTarihi: Yup.date().required("Başlangıç tarihi zorunludur")
-    .min(Yup.ref("baslangicTarihi"),
-      "Bitiş tarihi başlangıç tarihinden önce olamaz"),
+    bitisTarihi: Yup.date()
+      .required("Başlangıç tarihi zorunludur")
+      .min(
+        Yup.ref("baslangicTarihi"),
+        "Bitiş tarihi başlangıç tarihinden önce olamaz"
+      ),
     butceTipi: Yup.string().required("Lütfen bütçe tipini seçiniz"),
     gunlukButceMiktarı: Yup.number().required("Lütfen miktarı giriniz"),
   });
@@ -44,7 +50,7 @@ const AdvertInfo = ({ onSubmit }) => {
                     Oluşturmak istediğiniz reklam tipini belirleyiniz
                   </p>
                   <div className="mt-3 lg:mt-10">
-                  <label
+                    <label
                       htmlFor="reklamTipi"
                       className="block text-xs lg:text-sm font-medium text-txtGrey"
                     >
@@ -84,7 +90,7 @@ const AdvertInfo = ({ onSubmit }) => {
                     için bir isim belirleyebilirsiniz
                   </p>
                   <div className="">
-                  <label
+                    <label
                       htmlFor="reklamAdi"
                       className="block text-xs lg:text-sm font-medium text-txtGrey"
                     >
@@ -108,7 +114,7 @@ const AdvertInfo = ({ onSubmit }) => {
                           : "border-[#e0e0e0]"
                       } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                     />
-                   
+
                     {formik.touched.reklamAdi && formik.errors.reklamAdi && (
                       <p className="mt-1 text-sm text-red-500">
                         {formik.errors.reklamAdi}
@@ -131,7 +137,7 @@ const AdvertInfo = ({ onSubmit }) => {
                     <div className="relative flex flex-auto mb-3">
                       <div className="flex-col flex-auto">
                         <div className="flex-col">
-                        <label
+                          <label
                             htmlFor="baslangicTarihi"
                             className=" block text-xs lg:text-sm font-medium text-txtGrey "
                           >
@@ -156,7 +162,6 @@ const AdvertInfo = ({ onSubmit }) => {
                                 : "border-[#e0e0e0]"
                             } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                           />
-                          
                         </div>
                         <div className="flex">
                           {formik.touched.baslangicTarihi &&
@@ -172,7 +177,7 @@ const AdvertInfo = ({ onSubmit }) => {
                     <div className="relative flex flex-auto mb-3">
                       <div className="flex-col flex-auto">
                         <div className="flex-col">
-                        <label
+                          <label
                             htmlFor="bitisTarihi"
                             className="block text-xs lg:text-sm font-medium text-txtGrey "
                           >
@@ -197,7 +202,6 @@ const AdvertInfo = ({ onSubmit }) => {
                                 : "border-[#e0e0e0]"
                             } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                           />
-                        
                         </div>
                         <div className="flex">
                           {formik.touched.bitisTarihi &&
@@ -286,7 +290,7 @@ const AdvertInfo = ({ onSubmit }) => {
                         <div className="flex flex-auto relative">
                           <div className="flex-col flex-auto">
                             <div className="flex-col">
-                            <label
+                              <label
                                 htmlFor="gunlukButce"
                                 className="block text-xs lg:text-sm font-medium text-txtGrey"
                               >
@@ -304,7 +308,6 @@ const AdvertInfo = ({ onSubmit }) => {
                                     : "border-[#e0e0e0]"
                                 } bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                               />
-                             
                             </div>
                             <div className="flex">
                               {formik.touched.gunlukButceMiktarı &&

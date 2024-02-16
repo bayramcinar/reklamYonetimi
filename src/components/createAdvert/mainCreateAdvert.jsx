@@ -119,7 +119,7 @@ function MainCreateAdvert({
           advertsArray.push(parsedValue);
           localStorage.setItem("adverts", JSON.stringify(advertsArray));
           Swal.fire({
-            text: "Reklam Başarı ile oluşturuldu !",
+            text: "Reklamınız başarı ile oluşturuldu reklamlarım bölümünden detaylarını takip edip yönetebilirsiniz !",
             icon: "success",
             confirmButtonText: "Tamam",
           }).then((result) => {

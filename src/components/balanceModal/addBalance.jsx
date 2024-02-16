@@ -73,7 +73,8 @@ function AddBalance() {
       selectedAmount === amount ? null : amount
     );
   };
-
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split("T")[0];
   function addToAddBalance(hesapNumarası, selectedAmount, odemeTuru) {
     const addBalanceData = JSON.parse(localStorage.getItem("addBalance")) || [];
 
@@ -81,6 +82,7 @@ function AddBalance() {
       hesapNumarası: Number(hesapNumarası),
       miktar: Number(selectedAmount),
       odemeTuru: Number(odemeTuru),
+      islemTarihi: formattedDate,
     });
 
     localStorage.setItem("addBalance", JSON.stringify(addBalanceData));

@@ -81,6 +81,10 @@ function CreatedAdvertsTable() {
                   Harcama Getirisi{" "}
                   <i class="fa-solid fa-circle-info text-gray-400 ml-2 cursor-pointer"></i>
                 </th>
+                <th className="py-3 px-1">
+                  Reklam Durumu{" "}
+                  <i class="fa-solid fa-circle-info text-gray-400 ml-2 cursor-pointer"></i>
+                </th>
                 <th className="py-3 px-1">İşlemler </th>
               </tr>
             </thead>
@@ -90,14 +94,7 @@ function CreatedAdvertsTable() {
                   <td className="px-2 py-3">
                     <div className="advertInfos flex items-center justify-start flex-col">
                       <h1 className="name text-md">{item.reklamAdi}</h1>
-                      <div className="flex items-center w-[150px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
-                        <div className="flex p-1">
-                          <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
-                          <h1 className="text-center text-[0.65rem] lg:text-xs text-gray-500">
-                            Tamamlandı
-                          </h1>
-                        </div>
-                      </div>
+
                       <h1 className="dates text-sm text-gray-400">
                         {item.baslangicTarihi} - {item.bitisTarihi}
                       </h1>
@@ -145,6 +142,17 @@ function CreatedAdvertsTable() {
                       7.8
                     </h1>
                   </td>
+                  <td className="px-2 py-3 flex items-center justify-center">
+                    <div className="flex items-center w-[120px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
+                      <div className="flex p-1">
+                        <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
+                        <h1 className="text-center text-[0.65rem] lg:text-xs text-gray-500">
+                          Tamamlandı
+                        </h1>
+                      </div>
+                    </div>
+                  </td>
+
                   <td className="px-2 py-3">
                     <div className="flex items-center justify-center">
                       <button className="text-gray-400 mr-4">

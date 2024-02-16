@@ -5,6 +5,7 @@ import { SlPresent } from "react-icons/sl";
 import { CiCircleInfo } from "react-icons/ci";
 import AddBalance from "./addBalance";
 import GiftBalance from "./giftBalance";
+import BalanceTransactions from "./balanceTransactions";
 
 const BalanceModal = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -16,6 +17,8 @@ const BalanceModal = ({ isOpen, onClose }) => {
         return <AddBalance />;
       case 1:
         return <GiftBalance />;
+      case 2:
+        return <BalanceTransactions />;
       default:
         return null;
     }
@@ -43,7 +46,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
             <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
               <div className="flex flex-col md:flex-row justify-between items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
                 {!isMobile && (
-                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl">
+                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl text-gray-600">
                     Bakiye Detay
                   </div>
                 )}
@@ -137,7 +140,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
-              <div className="py-3 lg:py-8">
+              <div className="py-3 lg:pt-5">
                 <div className="tabs tab-group flex justify-center items-center relative">
                   <button
                     className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"

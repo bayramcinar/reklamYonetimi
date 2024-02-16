@@ -120,10 +120,10 @@ function AddBalance() {
             type="button"
             value="100"
             name="miktar"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 100
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
+                ? "bg-premiumOrange text-white"
+                : "bg-gray-100"
             }`}
             onClick={() => {
               handleAmount(100);
@@ -135,10 +135,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 250
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
+                ? "bg-premiumOrange text-white"
+                : "bg-gray-100"
             }`}
             onClick={() => {
               handleAmount(250);
@@ -150,10 +150,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 500
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
+                ? "bg-premiumOrange text-white"
+                : "bg-gray-100"
             }`}
             onClick={() => {
               handleAmount(500);
@@ -165,10 +165,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg   hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 750
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent "
+                ? "bg-premiumOrange text-white"
+                : "bg-gray-100"
             }`}
             onClick={() => {
               handleAmount(750);
@@ -180,10 +180,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={`border-2 border-borderGray p-1 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 1000
-                ? "bg-bgOrange border-b-premiumOrange"
-                : "bg-transparent"
+                ? "bg-premiumOrange text-white"
+                : "bg-gray-100"
             }`}
             onClick={() => {
               handleAmount(1000);
@@ -197,10 +197,10 @@ function AddBalance() {
             type="number"
             placeholder="Farklı miktar gir"
             min="0"
-            className={`placeholder:text-sm border-2 p-1 rounded-lg hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
+            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
               selectedAmount === farkliMiktar
                 ? "bg-bgOrange border-premiumOrange"
-                : "bg-transparent border-borderGrey"
+                : "bg-gray-100"
             } `}
             value={farkliMiktar}
             onChange={handleAmountChange}
@@ -231,7 +231,7 @@ function AddBalance() {
             : "border-[#e0e0e0] rounded-lg"
         }`}
       >
-        <h4 className="mb-2 font-bold">Ödeme Seçenekleri</h4>
+        <h4 className="mb-2 font-bold text-gray-600">Ödeme Seçenekleri</h4>
         <div
           className={`grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 lg:gap-y-5  md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-sm ${
             (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
@@ -240,7 +240,7 @@ function AddBalance() {
               : "mb-5 lg:mb-10"
           }`}
         >
-          <div className="flex border-2 border-gray-300 p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold">
+          <div className="flex bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold">
             <input
               type="radio"
               className="me-2 md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw]"
@@ -251,7 +251,7 @@ function AddBalance() {
             />
             Hesaptan Satın Al
           </div>
-          <div className="flex border-2 border-gray-300 p-2 rounded-lg  hover:border-b-premiumOrange  hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold relative ">
+          <div className="flex bg-gray-100 p-2 rounded-lg  text-gray-600 hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold relative ">
             <input
               type="radio"
               className="me-2 relative md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] text-xs "
@@ -308,7 +308,7 @@ function AddBalance() {
             href="/satınal"
             disabled={isSubmitting}
             type="submit"
-            className="flex items-center justify-center text-center py-2 px-14 text-white bg-premiumOrange hover:text-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold  overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-white after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:scale-105 hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform"
+            className="flex items-center justify-center w-full text-center py-2 px-14 text-white bg-premiumOrange hover:text-premiumOrange border-2 border-premiumOrange rounded-lg font-semibold  overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-white after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:scale-105 hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform"
             to={"/reklamOlustur"}
           >
             <span style={{ whiteSpace: "nowrap" }}>Satın Al</span>

@@ -10,6 +10,7 @@ import BalanceTransactions from "./balanceTransactions";
 const BalanceModal = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [activePage, setActivePage] = useState(0);
+  const [totalBalance, setTotalBalance] = useState(null);
 
   const renderPage = () => {
     switch (activePage) {
@@ -23,7 +24,25 @@ const BalanceModal = ({ isOpen, onClose }) => {
         return null;
     }
   };
+  function getTotalBalance(hesapNumarası) {
+    const dataToSave = JSON.parse(localStorage.getItem("totalBalance")) || [];
+    console.log(dataToSave, "dataToSave");
 
+    if (Array.isArray(dataToSave)) {
+      const existingAccount = dataToSave.find(
+        (data) => data.hesapNumarası === hesapNumarası
+      );
+
+      if (existingAccount) {
+        return existingAccount.miktar;
+      } else {
+        return 0;
+      }
+    } else {
+      console.error("localStorage'dan alınan veri bir dizi değil.");
+      return 0;
+    }
+  }
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -35,18 +54,27 @@ const BalanceModal = ({ isOpen, onClose }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const loadData = () => {
+    const accountNumber = 123456;
+    const miktar = getTotalBalance(accountNumber);
+    console.log(miktar, "miktar");
+    setTotalBalance(miktar);
+  };
+  useEffect(() => {
+    loadData();
+  }, []);
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";
   return (
     <div className={modalClass}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 md:w-fit">
+        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 lg:w-auto lg:max-w-[800px] lg:min-w-[800px]">
           <div>
             <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
+              <div className="flex flex-col md:flex-row justify-evenly items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
                 {!isMobile && (
-                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl text-gray-600">
+                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-xl text-gray-600">
                     Bakiye Detay
                   </div>
                 )}
@@ -86,7 +114,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-                <div className="flex justify-between items-center px-2 lg:px-5  py-1 lg:py-2 border-2 text-gray-600 border-gray-300 rounded-lg mb-3 md:mb-0">
+                {/* <div className="flex justify-between items-center px-2 lg:px-5  py-1 lg:py-2 border-2 text-gray-600 border-gray-300 rounded-lg mb-3 md:mb-0">
                   <LuScreenShare className="flex items-center me-2 text-lg lg:text-2xl text-premiumOrange" />
                   <span className="flex items-center mx-1 font-bold md:text-md">
                     Reklam Bakiyesi Artırılabilir Tutar:
@@ -106,11 +134,30 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     <span>250₺ </span>
                     <CiCircleInfo className="mx-2 text-greenDark text-lg" />
                   </span>
+                </div> */}
+                <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-2 py-2 items-center justify-center w-full lg:w-1/3">
+                  <div className="infoArea">
+                    <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold text-center">
+                      Toplam Reklam Bakiyesi:{" "}
+                      {totalBalance !== null
+                        ? `${totalBalance}₺`
+                        : "Yükleniyor"}
+                    </h1>
+                  </div>
                 </div>
-
+                <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-2 py-2 items-center justify-center w-full lg:w-1/3 mt-2 lg:mt-0">
+                  <div className="infoArea">
+                    <div className="giftWallet flex items-center justify-center">
+                      <i className="fa-solid fa-gift mr-2"></i>
+                      <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold">
+                        Hediye Bakiye: 250 ₺
+                      </h1>
+                    </div>
+                  </div>
+                </div>
                 {!isMobile && (
                   <div
-                    className="w-10 h-10 rounded-md p-4 cursor-pointer transition-all duration-700 relative  bg-gray-200/50 hover:bg-red-500 group"
+                    className="w-9 h-9 rounded-md p-4 cursor-pointer transition-all duration-700 relative  bg-gray-200/50 hover:bg-red-500 group"
                     onClick={onClose}
                   >
                     <svg

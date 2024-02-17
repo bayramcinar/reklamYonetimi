@@ -120,9 +120,9 @@ function AddBalance() {
             type="button"
             value="100"
             name="miktar"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 100
-                ? "bg-premiumOrange text-white"
+                ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
             }`}
             onClick={() => {
@@ -135,9 +135,9 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 250
-                ? "bg-premiumOrange text-white"
+                ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
             }`}
             onClick={() => {
@@ -150,9 +150,9 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 500
-                ? "bg-premiumOrange text-white"
+                ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
             }`}
             onClick={() => {
@@ -165,9 +165,9 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 750
-                ? "bg-premiumOrange text-white"
+                ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
             }`}
             onClick={() => {
@@ -180,9 +180,9 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrange  hover:text-white text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
               selectedAmount === 1000
-                ? "bg-premiumOrange text-white"
+                ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
             }`}
             onClick={() => {
@@ -197,9 +197,9 @@ function AddBalance() {
             type="number"
             placeholder="Farklı miktar gir"
             min="0"
-            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
+            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrangeBG2 hover:bg-premiumOrangeBG2 text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
               selectedAmount === farkliMiktar
-                ? "bg-bgOrange border-premiumOrange"
+                ? "bg-premiumOrangeBG2 border-premiumOrangeBG2"
                 : "bg-gray-100"
             } `}
             value={farkliMiktar}
@@ -240,7 +240,7 @@ function AddBalance() {
               : "mb-5 lg:mb-10"
           }`}
         >
-          <div className="flex bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold">
+          <div className="flex bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-premiumOrangeBG2 cursor-pointer font-bold">
             <input
               type="radio"
               className="me-2 md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw]"
@@ -251,7 +251,7 @@ function AddBalance() {
             />
             Hesaptan Satın Al
           </div>
-          <div className="flex bg-gray-100 p-2 rounded-lg  text-gray-600 hover:bg-bgOrange cursor-pointer highlight-on-hover font-bold relative ">
+          <div className="flex bg-gray-100 p-2 rounded-lg  text-gray-600 hover:bg-premiumOrangeBG2 cursor-pointer font-bold relative ">
             <input
               type="radio"
               className="me-2 relative md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] text-xs "

@@ -197,9 +197,9 @@ function AddBalance() {
             type="number"
             placeholder="Farklı miktar gir"
             min="0"
-            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrange hover:bg-bgOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
+            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrangeBG2 hover:bg-premiumOrangeBG2 text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
               selectedAmount === farkliMiktar
-                ? "bg-bgOrange border-premiumOrange"
+                ? "bg-premiumOrangeBG2 border-premiumOrangeBG2"
                 : "bg-gray-100"
             } `}
             value={farkliMiktar}

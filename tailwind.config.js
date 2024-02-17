@@ -23,6 +23,7 @@ module.exports = {
         greenBalance: "hsl(155, 42%, 44%)",
         redBalanceBg: "hsl(0, 100%, 97%)",
         redBalance: "hsl(0, 91%, 75%)",
+        premiumOrangeBG2: "hsl(7, 90%, 97%)",
       },
     },
   },

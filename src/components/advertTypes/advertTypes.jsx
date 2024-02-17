@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import contents from "./contentData";
 import img1 from "../../img/plan1.png";
 import img2 from "../../img/plan2.png";
 import img3 from "../../img/plan3.png";
 
 const AdvertTypes = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [activePage, setActivePage] = useState(0);
   const [activeLink, setActiveLink] = useState(1);
 
   const handleClick = (linkId) => {
     setActiveLink(linkId);
   }
-
-  const handleAdvertTypeClick = (pageIndex) => {
-    setActivePage(pageIndex);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,7 +41,7 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                 )}
                 {isMobile && (
                   <div className="flex items-center justify-center relative w-full">
-                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mb-0 text-sm lg:text-2xl">
+                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mr-4 text-sm lg:text-2xl">
                       Reklam Tipleri
                     </div>
                     <div
@@ -119,30 +113,34 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                 <div className="tabs tab-group flex justify-start items-center relative">
                   <button
                     className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
-                    onClick={() => handleClick(1)}
+                    onClick={() => handleClick(0)}
                   >
                     <span
-                      className={`bg-left-bottom bg-gradient-to-r hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]`}
+                      className={`bg-left-bottom  hover:text-premiumOrange md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw] ${activeLink===0 ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold" : "text-gray-500"}`}
                     >
                       Gönderi Reklamı
                     </span>
                     <span className="absolute left-0 buttom-0 w-0 h-1 bg-premiumOrange transition-all duration-300 hover:w-full"></span>
                   </button>
-                  <div className="vertical-line"></div>
+              
                   <button
                     className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "
-                    onClick={() => handleClick(2)}
+                    onClick={() => handleClick(1)}
                   >
-                    <span className="tabs-text bg-left-bottom bg-gradient-to-r  hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
+                     <span
+                      className={`bg-left-bottom  hover:text-premiumOrange md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw] ${activeLink===1 ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold" : "text-gray-500"}`}
+                    >
                       Profil Reklamı
                     </span>
                   </button>
-                  <div className="vertical-line"></div>
+               
                   <button
                     className="tabs px-3 lg:px-10 relative group transition-all duration-300 ease-in-out text-xs"
-                    onClick={() => handleClick(3)}
+                    onClick={() => handleClick(2)}
                   >
-                    <span className="bg-left-bottom bg-gradient-to-r  hover:text-premiumOrange from-premiumOrange to-txtRed bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw]">
+                    <span
+                      className={`bg-left-bottom  hover:text-premiumOrange md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw] ${activeLink===2 ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold" : "text-gray-500"}`}
+                    >
                       Genel Reklam
                     </span>
                   </button>
@@ -151,18 +149,18 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                 <div className="border mt-2 lg:mt-4"></div>
               </div>
               <div className="flex-col">
-                {activeLink === 1 && (
+                {activeLink === 0 && (
                   // h-[18rem] w-36 md:w-64 lg:w-96
                   <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
                     <div className="flex-col border rounded-lg mb-5 lg:mb-0">
-                      <div className='p-3'>
-                        <div className='flex flex-1'>
+                      {/* <div className='flex p-3'> */}
+                        <div className='flex flex-1 p-1'>
                           <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
                            lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img1} alt="gönderi reklamı"/>
                         </div>
-                      </div>
+                      {/* </div> */}
                     </div>
-                    <div className="flex-col  border rounded-lg bg-lightGray">
+                    <div className="flex-col border rounded-lg bg-lightGray">
                       <div className='p-3 text-sm md:text-md lg:text-lg'>
                         <h3 className='font-bold text-lg'>Nedir?</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
@@ -177,15 +175,13 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-                {activeLink === 2 && (
+                {activeLink === 1 && (
                   <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
                   <div className="flex-col border rounded-lg mb-5 lg:mb-0">
-                    <div className='p-3'>
-                      <div className='flex flex-1'>
+                      <div className='flex flex-1 p-1'>
                         <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
                          lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img2} alt="gönderi reklamı"/>
-                      </div>
-                    </div>
+                      </div>   
                   </div>
                   <div className="flex-col  border rounded-lg bg-lightGray">
                     <div className='p-3 text-sm md:text-md lg:text-lg'>
@@ -202,15 +198,13 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                   </div>
                 </div>
                 )}
-                {activeLink === 3 && (
+                {activeLink === 2 && (
                    <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                   <div className="flex-col border rounded-lg mb-5 lg:mb-0">
-                     <div className='p-3'>
-                       <div className='flex flex-1'>
+                   <div className="flex-col border rounded-lg mb-5 lg:mb-0">    
+                       <div className='flex flex-1 p-1'>
                          <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
                           lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img3} alt="gönderi reklamı"/>
-                       </div>
-                     </div>
+                       </div>   
                    </div>
                    <div className="flex-col  border rounded-lg bg-lightGray">
                      <div className='p-3 text-sm md:text-md lg:text-lg'>
@@ -243,7 +237,6 @@ const AdvertTypes = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-      {/* {renderPage()} */}
     </div>
   );
 };

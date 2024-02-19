@@ -114,27 +114,6 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-                {/* <div className="flex justify-between items-center px-2 lg:px-5  py-1 lg:py-2 border-2 text-gray-600 border-gray-300 rounded-lg mb-3 md:mb-0">
-                  <LuScreenShare className="flex items-center me-2 text-lg lg:text-2xl text-premiumOrange" />
-                  <span className="flex items-center mx-1 font-bold md:text-md">
-                    Reklam Bakiyesi Artırılabilir Tutar:
-                    <span className="flex items-center">0₺</span>
-                  </span>
-                  <CiCircleInfo className="mx-2 text-lg" />
-                </div>
-                <div className="flex justify-between items-center px-1 lg:px-5 py-1 lg:py-2 border-2  text-gray-600 border-gray-300 rounded-lg mb-3 md:mb-0">
-                  <span className="mx-2 font-bold">
-                    Toplam Reklam Bakiyesi:
-                  </span>
-                  <span className="flex items-center font-bold">
-                    250₺ <CiCircleInfo className="mx-2 text-lg" />
-                  </span>
-                  <SlPresent className="mx-2 text-lg text-greenDark" />
-                  <span className="flex items-center text-greenDark">
-                    <span>250₺ </span>
-                    <CiCircleInfo className="mx-2 text-greenDark text-lg" />
-                  </span>
-                </div> */}
                 <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-2 py-2 items-center justify-center w-full lg:w-1/3">
                   <div className="infoArea">
                     <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold text-center">

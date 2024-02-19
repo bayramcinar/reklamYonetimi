@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import img1 from "../../img/plan1.png";
 import img2 from "../../img/plan2.png";
 import img3 from "../../img/plan3.png";
+import AdvertTypeModule from "./advertTypeModule";
 
 const AdvertTypes = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -9,7 +10,7 @@ const AdvertTypes = ({ isOpen, onClose }) => {
 
   const handleClick = (linkId) => {
     setActiveLink(linkId);
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,25 +24,24 @@ const AdvertTypes = ({ isOpen, onClose }) => {
     };
   }, []);
 
-
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";
   return (
     <div className={modalClass}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 md:w-fit">
+        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 lg:w-auto lg:max-w-[1000px] lg:min-w-[1000px ]">
           <div>
             <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
               <div className="flex flex-col md:flex-row justify-between items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
                 {!isMobile && (
-                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-2xl">
+                  <div className="flex border-none font-bold p-1 mb-3 md:mb-0 text-sm lg:text-xl text-center">
                     Reklam Tipleri
                   </div>
                 )}
                 {isMobile && (
                   <div className="flex items-center justify-center relative w-full">
-                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mr-4 text-sm lg:text-2xl">
+                    <div className="flex border-none font-bold p-1 pt-2 mb-3 md:mr-4 text-sm lg:text-xl text-center">
                       Reklam Tipleri
                     </div>
                     <div
@@ -75,8 +75,6 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-
-
                 {!isMobile && (
                   <div
                     className="w-10 h-10 rounded-md p-4 cursor-pointer transition-all duration-700 relative  bg-gray-200/50 hover:bg-red-500 group"
@@ -109,40 +107,49 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
-              <div className="py-4 lg:py-10">
-                <div className="tabs tab-group flex justify-start items-center relative">
+              <div className="pb-4 lg:pb-10">
+                <div className="tabs tab-group flex justify-center items-center relative">
                   <button
-                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
+                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
                     onClick={() => handleClick(0)}
                   >
-                    <span
-                      className={`bg-left-bottom  hover:text-premiumOrange md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw] ${activeLink===0 ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold" : "text-gray-500"}`}
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activeLink === 0
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
                     >
                       Gönderi Reklamı
-                    </span>
-                    <span className="absolute left-0 buttom-0 w-0 h-1 bg-premiumOrange transition-all duration-300 hover:w-full"></span>
+                    </h1>
                   </button>
-              
                   <button
-                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "
+                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "
                     onClick={() => handleClick(1)}
                   >
-                     <span
-                      className={`bg-left-bottom  hover:text-premiumOrange md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw] ${activeLink===1 ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold" : "text-gray-500"}`}
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activeLink === 1
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
                     >
                       Profil Reklamı
-                    </span>
+                    </h1>
                   </button>
-               
                   <button
-                    className="tabs px-3 lg:px-10 relative group transition-all duration-300 ease-in-out text-xs"
+                    className="tabs px-3md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] lg:px-10 relative group transition-all duration-300 ease-in-out text-xs"
                     onClick={() => handleClick(2)}
                   >
-                    <span
-                      className={`bg-left-bottom  hover:text-premiumOrange md:text-[1.3vw] lg:text-[1vw] xl:text-[1.1vw] ${activeLink===2 ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold" : "text-gray-500"}`}
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activeLink === 2
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
                     >
                       Genel Reklam
-                    </span>
+                    </h1>
                   </button>
                 </div>
 
@@ -150,88 +157,56 @@ const AdvertTypes = ({ isOpen, onClose }) => {
               </div>
               <div className="flex-col">
                 {activeLink === 0 && (
-                  // h-[18rem] w-36 md:w-64 lg:w-96
-                  <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                    <div className="flex-col border rounded-lg mb-5 lg:mb-0">
-                      {/* <div className='flex p-3'> */}
-                        <div className='flex flex-1 p-1'>
-                          <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
-                           lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img1} alt="gönderi reklamı"/>
-                        </div>
-                      {/* </div> */}
-                    </div>
-                    <div className="flex-col border rounded-lg bg-lightGray">
-                      <div className='p-3 text-sm md:text-md lg:text-lg'>
-                        <h3 className='font-bold text-lg'>Nedir?</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
-                        <h3 className='font-bold text-lg'>Neden Kullanılmalıdır?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, odit.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, voluptatem.</p>
-                        <h3 className='font-bold text-lg'>Nerede Yayınlanır</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatem, expedita laboriosam quasi ex ab repellat debitis deserunt inventore in!</p>
-                        <h3 className='font-bold text-lg'>ipucu</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos corporis dolores quasi fuga, quo illo!</p>
-                      </div>
-                    </div>
-                  </div>
+                  <AdvertTypeModule
+                    img={img1}
+                    q1={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q2={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q3={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q4={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                  />
                 )}
                 {activeLink === 1 && (
-                  <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                  <div className="flex-col border rounded-lg mb-5 lg:mb-0">
-                      <div className='flex flex-1 p-1'>
-                        <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
-                         lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img2} alt="gönderi reklamı"/>
-                      </div>   
-                  </div>
-                  <div className="flex-col  border rounded-lg bg-lightGray">
-                    <div className='p-3 text-sm md:text-md lg:text-lg'>
-                      <h3 className='font-bold text-lg'>Nedir?</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
-                      <h3 className='font-bold text-lg'>Neden Kullanılmalıdır?</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, odit.</p>
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, voluptatem.</p>
-                      <h3 className='font-bold text-lg'>Nerede Yayınlanır</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatem, expedita laboriosam quasi ex ab repellat debitis deserunt inventore in!</p>
-                      <h3 className='font-bold text-lg'>ipucu</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos corporis dolores quasi fuga, quo illo!</p>
-                    </div>
-                  </div>
-                </div>
+                  <AdvertTypeModule
+                    img={img2}
+                    q1={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q2={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q3={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q4={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                  />
                 )}
                 {activeLink === 2 && (
-                   <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                   <div className="flex-col border rounded-lg mb-5 lg:mb-0">    
-                       <div className='flex flex-1 p-1'>
-                         <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
-                          lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img3} alt="gönderi reklamı"/>
-                       </div>   
-                   </div>
-                   <div className="flex-col  border rounded-lg bg-lightGray">
-                     <div className='p-3 text-sm md:text-md lg:text-lg'>
-                       <h3 className='font-bold text-lg'>Nedir?</h3>
-                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
-                       <h3 className='font-bold text-lg'>Neden Kullanılmalıdır?</h3>
-                       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, odit.</p>
-                       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, voluptatem.</p>
-                       <h3 className='font-bold text-lg'>Nerede Yayınlanır</h3>
-                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatem, expedita laboriosam quasi ex ab repellat debitis deserunt inventore in!</p>
-                       <h3 className='font-bold text-lg'>ipucu</h3>
-                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos corporis dolores quasi fuga, quo illo!</p>
-                     </div>
-                   </div>
-                 </div>
+                  <AdvertTypeModule
+                    img={img3}
+                    q1={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q2={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q3={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                    q4={
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                    }
+                  />
                 )}
-              </div>
-              <div className="flex-col">
-                <div className="flex justify-center items-center">
-                  <button
-                    value="Submit"
-                    type="submit"
-                    className="mb-3 lg:my-5 lg:mr-5 flex lg:mt-0 items-center justify-center text-center py-2 px-14 text-white bg-premiumOrange border-2 hover:text-premiumOrange border-premiumOrange rounded-lg font-semibold overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-premiumOrange after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:scale-105 hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform text-[3vw] md:text-[1.1vw] lg:text-[1vw] xl:text-[0.8vw]"
-                  >
-                    Reklam Tipini Seç
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -241,4 +216,4 @@ const AdvertTypes = ({ isOpen, onClose }) => {
   );
 };
 
-export default AdvertTypes
+export default AdvertTypes;

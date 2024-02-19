@@ -11,7 +11,6 @@ function AddBalance() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [totalBalance, setTotalBalance] = useState(null);
 
-  console.log("totalBalance", totalBalance);
   const initialValues = {
     selectedAmount: 0,
     odemeTuru: 0,

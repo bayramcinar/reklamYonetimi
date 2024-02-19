@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import BalanceModal from "../balanceModal/balanceModal";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 function AdvertTitleArea() {
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const [totalBalance, setTotalBalance] = useState(null);
   const [giftBalance, setGiftBalance] = useState(null);
-
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0); // State to keep track of the active slide index
+  const announcments = [
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    "Lorem Ipsum is simply dummy text of the printing and  industry. ",
+    "Lorem Ipsum is simply dummy text of the  and typesetting industry. ",
+  ];
   const openWalletModal = () => {
     setIsWalletModalOpen(true);
   };
@@ -55,7 +67,7 @@ function AdvertTitleArea() {
   };
   useEffect(() => {
     loadData();
-  });
+  }, [totalBalance, giftBalance]);
 
   return (
     <>
@@ -65,17 +77,31 @@ function AdvertTitleArea() {
             Reklam Yönetimi
           </h1>
         </div>
-        <div className="announcmentArea flex bg-white rounded-lg px-3 lg:px-10 my-4 lg:my-0 py-3 lg:py-5 justify-between mr-5 w-full">
+        <div className="announcmentArea flex bg-white rounded-lg px-3 lg:px-10 my-4 lg:my-0 py-3 lg:py-5 justify-between mr-5 w-full relative">
           <i className="fa-solid fa-bullhorn text-[6vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.8vw] text-premiumOrange mr-2 lg:mr-4 flex items-center justify-center"></i>
-          <h1 className="md:text-[1.3vw] text-[3vw] lg:text-[1.1vw] xl:text-[0.9vw] flex items-center justify-center font-medium">
-            Çok satan ürünlerin dahil edildiği reklamlar daha iyi performans
-            göstermektedir.
-          </h1>
-          <div className="pagesArea flex items-center justify-center lg:ml-4 font-semibold text-[2.5vw] md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] max-[768px]:w-1/4 ">
-            <i className="fa-solid fa-chevron-left mr-1 "></i>
-            <h1 className=" text-premiumOrange mr-1">3</h1>
-            <h1 className=" "> / 10</h1>
-            <i className="fa-solid fa-chevron-right ml-1 "></i>
+          <Swiper
+            className="mySwiper w-auto my-auto max-h-[35px] max-w-[52vw]"
+            autoplay={{ delay: 5000 }}
+            modules={[Pagination, Autoplay, Navigation]}
+            navigation={{
+              prevEl: ".custom-swiper-button-prev",
+              nextEl: ".custom-swiper-button-next",
+            }}
+            onSlideChange={(swiper) => setActiveSlideIndex(swiper.activeIndex)}
+          >
+            {announcments.map((announcment, index) => (
+              <SwiperSlide key={index}>
+                <h1 className="md:text-[1.3vw] text-[3vw] lg:text-[1.1vw] xl:text-[0.9vw] flex items-center justify-center font-medium max-w-[900px]">
+                  {announcment}
+                </h1>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="pagesArea flex items-center justify-center lg:ml-4 font-semibold text-[2.5vw] md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] w-1/6 lg:w-1/4 relative">
+            <i className="fa-solid fa-chevron-left mr-1 custom-swiper-button-prev cursor-pointer"></i>
+            <h1 className=" text-premiumOrange mr-1">{activeSlideIndex + 1}</h1>{" "}
+            <h1 className=" "> / {announcments.length}</h1>
+            <i className="fa-solid fa-chevron-right ml-1 custom-swiper-button-next cursor-pointer"></i>
           </div>
         </div>
         <div className="animate__animated animate__zoomIn border-2 border-greenForButton walletArea flex group text-white hover:text-greenForButton bg-greenForButton rounded-lg px-4 py-2 lg:py-0 items-center justify-between lg:w-1/3 overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-greenForButton after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform group-hover:after:bg-white">

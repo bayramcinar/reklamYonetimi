@@ -18,7 +18,8 @@ function AddBalance() {
   };
 
   const validationSchema = Yup.object({
-    selectedAmount: Yup.number().required("Lütfen en az birisini seçin"),
+    // selectedAmount: Yup.number().required("Lütfen en az birisini seçin"),
+    selectedAmount: Yup.number().required("Lütfen en az birisini seçin").typeError(/[0-9]/, "Sadece Sayı giriniz"),
     odemeTuru: Yup.number().required("Lütfen birisini seçin"),
     isApproved: Yup.bool().oneOf(
       [true],
@@ -28,28 +29,31 @@ function AddBalance() {
 
   const onSubmit = async (values) => {
     try {
-      await Swal.fire({
-        title: `Onaylıyor musunuz ?`,
-        text: `Seçtiğiniz miktar: ${selectedAmount}, Satın almak istiyor musunuz ?`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Onay",
-        cancelButtonText: "İptal et",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          addToAddBalance(123456, selectedAmount, odemeTuru);
-          addToTotalBalance(123456, selectedAmount);
-          setIsSubmitting(true);
-          console.log(values);
-          Swal.fire({
-            title: "Başarılı",
-            text: `Hesabınıza ${selectedAmount} TL başarılı bir şekilde yüklendi.`,
-            icon: "success",
-          });
-        }
-      });
+      if(selectedAmount){
+        await Swal.fire({
+          title: `Onaylıyor musunuz ?`,
+          text: `Seçtiğiniz miktar: ${selectedAmount}, Satın almak istiyor musunuz ?`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Onay",
+          cancelButtonText: "İptal et",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            addToAddBalance(123456, selectedAmount, odemeTuru);
+            addToTotalBalance(123456, selectedAmount);
+            setIsSubmitting(true);
+            console.log(values);
+            Swal.fire({
+              title: "Başarılı",
+              text: `Hesabınıza ${selectedAmount} TL başarılı bir şekilde yüklendi.`,
+              icon: "success",
+            });
+          }
+        });
+      } return;
+      
     } catch (error) {
       console.log(error);
     }
@@ -109,23 +113,21 @@ function AddBalance() {
   return (
     <form noValidate onSubmit={formik.handleSubmit}>
       <div
-        className={`amount-group px-2 pt-2 mb-5 ${
-          (formik.errors.selectedAmount || !formik.values.selectedAmount) &&
-          formik.touched.selectedAmount
+        className={`amount-group px-2 pt-2 mb-5 ${(formik.errors.selectedAmount || !formik.values.selectedAmount) &&
+            formik.touched.selectedAmount
             ? "border border-x-white border-t-white border-b-red-500"
             : "border-[#e0e0e0] rounded-lg"
-        }`}
+          }`}
       >
         <div className="grid grid-cols-2 lg:grid-cols-3  gap-y-2 lg:gap-y-5 gap-x-4 lg:gap-x-10 lg:mb-10 text-gray-500">
           <button
             type="button"
             value="100"
             name="miktar"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
-              selectedAmount === 100
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${selectedAmount === 100
                 ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
-            }`}
+              }`}
             onClick={() => {
               handleAmount(100);
               handleSelectedAmount(100);
@@ -136,11 +138,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
-              selectedAmount === 250
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${selectedAmount === 250
                 ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
-            }`}
+              }`}
             onClick={() => {
               handleAmount(250);
               handleSelectedAmount(250);
@@ -151,11 +152,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
-              selectedAmount === 500
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${selectedAmount === 500
                 ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
-            }`}
+              }`}
             onClick={() => {
               handleAmount(500);
               handleSelectedAmount(500);
@@ -166,11 +166,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
-              selectedAmount === 750
+            className={`p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${selectedAmount === 750
                 ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
-            }`}
+              }`}
             onClick={() => {
               handleAmount(750);
               handleSelectedAmount(750);
@@ -181,11 +180,10 @@ function AddBalance() {
           </button>
           <button
             type="button"
-            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${
-              selectedAmount === 1000
+            className={` p-1 rounded-lg  text-gray-500  hover:bg-premiumOrangeBG2  hover:text-premiumOrange text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-200 ${selectedAmount === 1000
                 ? "bg-premiumOrangeBG2 text-premiumOrange"
                 : "bg-gray-100"
-            }`}
+              }`}
             onClick={() => {
               handleAmount(1000);
               handleSelectedAmount(1000);
@@ -198,11 +196,10 @@ function AddBalance() {
             type="number"
             placeholder="Farklı miktar gir"
             min="0"
-            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrangeBG2 hover:bg-premiumOrangeBG2 text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${
-              selectedAmount === farkliMiktar
+            className={`placeholder:text-sm p-1 rounded-lg hover:border-b-premiumOrangeBG2 hover:bg-premiumOrangeBG2 text-center font-bold md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] ease-in duration-500 focus:border-red- ${selectedAmount === farkliMiktar
                 ? "bg-premiumOrangeBG2 border-premiumOrangeBG2"
                 : "bg-gray-100"
-            } `}
+              } `}
             value={farkliMiktar}
             onChange={handleAmountChange}
             onClick={() => {
@@ -225,49 +222,53 @@ function AddBalance() {
       </div>
 
       <div
-        className={`odeme-secenekleri px-2 mt-2 ${
-          (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
-          formik.touched.odemeTuru
+        className={`odeme-secenekleri px-2 mt-2 ${(formik.errors.odemeTuru || !formik.values.odemeTuru) &&
+            formik.touched.odemeTuru
             ? "border border-x-white border-t-white border-b-red-500"
             : "border-[#e0e0e0] rounded-lg"
-        }`}
+          }`}
       >
         <h4 className="mb-2 font-bold text-gray-600">Ödeme Seçenekleri</h4>
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 lg:gap-y-5  md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-sm ${
-            (formik.errors.odemeTuru || !formik.values.odemeTuru) &&
-            formik.touched.odemeTuru
+          className={`grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 lg:gap-y-5 md:text-[1.1vw] lg:text-[1vw] xl:text-[0.9vw] text-sm ${(formik.errors.odemeTuru || !formik.values.odemeTuru) &&
+              formik.touched.odemeTuru
               ? "mb-1 lg:mb-1"
               : "mb-5 lg:mb-10"
-          }`}
+            }`}
         >
-          <div className="flex bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-premiumOrangeBG2 cursor-pointer font-bold">
-            <input
-              type="radio"
-              className="me-2 md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw]"
-              name="odemeTuru"
-              value="0"
-              onChange={(e) => {
-                formik.handleChange(e);
-                setOdemeTuru("0");
-              }}
-              checked={formik.values.odemeTuru === "0"}
-            />
-            Hesaptan Satın Al
+          <div>
+            <label htmlFor="hesaptanSatinAl" className="flex bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-premiumOrangeBG2 cursor-pointer font-bold">
+              <input
+                type="radio"
+                id="hesaptanSatinAl"
+                className="me-2 md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw]"
+                name="odemeTuru"
+                value="0"
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  setOdemeTuru("0");
+                }}
+                checked={formik.values.odemeTuru === "0"}
+              />
+              <span>Hesaptan Satın Al</span>
+            </label>
           </div>
-          <div className="flex bg-gray-100 p-2 rounded-lg  text-gray-600 hover:bg-premiumOrangeBG2 cursor-pointer font-bold relative ">
-            <input
-              type="radio"
-              className="me-2 relative md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] text-xs "
-              name="odemeTuru"
-              value="1"
-              onChange={(e) => {
-                formik.handleChange(e);
-                setOdemeTuru("1");
-              }}
-              checked={formik.values.odemeTuru === "1"}
-            />
-            Kredi Kartı ile Satın Al
+          <div>
+            <label htmlFor="krediKartiSatinAl" className="flex bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-premiumOrangeBG2 cursor-pointer font-bold relative">
+              <input
+                type="radio"
+                id="krediKartiSatinAl"
+                className="me-2 relative md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] text-xs "
+                name="odemeTuru"
+                value="1"
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  setOdemeTuru("1");
+                }}
+                checked={formik.values.odemeTuru === "1"}
+              />
+              <span>Kredi Kartı ile Satın Al</span>
+            </label>
           </div>
 
           {(formik.errors.odemeTuru || !formik.values.odemeTuru) &&
@@ -280,14 +281,13 @@ function AddBalance() {
       </div>
 
       <div className="border"></div>
-      <div className="flex flex-col md:flex-row items-center justify-between  py-3 lg:py-5 text-gray-700">
+      <div className="flex flex-col lg:flex-row items-center justify-between  py-3 lg:py-5 text-gray-700">
         <div
-          className={`p-2 ${
-            (formik.errors.isApproved || !formik.values.isApproved) &&
-            formik.touched.isApproved
+          className={`p-2 ${(formik.errors.isApproved || !formik.values.isApproved) &&
+              formik.touched.isApproved
               ? "border border-x-white border-t-white border-b-red-500"
               : "border-[#e0e0e0] rounded-lg"
-          }`}
+            }`}
         >
           <div className="flex justify-center items-center ps-2">
             <input

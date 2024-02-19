@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./balanceModal.css";
-import { LuScreenShare } from "react-icons/lu";
-import { SlPresent } from "react-icons/sl";
-import { CiCircleInfo } from "react-icons/ci";
 import AddBalance from "./addBalance";
 import GiftBalance from "./giftBalance";
 import BalanceTransactions from "./balanceTransactions";
@@ -11,6 +8,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [activePage, setActivePage] = useState(0);
   const [totalBalance, setTotalBalance] = useState(null);
+  const [giftBalance, setGiftBalance] = useState(null);
 
   const renderPage = () => {
     switch (activePage) {
@@ -43,6 +41,31 @@ const BalanceModal = ({ isOpen, onClose }) => {
       return 0;
     }
   }
+  function getGiftBalance(hesapNumarası) {
+    const dataToSave = JSON.parse(localStorage.getItem("giftBalance")) || [];
+
+    if (Array.isArray(dataToSave)) {
+      const existingAccount = dataToSave.find(
+        (data) => data.hesapNumarası === hesapNumarası
+      );
+
+      if (existingAccount) {
+        return existingAccount.miktar;
+      } else {
+        return 0;
+      }
+    } else {
+      console.error("localStorage'dan alınan veri bir dizi değil.");
+      return 0;
+    }
+  }
+  const loadData = () => {
+    const accountNumber = 123456;
+    const miktar = getTotalBalance(accountNumber);
+    setTotalBalance(miktar);
+    const giftMiktar = getGiftBalance(accountNumber);
+    setGiftBalance(giftMiktar);
+  };
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -53,16 +76,11 @@ const BalanceModal = ({ isOpen, onClose }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
-  const loadData = () => {
-    const accountNumber = 123456;
-    const miktar = getTotalBalance(accountNumber);
-    console.log(miktar, "miktar");
-    setTotalBalance(miktar);
-  };
+  });
+
   useEffect(() => {
     loadData();
-  }, []);
+  });
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";
@@ -129,7 +147,10 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     <div className="giftWallet flex items-center justify-center">
                       <i className="fa-solid fa-gift mr-2"></i>
                       <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold">
-                        Hediye Bakiye: 250 ₺
+                        Hediye Bakiye:{" "}
+                        {giftBalance !== null
+                          ? `${giftBalance} ₺`
+                          : "Yükleniyor"}
                       </h1>
                     </div>
                   </div>

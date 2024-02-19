@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BalanceModal from "../balanceModal/balanceModal";
 import { Link } from "react-router-dom";
 function CreateAdvertTitleArea() {
@@ -7,6 +7,57 @@ function CreateAdvertTitleArea() {
   const openWalletModal = () => {
     setIsWalletModalOpen(true);
   };
+
+  const [totalBalance, setTotalBalance] = useState(null);
+  const [giftBalance, setGiftBalance] = useState(null);
+
+  function getTotalBalance(hesapNumarası) {
+    const dataToSave = JSON.parse(localStorage.getItem("totalBalance")) || [];
+
+    if (Array.isArray(dataToSave)) {
+      const existingAccount = dataToSave.find(
+        (data) => data.hesapNumarası === hesapNumarası
+      );
+
+      if (existingAccount) {
+        return existingAccount.miktar;
+      } else {
+        return 0;
+      }
+    } else {
+      console.error("localStorage'dan alınan veri bir dizi değil.");
+      return 0;
+    }
+  }
+  function getGiftBalance(hesapNumarası) {
+    const dataToSave = JSON.parse(localStorage.getItem("giftBalance")) || [];
+
+    if (Array.isArray(dataToSave)) {
+      const existingAccount = dataToSave.find(
+        (data) => data.hesapNumarası === hesapNumarası
+      );
+
+      if (existingAccount) {
+        return existingAccount.miktar;
+      } else {
+        return 0;
+      }
+    } else {
+      console.error("localStorage'dan alınan veri bir dizi değil.");
+      return 0;
+    }
+  }
+  const loadData = () => {
+    const accountNumber = 123456;
+    const miktar = getTotalBalance(accountNumber);
+    setTotalBalance(miktar);
+    const giftMiktar = getGiftBalance(accountNumber);
+    setGiftBalance(giftMiktar);
+  };
+
+  useEffect(() => {
+    loadData();
+  });
 
   return (
     <>
@@ -22,12 +73,14 @@ function CreateAdvertTitleArea() {
         <div className="animate__animated animate__zoomIn walletArea py-3 border-2 border-greenForButton flex group text-white hover:text-greenForButton bg-greenForButton rounded-lg px-4 items-center justify-between lg:w-1/4 overflow-hidden relative transition-all will-change-transform after:bg-white z-0 after:block after:w-full after:h-full after:absolute after:left-0 after:text-greenForButton after:top-0 after:transform after:translate-x-[-100%] after:origin-top-left after:transition-transform after:duration-[400ms] after:ease-out after:will-change-transform after:z-[-1] hover:after:translate-x-[0%] hover:border-2 hover:border-transparent hover:transform-none hover:duration-300 hover:ease-out hover:will-change-transform group-hover:after:bg-white">
           <div className="infoArea  mr-8">
             <h1 className="md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-sm font-semibold">
-              Toplam Reklam Bakiyesi: 250 ₺
+              Toplam Reklam Bakiyesi:{" "}
+              {totalBalance !== null ? `${totalBalance}₺` : "Yükleniyor"}
             </h1>
             <div className="giftWallet flex mt-2">
               <i className="fa-solid fa-gift mr-2"></i>
               <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.8vw] text-xs font-semibold">
-                Hediye Bakiye: 250 ₺
+                Hediye Bakiye:{" "}
+                {giftBalance !== null ? `${giftBalance} ₺` : "Yükleniyor"}
               </h1>
             </div>
           </div>

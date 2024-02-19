@@ -150,18 +150,16 @@ const AdvertTypes = ({ isOpen, onClose }) => {
               </div>
               <div className="flex-col">
                 {activeLink === 0 && (
-                  // h-[18rem] w-36 md:w-64 lg:w-96
+                 
                   <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                    <div className="flex-col border rounded-lg mb-5 lg:mb-0">
-                      {/* <div className='flex p-3'> */}
+                    <div className="flex-col rounded-lg mb-5 lg:mb-0">
                         <div className='flex flex-1 p-1'>
                           <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
                            lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img1} alt="gönderi reklamı"/>
                         </div>
-                      {/* </div> */}
                     </div>
                     <div className="flex-col border rounded-lg bg-lightGray">
-                      <div className='p-3 text-sm md:text-md lg:text-lg'>
+                      <div className='px-3 py-10 text-sm md:text-md lg:text-lg'>
                         <h3 className='font-bold text-lg'>Nedir?</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
                         <h3 className='font-bold text-lg'>Neden Kullanılmalıdır?</h3>
@@ -177,14 +175,14 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                 )}
                 {activeLink === 1 && (
                   <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                  <div className="flex-col border rounded-lg mb-5 lg:mb-0">
+                  <div className="flex-col  rounded-lg mb-5 lg:mb-0">
                       <div className='flex flex-1 p-1'>
                         <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
                          lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img2} alt="gönderi reklamı"/>
                       </div>   
                   </div>
                   <div className="flex-col  border rounded-lg bg-lightGray">
-                    <div className='p-3 text-sm md:text-md lg:text-lg'>
+                    <div className='px-3 py-10 text-sm md:text-md lg:text-lg'>
                       <h3 className='font-bold text-lg'>Nedir?</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
                       <h3 className='font-bold text-lg'>Neden Kullanılmalıdır?</h3>
@@ -200,14 +198,14 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                 )}
                 {activeLink === 2 && (
                    <div className="flex-col lg:flex lg:flex-row justify-center items-center  px-3 pb-5 gap-10">
-                   <div className="flex-col border rounded-lg mb-5 lg:mb-0">    
+                   <div className="flex-col rounded-lg mb-5 lg:mb-0">    
                        <div className='flex flex-1 p-1'>
                          <img className='w-[20.5vw] h-[20.5vw] md:w-[18vw] md:h-[18vw]
                           lg:w-[26vw] lg:h-[26vw] xl:w-[22vw] xl:h-[19.5vw] mx-auto object-cover' src={img3} alt="gönderi reklamı"/>
                        </div>   
                    </div>
                    <div className="flex-col  border rounded-lg bg-lightGray">
-                     <div className='p-3 text-sm md:text-md lg:text-lg'>
+                     <div className='px-3 py-10 text-sm md:text-md lg:text-lg'>
                        <h3 className='font-bold text-lg'>Nedir?</h3>
                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, libero?</p>
                        <h3 className='font-bold text-lg'>Neden Kullanılmalıdır?</h3>

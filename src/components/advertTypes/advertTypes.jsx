@@ -6,13 +6,15 @@ import AdvertTypeModule from "./advertTypeModule";
 
 const AdvertTypes = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [activeLink, setActiveLink] = useState(1);
+  const [activeLink, setActiveLink] = useState(1);//Aktif linki tutan state
 
+{/*Active Linki set eder */}
   const handleClick = (linkId) => {
     setActiveLink(linkId);
   };
 
   useEffect(() => {
+    {/*ekran 768 den küçükse isMobil olur*/}
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -23,7 +25,7 @@ const AdvertTypes = ({ isOpen, onClose }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  //Reklam ipuçları açıksa
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";

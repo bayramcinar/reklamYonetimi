@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./balanceModal.css";
-import { LuScreenShare } from "react-icons/lu";
-import { SlPresent } from "react-icons/sl";
-import { CiCircleInfo } from "react-icons/ci";
 import AddBalance from "./addBalance";
 import GiftBalance from "./giftBalance";
 import BalanceTransactions from "./balanceTransactions";

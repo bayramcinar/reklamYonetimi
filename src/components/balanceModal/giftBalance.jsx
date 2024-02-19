@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import giftCodes from "../giftCodes.json"; // giftCodes.json dosyasını projeye dahil ediyoruz
 
 function GiftBalance() {
   const [code, setCode] = useState(""); // Kullanıcının girdiği kodu saklamak için bir state
@@ -13,55 +14,58 @@ function GiftBalance() {
   };
 
   const handleActivateGift = (userAccountNumber) => {
-    if (
-      /^[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}$/.test(code)
-    ) {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+
+    const matchedGift = giftCodes.find(
+      (gift) =>
+        gift.code === code &&
+        gift.limit > 0 &&
+        gift.finish >= formattedDate &&
+        !gift.usedAccounts.includes(userAccountNumber)
+    );
+
+    if (matchedGift) {
       let giftBalance = JSON.parse(localStorage.getItem("giftBalance")) || [];
       const existingAccountIndex = giftBalance.findIndex(
         (data) => data.hesapNumarası === userAccountNumber
       );
 
-      if (code === "acA6-caEG-C39x-cvp9") {
-        if (existingAccountIndex !== -1) {
-          // Hesap zaten varsa bakiyeyi arttır
-          giftBalance[existingAccountIndex].miktar += 100;
-        } else {
-          // Hesap yoksa yeni bir hesap oluştur
-          giftBalance.push({
-            hesapNumarası: userAccountNumber,
-            miktar: 100,
-          });
-        }
-
-        // localStorage'a güncellenmiş giftBalance'i kaydet
-        localStorage.setItem("giftBalance", JSON.stringify(giftBalance));
-        const currentDate = new Date();
-        const formattedDate = currentDate.toISOString().split("T")[0];
-        // Eklenen hediye bakiyesini log olarak kaydet
-        let addBalanceData =
-          JSON.parse(localStorage.getItem("addBalance")) || [];
-        addBalanceData.push({
-          hesapNumarası: userAccountNumber,
-          miktar: 100,
-          odemeTuru: 2,
-          islemTarihi: formattedDate,
-        });
-        localStorage.setItem("addBalance", JSON.stringify(addBalanceData));
-
-        // Başarılı durumunda kullanıcıya geribildirim vermek için bir mesaj göster
-        Swal.fire({
-          title: "Başarılı",
-          text: "Kod başarılı bir şekilde etkinleştirildi!",
-          icon: "success",
-        });
+      if (existingAccountIndex !== -1) {
+        giftBalance[existingAccountIndex].miktar += matchedGift.amount;
       } else {
-        // Hatalı kod durumunda bir hata mesajı göster
-        Swal.fire({
-          title: "Başarısız",
-          text: "Geçersiz kod!",
-          icon: "error",
+        giftBalance.push({
+          hesapNumarası: userAccountNumber,
+          miktar: matchedGift.amount,
         });
       }
+
+      let addBalanceData = JSON.parse(localStorage.getItem("addBalance")) || [];
+      addBalanceData.push({
+        hesapNumarası: userAccountNumber,
+        miktar: matchedGift.amount,
+        odemeTuru: 2,
+        islemTarihi: formattedDate,
+      });
+
+      // Kullanılan hesabı hediye kodunun kullanılan hesaplar listesine ekle
+      matchedGift.usedAccounts.push(userAccountNumber);
+
+      localStorage.setItem("addBalance", JSON.stringify(addBalanceData));
+      localStorage.setItem("giftBalance", JSON.stringify(giftBalance));
+      matchedGift.limit--;
+
+      Swal.fire({
+        title: "Başarılı",
+        text: `Kod başarılı bir şekilde etkinleştirildi. Hediye bakiyenize ${matchedGift.amount} TL eklendi !`,
+        icon: "success",
+      });
+    } else {
+      Swal.fire({
+        title: "Başarısız",
+        text: "Geçersiz kod, kullanım tarihi geçmiş, zaten kullanılmış veya kullanım limiti dolmuş!",
+        icon: "error",
+      });
     }
   };
 

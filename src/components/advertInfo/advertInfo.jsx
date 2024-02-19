@@ -42,7 +42,7 @@ const AdvertInfo = ({ onSubmit }) => {
     >
       {(formik) => (
         <Form id="myform">
-          <div className="flex flex-col lg:flex-row px-3 py-4 max-w-[1200px] gap-x-3">
+          <div className="flex flex-col lg:flex-row px-3 py-4 max-w-[1200px] xl:max-w-[1600px] gap-x-3">
             <div className="flex flex-col md:flex-col lg:flex-col flex-auto w-full lg:w-3/4">
               <div className="flex-col lg:flex lg:flex-row flex-auto p-2 gap-x-10">
                 <div className="flex-col flex-auto w-full lg:w-1/2 py-1">
@@ -228,7 +228,7 @@ const AdvertInfo = ({ onSubmit }) => {
                           <h3 className="font-bold">Bütçe Tipi</h3>
                         </div>
                         <div className=" flex flex-auto ">
-                          <p className="text-txtGrey mb-7">
+                          <p className="text-txtGrey mb-1 lg:mb-7 xl:mb-6">
                             Oluşturmak istediğiniz reklamın bütçe tipini seçiniz
                           </p>
                         </div>
@@ -250,7 +250,7 @@ const AdvertInfo = ({ onSubmit }) => {
                             onChange={formik.handleChange}
                             className="rounded-md border border-[#e0e0e0] bg-white py-1 px-6 text-base font-medium outline-none focus:border-lightGray focus:shadow-md mr-2"
                           />
-                          <label>Günlük Bütçe</label>
+                          <label htmlFor="butce1">Günlük Bütçe</label>
                         </div>
                         <div className="flex flex-row">
                           <Field
@@ -262,7 +262,7 @@ const AdvertInfo = ({ onSubmit }) => {
                             onChange={formik.handleChange}
                             className="rounded-md border border-[#e0e0e0] bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md mr-2"
                           />
-                          <label>Toplam Bütçe</label>
+                          <label htmlFor="butce2">Toplam Bütçe</label>
                         </div>
                       </div>
                       <div>

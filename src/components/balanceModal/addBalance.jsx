@@ -245,7 +245,10 @@ function AddBalance() {
               className="me-2 md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw]"
               name="odemeTuru"
               value="0"
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                formik.handleChange(e);
+                setOdemeTuru("0");
+              }}
               checked={formik.values.odemeTuru === "0"}
             />
             Hesaptan Satın Al
@@ -256,7 +259,10 @@ function AddBalance() {
               className="me-2 relative md:text-[1.1vw] lg:text-[1.2vw] xl:text-[1.1vw] text-xs "
               name="odemeTuru"
               value="1"
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                formik.handleChange(e);
+                setOdemeTuru("1");
+              }}
               checked={formik.values.odemeTuru === "1"}
             />
             Kredi Kartı ile Satın Al

@@ -162,16 +162,16 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                   <AdvertTypeModule
                     img={img1}
                     q1={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q2={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q3={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
                     }
                     q4={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                   />
                 )}
@@ -179,16 +179,16 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                   <AdvertTypeModule
                     img={img2}
                     q1={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q2={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q3={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q4={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                   />
                 )}
@@ -196,16 +196,16 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                   <AdvertTypeModule
                     img={img3}
                     q1={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q2={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q3={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                     q4={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
                     }
                   />
                 )}

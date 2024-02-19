@@ -29,12 +29,13 @@ function AddBalance() {
   const onSubmit = async (values) => {
     try {
       await Swal.fire({
-        title: `Seçtiğiniz miktar: ${selectedAmount}, Satın almak istiyor musunuz?`,
+        title: `Onaylıyor musunuz ?`,
+        text: `Seçtiğiniz miktar: ${selectedAmount}, Satın almak istiyor musunuz ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Evet, eminim!",
+        confirmButtonText: "Onay",
         cancelButtonText: "İptal et",
       }).then((result) => {
         if (result.isConfirmed) {
@@ -43,7 +44,8 @@ function AddBalance() {
           setIsSubmitting(true);
           console.log(values);
           Swal.fire({
-            title: "Satın alma işlemi tamamlandı!",
+            title: "Başarılı",
+            text: `Hesabınıza ${selectedAmount} TL başarılı bir şekilde yüklendi.`,
             icon: "success",
           });
         }

@@ -11,7 +11,7 @@ function BalanceTransactionsCard({ amount, name, type, date }) {
   return (
     <div className="flex bg-gray-50 lg:py-4 lg:px-10 rounded-lg m-4 p-1">
       <div className="w-1/6 flex items-center justify-center">
-        <div className="icon my-auto lg:w-[2vw] lg:h-[2vw] w-[6vw] h-[6vw] rounded-full bg-gray-200 flex items-center justify-center mr-3 lg:mr-10 text-gray-500">
+        <div className="icon my-auto lg:w-[2vw] lg:h-[2vw] w-[6vw] h-[6vw] text-xs md:text-md rounded-full bg-gray-200 flex items-center justify-center mr-3 lg:mr-10 text-gray-500">
           {amount > 0 && <i class="fa-solid fa-plus"></i>}
           {amount < 0 && <i class="fa-solid fa-minus"></i>}
         </div>
@@ -25,6 +25,8 @@ function BalanceTransactionsCard({ amount, name, type, date }) {
             ? "Hesaptan Bakiye Yükleme"
             : type === 1
             ? "Kredi Kartı İle Bakiye Yükleme"
+            : type === 2
+            ? "Hediye Kod İle Bakiye Yükleme"
             : type === "0"
             ? "Hizmet Reklamı"
             : "Profil Reklamı"}

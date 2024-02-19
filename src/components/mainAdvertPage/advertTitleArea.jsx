@@ -4,6 +4,7 @@ import BalanceModal from "../balanceModal/balanceModal";
 function AdvertTitleArea() {
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const [totalBalance, setTotalBalance] = useState(null);
+  const [giftBalance, setGiftBalance] = useState(null);
 
   const openWalletModal = () => {
     setIsWalletModalOpen(true);
@@ -11,7 +12,6 @@ function AdvertTitleArea() {
 
   function getTotalBalance(hesapNumarası) {
     const dataToSave = JSON.parse(localStorage.getItem("totalBalance")) || [];
-    console.log(dataToSave, "dataToSave");
 
     if (Array.isArray(dataToSave)) {
       const existingAccount = dataToSave.find(
@@ -28,17 +28,34 @@ function AdvertTitleArea() {
       return 0;
     }
   }
+  function getGiftBalance(hesapNumarası) {
+    const dataToSave = JSON.parse(localStorage.getItem("giftBalance")) || [];
 
+    if (Array.isArray(dataToSave)) {
+      const existingAccount = dataToSave.find(
+        (data) => data.hesapNumarası === hesapNumarası
+      );
+
+      if (existingAccount) {
+        return existingAccount.miktar;
+      } else {
+        return 0;
+      }
+    } else {
+      console.error("localStorage'dan alınan veri bir dizi değil.");
+      return 0;
+    }
+  }
   const loadData = () => {
     const accountNumber = 123456;
     const miktar = getTotalBalance(accountNumber);
-    console.log(miktar, "miktar");
     setTotalBalance(miktar);
+    const giftMiktar = getGiftBalance(accountNumber);
+    setGiftBalance(giftMiktar);
   };
   useEffect(() => {
     loadData();
-  }, [totalBalance])
-
+  });
 
   return (
     <>
@@ -65,12 +82,13 @@ function AdvertTitleArea() {
           <div className="infoArea  mr-8">
             <h1 className="md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.9vw] text-xs font-semibold">
               Toplam Reklam Bakiyesi:{" "}
-              {totalBalance !== null ? `${totalBalance}₺` : "Yükleniyor"}
+              {totalBalance !== null ? `${totalBalance} ₺` : "Yükleniyor"}
             </h1>
             <div className="giftWallet flex mt-2">
               <i className="fa-solid fa-gift mr-2"></i>
               <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.8vw] text-xs font-semibold">
-                Hediye Bakiye: 250 ₺
+                Hediye Bakiye:{" "}
+                {giftBalance !== null ? `${giftBalance} ₺` : "Yükleniyor"}
               </h1>
             </div>
           </div>

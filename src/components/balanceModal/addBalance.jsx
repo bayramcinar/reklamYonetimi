@@ -18,7 +18,7 @@ function AddBalance() {
   };
 
   const validationSchema = Yup.object({
-    selectedAmount: Yup.number().required("Lütfen en az birisini seçin").typeError(/[0-9]/, "Sadece Sayı giriniz"),
+    selectedAmount: Yup.number().required("Lütfen en az birisini seçin").typeError(/[0-9]/, "Sadece sayı giriniz"),
     odemeTuru: Yup.number().required("Lütfen birisini seçin"),
     isApproved: Yup.bool().oneOf(
       [true],

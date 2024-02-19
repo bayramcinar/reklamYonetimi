@@ -30,8 +30,9 @@ const AdvertInfo = ({ onSubmit }) => {
         "Bitiş tarihi başlangıç tarihinden önce olamaz"
       ),
     butceTipi: Yup.string().required("Lütfen bütçe tipini seçiniz"),
-    gunlukButceMiktarı: Yup.number().required("Lütfen miktarı giriniz"),
-  });
+    gunlukButceMiktarı: Yup.number().required("Lütfen miktarı giriniz").typeError(/[0-9]/, "Sadece sayı giriniz"),
+  })
+    
 
   return (
     <Formik
@@ -292,12 +293,12 @@ const AdvertInfo = ({ onSubmit }) => {
                             <div className="flex-col">
                               <label
                                 htmlFor="gunlukButce"
-                                className="block text-xs lg:text-sm font-medium text-txtGrey"
+                                className="block text-xs md:text-xs lg:text-sm font-medium text-txtGrey"
                               >
                                 Günlük Bütçe(₺)
                               </label>
                               <Field
-                                type="text"
+                                type="number"
                                 name="gunlukButceMiktarı"
                                 id="gunlukButceMiktarı"
                                 placeholder="Her ürün için minimum 10₺"

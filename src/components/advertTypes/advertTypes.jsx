@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import img1 from "../../img/plan1.png";
-import img2 from "../../img/plan2.png";
+import img2 from "../../img/profil.png";
 import img3 from "../../img/plan3.png";
 import AdvertTypeModule from "./advertTypeModule";
 
 const AdvertTypes = ({ isOpen, onClose }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [activeLink, setActiveLink] = useState(1);//Aktif linki tutan state
+  const [activeLink, setActiveLink] = useState(1); //Aktif linki tutan state
 
-{/*Active Linki set eder */}
+  {
+    /*Active Linki set eder */
+  }
   const handleClick = (linkId) => {
     setActiveLink(linkId);
   };
 
   useEffect(() => {
-    {/*ekran 768 den küçükse isMobil olur*/}
+    {
+      /*ekran 768 den küçükse isMobil olur*/
+    }
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -140,7 +144,7 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                     </h1>
                   </button>
                   <button
-                    className="tabs px-3md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] lg:px-10 relative group transition-all duration-300 ease-in-out text-xs"
+                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
                     onClick={() => handleClick(2)}
                   >
                     <h1
@@ -161,52 +165,65 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                 {activeLink === 0 && (
                   <AdvertTypeModule
                     img={img1}
-                    q1={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q2={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q3={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-                    }
-                    q4={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
+                    q1={[
+                      "Gönderilerinizi ön plana çıkartarak etkileşiminizi arttırmak için uygulanan reklam modelidir.",
+                    ]}
+                    q2={[
+                      "Görsel ve video içeriklerle kendinizi ve yaptığınız işi tanıtabilirsiniz. ",
+                      "Yaptığınız iş görsele dayalı ise reklam ile yaptığınız işleri öne çıkartarak referans olarak kullanabilirsiniz.",
+                      "Gönderilerinizin tıklanması ile profil trafiğinizi ve takipçi sayınızı arttırabilirsiniz.",
+                      "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
+                      "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
+                      "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
+                    ]}
+                    q3={["Ofistik anasayfası", "Sosyal medya keşfet sayfası"]}
+                    q4={[
+                      "Gönderi reklamından etkili şekilde faydalanmak için gönderinizin kalitesinden,açıklama kısmının yeterli ve dikkat çekici olduğundan emin olun.",
+                    ]}
                   />
                 )}
                 {activeLink === 1 && (
                   <AdvertTypeModule
                     img={img2}
-                    q1={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q2={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q3={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q4={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
+                    q1={[
+                      "Profilinizi ön plana çıkartarak etkileşiminizi arttırmak için uygulanan reklam modelidir.",
+                    ]}
+                    q2={[
+                      "Reklam vererek profil trafiğinizi ve takipçi sayınızı artırabilirsiniz.",
+                      "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
+                      "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
+                      "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
+                    ]}
+                    q3={[
+                      "Ofistik anasayfası",
+                      "Sektör listeleme sayfası",
+                      "Arama sayfaları",
+                    ]}
+                    q4={[
+                      "Profil reklamından etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
+                    ]}
                   />
                 )}
                 {activeLink === 2 && (
                   <AdvertTypeModule
                     img={img3}
-                    q1={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q2={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q3={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
-                    q4={
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-                    }
+                    q1={[
+                      "Belirtilen reklam bütçenizin Ofistik reklam algoritması tarafından yönetilerek size en uygun reklam tipini uygulayan reklam modelidir.",
+                    ]}
+                    q2={[
+                      "Hizmet verdiğiniz sektörde öne çıkmanızı sağlar.",
+                      "Reklam bütçeniz en etkin ve doğru şekilde kullanılır.",
+                      "Profil yapınıza ve reklam bütçenize bağlı olarak hem gönderi hem profil reklamı kullanaılabilir.",
+                      "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
+                      "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
+                      "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
+                    ]}
+                    q3={[
+                      "Profil tipinize ve reklam bütçenize bağlı olarak değişim göstermektedir.",
+                    ]}
+                    q4={[
+                      "Genel reklamdan etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
+                    ]}
                   />
                 )}
               </div>

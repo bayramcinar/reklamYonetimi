@@ -53,10 +53,10 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
         </div>
         <div className="flex-col border rounded-lg bg-lightGray infoArea lg:flex-grow lg:w-2/3 flex items-center justify-center">
           <div className="p-3">
-            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-2">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               Nedir ?
             </h3>
-            <div className="whyUse px-2">
+            <div className="whyUse px-1 lg:px-2">
               {q1.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
@@ -66,10 +66,10 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
                 </div>
               ))}
             </div>
-            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-2">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm  p-1 lg:p-2">
               Neden Kullanılmalıdır ?
             </h3>
-            <div className="whyUse px-2">
+            <div className="whyUse px-1 lg:px-2">
               {q2.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
@@ -79,10 +79,10 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
                 </div>
               ))}
             </div>
-            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-2">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               Nerede Yayınlanır ?
             </h3>
-            <div className="whyUse px-2">
+            <div className="whyUse px-1 lg:px-2">
               {q3.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
@@ -92,10 +92,10 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
                 </div>
               ))}
             </div>
-            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-2">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               İpucu
             </h3>
-            <div className="whyUse px-2">
+            <div className="whyUse px-1 lg:px-2">
               {q4.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>

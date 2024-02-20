@@ -31,7 +31,7 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
   return (
     <>
       <div className="flex-col md:flex lg:flex-row justify-center items-stretch px-3 pb-5 gap-10">
-        <div className="flex-col border rounded-lg mb-5 lg:mb-0 imgArea lg:flex-grow lg:w-1/3">
+        <div className="flex-col border rounded-lg mb-4 lg:mb-0 imgArea lg:flex-grow lg:w-1/3">
           {!isMobile && (
             <div className="flex justify-center items-center h-full p-1">
               <img
@@ -45,14 +45,14 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
             <button
               type="button"
               onClick={openModal}
-              className=" bg-premiumOrangeBG2 text-premiumOrange border-premiumOrange boder-1 py-1 px-3 rounded-lg text-sm font-semibold w-full"
+              className=" bg-premiumOrangeBG2 text-premiumOrange py-1 px-3 rounded-lg text-sm font-semibold w-full"
             >
               Örnek Reklam
             </button>
           )}
         </div>
         <div className="flex-col border rounded-lg bg-lightGray infoArea lg:flex-grow lg:w-2/3 flex items-center justify-center">
-          <div className="p-3">
+          <div className="p-3 pt-0">
             <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               Nedir ?
             </h3>

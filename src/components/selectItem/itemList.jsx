@@ -60,31 +60,31 @@ function ItemList({
   );
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
   return (
-    <div className="w-full">
+    <div className="w-full mb-5">
       <div className="selectedInfos my-2 mx-6">
         <div className=" bg-premiumOrange w-full rounded-lg flex justify-around items-center">
           <div className="selectedAmount lg:flex p-3 lg:p-6">
             <div className="rounded-full flex items-center justify-center w-[10vw] h-[10vw] lg:w-[4vw] lg:h-[4vw] mx-auto bg-premiumOrangeBg text-white">
               <i className="fa-solid fa-coins lg:m-6 text-xs lg:text-lg"></i>
             </div>
-            <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
-              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw]">
+            <div className="text-white lg:ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
+              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw] text-center">
                 {selectedMethod === "1" ? "Günlük Bütçe" : "Toplam Bütçe"}
               </h1>
-              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold">
+              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold  text-center w-full lg:text-start">
                 {amount} ₺
               </h1>
             </div>
           </div>
-          <div className="selectedTime lg:flex p-3 lg:p-6">
+          <div className="selectedTime lg:flex p-3 lg:p-6 ">
             <div className="rounded-full flex items-center justify-center w-[10vw] h-[10vw] lg:w-[4vw] lg:h-[4vw] mx-auto bg-premiumOrangeBg text-white">
               <i className="fa-regular fa-calendar m-3 lg:m-6 text-xs lg:text-lg"></i>
             </div>
-            <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
-              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw]">
+            <div className="text-white lg:ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0 ">
+              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw] text-center">
                 Reklam Süresi
               </h1>
-              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold">
+              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold text-center w-full lg:text-start">
                 {time} Gün
               </h1>
             </div>
@@ -93,11 +93,11 @@ function ItemList({
             <div className="rounded-full flex items-center justify-center w-[10vw] h-[10vw] lg:w-[4vw] lg:h-[4vw] mx-auto bg-premiumOrangeBg text-white">
               <i className="fa-solid fa-boxes-stacked  m-3 lg:m-6 text-xs lg:text-lg"></i>
             </div>
-            <div className="text-white ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
-              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw]">
+            <div className="text-white lg:ml-3 flex flex-col items-start justify-center mt-2 lg:mt-0">
+              <h1 className="text-sm md:text-[0.9vw] lg:text-[0.9vw] xl:text-[0.9vw] text-center">
                 Ürün Sayısı
               </h1>
-              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold">
+              <h1 className="text-md md:text-[1.3vw] lg:text-[1.3vw] xl:text-[1.3vw] font-semibold text-center w-full lg:text-start">
                 {selectedItems.length} / {itemList.length}
               </h1>
             </div>

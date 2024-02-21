@@ -40,7 +40,7 @@ function WhyUseAdvert() {
               </h1>
               <h1 className="lg:text-[1.1vw] xl:text-[1vw] text-center mt-2 font-semibold text-gray-600">
                 Reklam vererek kullanıcı etkileşiminizi arttırabilir bu sayede
-                satışlarınızda artış sağlayabilirsiniz!
+                kazancınızda artış sağlayabilirsiniz!
               </h1>
             </div>
             <div className="flex-col mx-auto lg:mx-0 lg:ml-auto lg:text-[1vw] xl:text-[0.9vw] text-sm mt-3 lg:mt-0">
@@ -71,7 +71,7 @@ function WhyUseAdvert() {
                 alt=""
               />
             )}
-            <IconComponent icon={star} text={"İlanınızı Öne Çıkarın !"} />
+            <IconComponent icon={star} text={"Profilinizi Öne Çıkarın !"} />
             {!isScreenSizeLessThan1024 && (
               <img
                 src={arrow}
@@ -101,10 +101,7 @@ function WhyUseAdvert() {
                 alt=""
               />
             )}
-            <IconComponent
-              icon={trolley}
-              text={"Ve Daha Fazla Satış Yapın !"}
-            />
+            <IconComponent icon={trolley} text={"Ve Daha Fazla kazanın !"} />
           </div>
         </div>
       </div>

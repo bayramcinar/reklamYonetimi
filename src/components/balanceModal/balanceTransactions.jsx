@@ -41,7 +41,7 @@ function BalanceTransactions() {
 
   const handleFilterClick = (filterIndex) => {
     setActivePage(filterIndex);
-
+    handlePageChange(1);
     if (filterIndex === 1) {
       setFilteredTransactions(transactions);
     } else if (filterIndex === 2) {
@@ -114,7 +114,7 @@ function BalanceTransactions() {
             value={itemsPerPage}
           >
             <option value="">Sayfa Sayısı</option>
-            {[...Array(15).keys()].map((num) => (
+            {[...Array(6).keys()].map((num) => (
               <option key={num + 1} value={num + 1}>
                 {num + 1}
               </option>

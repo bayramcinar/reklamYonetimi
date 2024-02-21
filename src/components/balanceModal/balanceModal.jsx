@@ -9,7 +9,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
   const [activePage, setActivePage] = useState(0);
   const [totalBalance, setTotalBalance] = useState(null);
   const [giftBalance, setGiftBalance] = useState(null);
-
+  const [fullBalance, setFullBalance] = useState(1500); //DATABASE DEN KULLANICININ TÜM BAKİYESİNİ ÇEKECEĞİMİZ YER (HİZMET SATIŞLARINDAN ELDE ETTİĞİ GELİR)
   const renderPage = () => {
     switch (activePage) {
       case 0:
@@ -87,7 +87,7 @@ const BalanceModal = ({ isOpen, onClose }) => {
   return (
     <div className={modalClass}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 lg:w-auto lg:max-w-[800px] lg:min-w-[800px]">
+        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 lg:w-auto lg:max-w-[940px] lg:min-w-[940px]">
           <div>
             <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
               <div className="flex flex-col md:flex-row justify-evenly items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
@@ -132,25 +132,25 @@ const BalanceModal = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 )}
-                <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-2 py-2 items-center justify-center w-full lg:w-1/3">
-                  <div className="infoArea">
+                <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-1 py-2 items-center justify-center w-full lg:w-1/3">
+                  <div className="infoArea flex">
                     <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold text-center">
                       Toplam Reklam Bakiyesi:{" "}
                       {totalBalance !== null
                         ? `${totalBalance}₺`
                         : "Yükleniyor"}
                     </h1>
+                    <i className="fa-solid fa-gift mx-2"></i>
+                    <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold">
+                      {giftBalance !== null ? `${giftBalance} ₺` : "Yükleniyor"}
+                    </h1>
                   </div>
                 </div>
-                <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-2 py-2 items-center justify-center w-full lg:w-1/3 mt-2 lg:mt-0">
+                <div className="animate__animated animate__zoomIn border-2 border-premiumOrangeBG2 walletArea flex group text-premiumOrange  bg-premiumOrangeBG2 rounded-lg px-1 py-2 items-center justify-center w-full lg:w-1/3 mt-2 lg:mt-0">
                   <div className="infoArea">
                     <div className="giftWallet flex items-center justify-center">
-                      <i className="fa-solid fa-gift mr-2"></i>
                       <h1 className="md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.7vw] text-xs font-semibold">
-                        Hediye Bakiye:{" "}
-                        {giftBalance !== null
-                          ? `${giftBalance} ₺`
-                          : "Yükleniyor"}
+                        Reklam bakiyesine aktarılabilir tutar: {fullBalance} ₺
                       </h1>
                     </div>
                   </div>

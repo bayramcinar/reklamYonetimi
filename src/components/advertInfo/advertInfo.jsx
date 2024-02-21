@@ -24,7 +24,7 @@ const AdvertInfo = ({ onSubmit }) => {
       .required("Başlangıç tarihi zorunludur")
       .min(new Date(), "Başlangıç tarihi bugünden ileri bir tarih olmalıdır"),
     bitisTarihi: Yup.date()
-      .required("Başlangıç tarihi zorunludur")
+      .required("Bitiş tarihi zorunludur")
       .min(
         Yup.ref("baslangicTarihi"),
         "Bitiş tarihi başlangıç tarihinden önce olamaz"
@@ -301,7 +301,7 @@ const AdvertInfo = ({ onSubmit }) => {
                                 type="number"
                                 name="gunlukButceMiktarı"
                                 id="gunlukButceMiktarı"
-                                placeholder="Her ürün için minimum 10₺"
+                                placeholder="Her ürün için minimum 50₺"
                                 className={`w-full rounded-md border ${
                                   formik.touched.gunlukButceMiktarı &&
                                   formik.errors.gunlukButceMiktarı
@@ -332,8 +332,8 @@ const AdvertInfo = ({ onSubmit }) => {
               <div className="p-3">
                 <h3 className="font-bold">Reklam Senaryosu</h3>
                 <p className="text-txtGrey">
-                  Bu reklam için günlük en fazla{" "}
-                  <span className="font-bold">10tl</span> harcamak istiyorum
+                  Bu reklam için günlük en az{" "}
+                  <span className="font-bold">50₺</span> harcamak istiyorum
                 </p>
                 <p className="text-txtGrey">
                   Oluşturduğum reklam belirttiğim tarihte başlayıp belirlediğim

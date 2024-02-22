@@ -30,12 +30,12 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
 
   return (
     <>
-      <div className="flex-col md:flex lg:flex-row justify-center items-stretch px-3 pb-5 gap-10">
+      <div className="flex-col md:flex lg:flex-row justify-center items-stretch px-3 pb-5 gap-5">
         <div className="flex-col border rounded-lg mb-4 lg:mb-0 imgArea lg:flex-grow lg:w-1/3">
           {!isMobile && (
             <div className="flex justify-center items-center h-full p-1">
               <img
-                className="max-w-full max-h-full object-cover"
+                className="w-full h-full object-cover"
                 src={img}
                 alt="gönderi reklamı"
               />

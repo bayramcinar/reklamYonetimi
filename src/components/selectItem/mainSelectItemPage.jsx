@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import SelectItemHeader from "./selectItem";
 import ItemList from "./itemList";
 
-function MainSelectItemPage({ initialValues, setInitialValueAdded, itemList }) {
+function MainSelectItemPage({ initialValues, setInitialValueAdded, postList }) {
   const [initalvalueAdded, setInitalvalueAdded] = useState();
   const day = (date1, date2) => {
     //REKLAM SÜRESİNİ BULAN FONKSİYON
@@ -12,16 +11,30 @@ function MainSelectItemPage({ initialValues, setInitialValueAdded, itemList }) {
     const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
     return diffDays;
   };
-
+  console.log(initalvalueAdded);
   setInitialValueAdded(initalvalueAdded);
   return (
     <div className="w-full">
-      <SelectItemHeader />
+      {initialValues.reklamTipi === "1" && (
+        <div className="w-full">
+          <div className="headerArea py-5">
+            <div className="border-b-2 border-gray-100 flex w-full px-5">
+              <h1
+                className={` cursor-pointer 
+            border-premiumOrange border-b-2 text-premiumOrange font-semibold
+           p-3 `}
+              >
+                Gönderi Listem
+              </h1>
+            </div>
+          </div>
+        </div>
+      )}
       <ItemList
         amount={initialValues.gunlukButceMiktarı}
         selectedMethod={initialValues.reklamTipi}
         time={day(initialValues.baslangicTarihi, initialValues.bitisTarihi)}
-        itemList={itemList}
+        postList={postList}
         initialValues={initialValues}
         setInitialValues={setInitalvalueAdded}
       />

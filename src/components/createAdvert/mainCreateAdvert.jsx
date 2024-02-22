@@ -9,7 +9,7 @@ import MainConfirmArea from "../confirmArea/mainConfirmArea";
 function MainCreateAdvert({
   setInitialValueAdded,
   initialValueAdded,
-  itemList,
+  postList,
 }) {
   const [activePage, setActivePage] = useState(1);
   const [valuesForContent, setValuesForContent] = useState("");
@@ -72,24 +72,44 @@ function MainCreateAdvert({
           <MainSelectItemPage
             initialValues={valuesForContent}
             setInitialValueAdded={setInitialValueAdded}
-            itemList={itemList}
+            postList={postList}
           />
         );
       case 3:
+        console.log(valuesForContent);
         return (
           <MainConfirmArea
-            advertEndDate={initialValueAdded.bitisTarihi}
-            advertName={initialValueAdded.reklamAdi}
-            advertStartDate={initialValueAdded.baslangicTarihi}
-            advertType={initialValueAdded.reklamTipi}
-            amount={initialValueAdded.gunlukButceMiktarı}
-            selectedMethod={initialValueAdded.reklamTipi}
+            advertEndDate={
+              valuesForContent.bitisTarihi || initialValueAdded.bitisTarihi
+            }
+            advertName={
+              valuesForContent.reklamAdi || initialValueAdded.reklamAdi
+            }
+            advertStartDate={
+              valuesForContent.baslangicTarihi ||
+              initialValueAdded.baslangicTarihi
+            }
+            advertType={
+              valuesForContent.reklamTipi || initialValueAdded.reklamTipi
+            }
+            amount={
+              valuesForContent.gunlukButceMiktarı ||
+              initialValueAdded.gunlukButceMiktarı
+            }
+            selectedMethod={
+              valuesForContent.reklamTipi || initialValueAdded.reklamTipi
+            }
             time={day(
-              initialValueAdded.baslangicTarihi,
-              initialValueAdded.bitisTarihi
+              valuesForContent.baslangicTarihi ||
+                initialValueAdded.baslangicTarihi,
+              valuesForContent.bitisTarihi || initialValueAdded.bitisTarihi
             )}
-            total={itemList}
-            selectedItems={initialValueAdded.hizmetler}
+            total={postList}
+            selectedItems={
+              valuesForContent.reklamTipi === "1"
+                ? initialValueAdded.hizmetler
+                : []
+            }
           />
         );
       default:
@@ -110,7 +130,9 @@ function MainCreateAdvert({
         cancelButtonText: "İptal et",
       }).then((result) => {
         if (result.isConfirmed) {
-          const serializedValue = JSON.stringify(initialValueAdded);
+          const serializedValue = JSON.stringify(
+            valuesForContent || initialValueAdded
+          );
           const existingAdverts = localStorage.getItem("adverts");
           const advertsArray = existingAdverts
             ? JSON.parse(existingAdverts)

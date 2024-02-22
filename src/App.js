@@ -3,45 +3,55 @@ import { Route, Routes } from "react-router-dom";
 import MainPage from "./components/mainAdvertPage/mainPage";
 import MainCreateAdvert from "./components/createAdvert/mainCreateAdvert";
 import React, { useState } from "react";
+import postImg from "./img/post.png";
 function App() {
   const [initialValueAdded, setInitialValueAdded] = useState();
-  const itemList = [
-    //HİZMET VERENLERİN HİZMETLERİNİ ALACAĞIMIZ YER
+  const postList = [
+    //HİZMET VERENLERİN GÖNDERİLERİNİ ALACAĞIMIZ YER
     {
       id: "1",
-      name: "deneme",
-      details: " Kişinin durumuna ve yaşına göre gerekli çözümler uygulanır",
-      duration: 90,
+      img: postImg,
+      postDate: "02/02/2024",
+      details: "#ofistik",
+      like: 90,
+      views: 540,
+      comment: 8,
     },
     {
       id: "2",
-      name: "depresyon",
-      details: " Kişinin durumuna ve yaşına göre gerekli çözümler uygulanır",
-      duration: 90,
+      img: postImg,
+      postDate: "02/02/2024",
+      details: "#ofistik",
+      like: 90,
+      views: 540,
+      comment: 8,
     },
     {
       id: "3",
-      name: "ilişki terapisi",
-      details: " Kişinin durumuna ve yaşına göre gerekli çözümler uygulanır",
-      duration: 90,
+      img: postImg,
+      postDate: "02/02/2024",
+      details: "#ofistik",
+      like: 90,
+      views: 540,
+      comment: 8,
     },
     {
       id: "4",
-      name: "bireysel terapi",
-      details: " Kişinin durumuna ve yaşına göre gerekli çözümler uygulanır",
-      duration: 90,
+      img: postImg,
+      postDate: "02/02/2024",
+      details: "#ofistik",
+      like: 90,
+      views: 540,
+      comment: 8,
     },
     {
       id: "5",
-      name: "varoluşsal problemler",
-      details: " Kişinin durumuna ve yaşına göre gerekli çözümler uygulanır",
-      duration: 90,
-    },
-    {
-      id: "6",
-      name: "uyum bozuklukları",
-      details: " Kişinin durumuna ve yaşına göre gerekli çözümler uygulanır",
-      duration: 90,
+      img: postImg,
+      postDate: "02/02/2024",
+      details: "#ofistik",
+      like: 90,
+      views: 540,
+      comment: 8,
     },
   ];
   return (
@@ -52,7 +62,7 @@ function App() {
           path="/reklamOlustur"
           element={
             <MainCreateAdvert
-              itemList={itemList}
+              postList={postList}
               setInitialValueAdded={setInitialValueAdded}
               initialValueAdded={initialValueAdded}
             />

@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import AdvertTypeModule from "../advertTypes/advertTypeModule";
+import img2 from "../../img/cover.png";
+import img1 from "../../img/cover2.png";
+import img3 from "../../img/cover3.png";
 
 const AdvertInfo = ({ onSubmit }) => {
   const [selectedOption, setSelectedOption] = useState("");
-
+  const [initialBudget, setInitialBudget] = useState("Günlük Bütçe");
+  const [initialSenario, setSenario] = useState([
+    "Bu reklam için günlük en fazla 50TL harcamak istiyorum.Oluşturduğum reklam belirttiğim tarihte başlayıp belirlediğim tarihte bitsin.",
+    "Belirlenen günlük bütçe miktarı reklam oluşturulduğu an reklam bakiyenizden çekilir.Reklam süresi boyunca gün sonunda harcanmayan günlük bütçe miktarı kalırsa reklam bakiyenize iade edilir.Reklam bakiyenizde yeterli tutar olduğu takdirde reklam süresi boyunca hergün bu işlem tekrarlanır.",
+  ]);
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
   const initialValues = {
@@ -30,9 +38,10 @@ const AdvertInfo = ({ onSubmit }) => {
         "Bitiş tarihi başlangıç tarihinden önce olamaz"
       ),
     butceTipi: Yup.string().required("Lütfen bütçe tipini seçiniz"),
-    gunlukButceMiktarı: Yup.number().required("Lütfen miktarı giriniz").typeError(/[0-9]/, "Sadece sayı giriniz"),
-  })
-    
+    gunlukButceMiktarı: Yup.number()
+      .required("Lütfen miktarı giriniz")
+      .typeError(/[0-9]/, "Sadece sayı giriniz"),
+  });
 
   return (
     <Formik
@@ -55,7 +64,7 @@ const AdvertInfo = ({ onSubmit }) => {
                       htmlFor="reklamTipi"
                       className="block text-xs lg:text-sm font-medium text-txtGrey"
                     >
-                      Reklam Adı
+                      Reklam Tipi
                     </label>
                     <select
                       type="text"
@@ -72,10 +81,10 @@ const AdvertInfo = ({ onSubmit }) => {
                           : "border-[#e0e0e0]"
                       } bg-white py-2 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md`}
                     >
-                      <option value=""></option>
-                      <option value="0">Ürün Reklamı Seç</option>
-                      <option value="1">Hizmet Reklamı</option>
-                      <option value="2">Profil Reklamı</option>
+                      <option value="">Reklam Tipini Seçiniz</option>
+                      <option value="1">Gönderi Reklamı</option>
+                      <option value="2">Genel Reklam</option>
+                      <option value="3">Profil Reklamı</option>
                     </select>
                     {formik.touched.reklamTipi && formik.errors.reklamTipi && (
                       <p className="mt-1 text-sm text-red-500">
@@ -247,7 +256,14 @@ const AdvertInfo = ({ onSubmit }) => {
                             id="butce1"
                             value="0"
                             checked={formik.values.butceTipi === "0"}
-                            onChange={formik.handleChange}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+                              setInitialBudget("Günlük Bütçe");
+                              setSenario([
+                                "Bu reklam için günlük en fazla 50TL harcamak istiyorum.Oluşturduğum reklam belirttiğim tarihte başlayıp belirlediğim tarihte bitsin.",
+                                "Belirlenen günlük bütçe miktarı reklam oluşturulduğu an reklam bakiyenizden çekilir.Reklam süresi boyunca gün sonunda harcanmayan günlük bütçe miktarı kalırsa reklam bakiyenize iade edilir.Reklam bakiyenizde yeterli tutar olduğu takdirde reklam süresi boyunca hergün bu işlem tekrarlanır.",
+                              ]);
+                            }}
                             className="rounded-md border border-[#e0e0e0] bg-white py-1 px-6 text-base font-medium outline-none focus:border-lightGray focus:shadow-md mr-2"
                           />
                           <label htmlFor="butce1">Günlük Bütçe</label>
@@ -259,7 +275,14 @@ const AdvertInfo = ({ onSubmit }) => {
                             name="butceTipi"
                             value="1"
                             checked={formik.values.butceTipi === "1"}
-                            onChange={formik.handleChange}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+                              setInitialBudget("Toplam Bütçe");
+                              setSenario([
+                                "Bu reklam için toplam 500TL harcamak istiyorum.Oluşturduğum reklam belirttiğim tarihte başlayıp toplam reklam bütçem bitene kadar yayınlansın.",
+                                "Belirlenen toplam bütçe miktarı reklam oluşturulduğu an reklam bakiyenizden çekilir.Reklam kampanyanızdaki toplam bütçeniz bitene kadar Ofistik reklam algoritması günlük gereken bütçeyi kullanır ve kalan bakiyeler sonraki günler için devredilir.Reklam kampanyasının durdurulması veya iptal edilmesi sonucunda reklam kampanyasında kullanılmayan kalan reklam bütçesi reklam bakiyenize aktarılır.",
+                              ]);
+                            }}
                             className="rounded-md border border-[#e0e0e0] bg-white py-1 px-6 text-base font-medium text-txtGrey outline-none focus:border-lightGray focus:shadow-md mr-2"
                           />
                           <label htmlFor="butce2">Toplam Bütçe</label>
@@ -295,7 +318,7 @@ const AdvertInfo = ({ onSubmit }) => {
                                 htmlFor="gunlukButce"
                                 className="block text-xs md:text-xs lg:text-sm font-medium text-txtGrey"
                               >
-                                Günlük Bütçe(₺)
+                                {initialBudget} (₺)
                               </label>
                               <Field
                                 type="number"
@@ -328,41 +351,89 @@ const AdvertInfo = ({ onSubmit }) => {
             </div>
 
             {/* Additional Information */}
-            <div className="flex flex-col lg:flex-col flex-auto w-full lg:w-1/4">
-              <div className="p-3">
-                <h3 className="font-bold">Reklam Senaryosu</h3>
-                <p className="text-txtGrey">
-                  Bu reklam için günlük en az{" "}
-                  <span className="font-bold">50₺</span> harcamak istiyorum
-                </p>
-                <p className="text-txtGrey">
-                  Oluşturduğum reklam belirttiğim tarihte başlayıp belirlediğim
-                  tarihte bitsin
-                </p>
+            {selectedOption === "" && (
+              <div className="flex flex-col lg:flex-col flex-auto w-full lg:w-1/4">
+                <div className="p-3">
+                  <h3 className="font-bold">Reklam Senaryosu</h3>
+                  <p className="text-txtGrey">{initialSenario[0]}</p>
+                </div>
+                <div className="bg-grayBg p-3 border rounded-lg">
+                  <h3 className="font-bold text-premiumOrange">Nasıl?</h3>
+                  <p className="text-txtGrey">{initialSenario[1]}</p>
+                </div>
               </div>
-              <div className="bg-grayBg p-3 border rounded-lg">
-                <h3 className="font-bold text-premiumOrange">Nasıl?</h3>
-                <p className="text-txtGrey">
-                  Belirlenen günlük bütçe miktarı reklam oluşturulduğu an reklam
-                  bakiyenizden çekilir, reklam süresi boyunca gün sonunda
-                  harcanamayan günlük bütçe miktarı reklam bakiyenize iade
-                  edilir. Reklam bakiyenizde yeterli tutar olduğu takdirde
-                  reklam süresi boyunca hergün bu işlem tekrarlanır.
-                </p>
+            )}
+            {selectedOption === "3" && (
+              <div className="lg:w-2/3">
+                <AdvertTypeModule
+                  img={img2}
+                  q1={[
+                    "Profilinizi ön plana çıkartarak etkileşiminizi arttırmak için uygulanan reklam modelidir.",
+                  ]}
+                  q2={[
+                    "Reklam vererek profil trafiğinizi ve takipçi sayınızı artırabilirsiniz.",
+                    "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
+                    "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
+                    "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
+                  ]}
+                  q3={[
+                    "Ofistik anasayfası",
+                    "Sektör listeleme sayfası",
+                    "Arama sayfaları",
+                  ]}
+                  q4={[
+                    "Profil reklamından etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
+                  ]}
+                />
               </div>
-            </div>
+            )}
+            {selectedOption === "1" && (
+              <div className="lg:w-2/3">
+                <AdvertTypeModule
+                  img={img1}
+                  q1={[
+                    "Gönderilerinizi ön plana çıkartarak etkileşiminizi arttırmak için uygulanan reklam modelidir.",
+                  ]}
+                  q2={[
+                    "Görsel ve video içeriklerle kendinizi ve yaptığınız işi tanıtabilirsiniz. ",
+                    "Yaptığınız iş görsele dayalı ise reklam ile yaptığınız işleri öne çıkartarak referans olarak kullanabilirsiniz.",
+                    "Gönderilerinizin tıklanması ile profil trafiğinizi ve takipçi sayınızı arttırabilirsiniz.",
+                    "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
+                    "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
+                    "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
+                  ]}
+                  q3={["Ofistik anasayfası", "Sosyal medya keşfet sayfası"]}
+                  q4={[
+                    "Gönderi reklamından etkili şekilde faydalanmak için gönderinizin kalitesinden,açıklama kısmının yeterli ve dikkat çekici olduğundan emin olun.",
+                  ]}
+                />
+              </div>
+            )}
+            {selectedOption === "2" && (
+              <div className="lg:w-2/3">
+                <AdvertTypeModule
+                  img={img3}
+                  q1={[
+                    "Belirtilen reklam bütçenizin Ofistik reklam algoritması tarafından yönetilerek size en uygun reklam tipini uygulayan reklam modelidir.",
+                  ]}
+                  q2={[
+                    "Hizmet verdiğiniz sektörde öne çıkmanızı sağlar.",
+                    "Reklam bütçeniz en etkin ve doğru şekilde kullanılır.",
+                    "Profil yapınıza ve reklam bütçenize bağlı olarak hem gönderi hem profil reklamı kullanaılabilir.",
+                    "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
+                    "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
+                    "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
+                  ]}
+                  q3={[
+                    "Profil tipinize ve reklam bütçenize bağlı olarak değişim göstermektedir.",
+                  ]}
+                  q4={[
+                    "Genel reklamdan etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
+                  ]}
+                />
+              </div>
+            )}
           </div>
-
-          {/* Submit Button */}
-          {/* <div className="flex justify-center mt-5">
-            <button
-              type="submit"
-              className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
-              disabled={!formik.isValid || formik.isSubmitting}
-            >
-              Gönder
-            </button>
-          </div> */}
         </Form>
       )}
     </Formik>

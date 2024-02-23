@@ -171,11 +171,35 @@ function CreatedAdvertsTable() {
                         </h1>
                       </td>
                       <td className="px-2 py-3 flex items-center justify-center">
-                        <div className="flex items-center w-[120px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
+                        <div
+                          className={`flex items-center w-full justify-center ${
+                            statusFunction(item.bitisTarihi) === "Tamamlandı"
+                              ? "border-gray-500"
+                              : "border-greenBalance"
+                          } border ${
+                            statusFunction(item.bitisTarihi) === "Tamamlandı"
+                              ? "bg-gray-200"
+                              : "bg-greenBalanceBg"
+                          } rounded-lg`}
+                        >
                           <div className="flex p-1">
-                            <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
-                            <h1 className="text-center text-[0.65rem] lg:text-xs text-gray-500">
-                              Tamamlandı
+                            <i
+                              className={`fa-solid fa-circle  ${
+                                statusFunction(item.bitisTarihi) ===
+                                "Tamamlandı"
+                                  ? "text-gray-500"
+                                  : "text-greenBalance"
+                              }  text-[0.5rem] flex items-center justify-center mx-2`}
+                            ></i>
+                            <h1
+                              className={`text-center text-sm ${
+                                statusFunction(item.bitisTarihi) ===
+                                "Tamamlandı"
+                                  ? "text-gray-500"
+                                  : "text-greenBalance"
+                              } `}
+                            >
+                              {statusFunction(item.bitisTarihi)}
                             </h1>
                           </div>
                         </div>

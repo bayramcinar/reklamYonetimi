@@ -6,9 +6,11 @@ function CreatedAdvertsTable() {
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [data, setData] = useState([]);
-  const [totalPages, setTotalPages] = useState(
-    Math.ceil(data.length / itemsPerPage)
-  );
+  const [totalPages, setTotalPages] = useState(0);
+  useEffect(() => {
+    // Calculate total pages when data changes
+    setTotalPages(Math.ceil(data.length / itemsPerPage));
+  }, [data, itemsPerPage]);
   useEffect(() => {
     {
       /*ekran 768 den küçükse isMobil olur*/
@@ -54,8 +56,8 @@ function CreatedAdvertsTable() {
 
   const currentPageData = data.slice(startIndex, endIndex);
   return (
-    <div className="bg-white rounded-lg mx-5">
-      <div className="main">
+    <div className="bg-white rounded-lg mx-5 mb-8">
+      <div className="main pb-3">
         <div className="titleAndButtons lg:flex justify-between items-center m-4 px-4 py-6 pb-0 lg:pb-6">
           <h1 className="text-[4vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.3vw] font-bold text-center mb-3 lg:mb-0">
             Oluşturulan Reklamlar

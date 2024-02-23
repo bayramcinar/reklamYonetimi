@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
+function AdvertTypeModule({ img, q1, q2, q3, q4, title }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -52,6 +52,11 @@ function AdvertTypeModule({ img, q1, q2, q3, q4 }) {
           )}
         </div>
         <div className="flex-col border rounded-lg bg-lightGray infoArea lg:flex-grow lg:w-2/3 flex items-center justify-center">
+          {title !== undefined && (
+            <h1 className="text-sm md:text-[1vw] lg:text-[1vw] xl:text-[1vw]  font-semibold border-b-2 border-gray-300 p-2">
+              {title}
+            </h1>
+          )}
           <div className="p-3 pt-0">
             <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               Nedir ?

@@ -46,11 +46,17 @@ function CreatedAdvertsTable() {
     setCurrentPage(1);
   };
 
+  const statusFunction = (bitisTarihi) => {
+    {
+      return new Date(bitisTarihi) < new Date() ? "Tamamlandı" : "Aktif";
+    }
+  };
+
   const currentPageData = data.slice(startIndex, endIndex);
   return (
     <div className="bg-white rounded-lg mx-5">
       <div className="main">
-        <div className="titleAndButtons lg:flex justify-between items-center m-4 px-4 py-6">
+        <div className="titleAndButtons lg:flex justify-between items-center m-4 px-4 py-6 pb-0 lg:pb-6">
           <h1 className="text-[4vw] md:text-[1.6vw] lg:text-[1.5vw] xl:text-[1.3vw] font-bold text-center mb-3 lg:mb-0">
             Oluşturulan Reklamlar
           </h1>
@@ -64,7 +70,7 @@ function CreatedAdvertsTable() {
             </Link>
           </div>
         </div>
-        <div className="tableArea m-4 px-4 pb-5">
+        <div className="tableArea m-4 px-4 mt-0 lg:mt-4 lg:pb-5">
           <table className="rounded-xl w-full ">
             {!isMobile && (
               <thead className="text-sm">
@@ -194,7 +200,7 @@ function CreatedAdvertsTable() {
                       name={item.reklamAdi}
                       sellNumber={32}
                       start={item.baslangicTarihi}
-                      status={"Tamamlandı"}
+                      status={statusFunction(item.bitisTarihi)}
                       type={item.reklamTipi}
                       viewNumber={694}
                       key={index}

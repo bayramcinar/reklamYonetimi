@@ -116,20 +116,6 @@ const AdvertTypes = ({ isOpen, onClose }) => {
               <div className="pb-4 lg:pb-10">
                 <div className="tabs tab-group flex justify-center items-center relative">
                   <button
-                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
-                    onClick={() => handleClick(0)}
-                  >
-                    <h1
-                      className={`p-3 hover:text-premiumOrange ${
-                        activeLink === 0
-                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
-                          : "text-gray-500"
-                      } `}
-                    >
-                      Gönderi Reklamı
-                    </h1>
-                  </button>
-                  <button
                     className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "
                     onClick={() => handleClick(1)}
                   >
@@ -141,6 +127,20 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                       } `}
                     >
                       Profil Reklamı
+                    </h1>
+                  </button>
+                  <button
+                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
+                    onClick={() => handleClick(0)}
+                  >
+                    <h1
+                      className={`p-3 hover:text-premiumOrange ${
+                        activeLink === 0
+                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
+                          : "text-gray-500"
+                      } `}
+                    >
+                      Gönderi Reklamı
                     </h1>
                   </button>
                   <button

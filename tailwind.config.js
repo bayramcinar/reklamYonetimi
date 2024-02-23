@@ -24,6 +24,8 @@ module.exports = {
         redBalanceBg: "hsl(0, 100%, 97%)",
         redBalance: "hsl(0, 91%, 75%)",
         premiumOrangeBG2: "hsl(7, 90%, 97%)",
+        purpleElite: "hsl(267, 100%, 47%)",
+        purpleEliteBg: "hsl(267, 100%, 97%)",
       },
     },
   },

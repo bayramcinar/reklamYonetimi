@@ -13,7 +13,7 @@ function AdvertCardType({
   end,
 }) {
   return (
-    <div className="max-w-[350px] bg-gray-100 rounded-xl text-gray-600 my-4">
+    <div className="max-w-[400px] bg-gray-100 rounded-xl text-gray-600 my-4">
       <div className="nameArea border-b-2 border-gray-300">
         <h1 className="px-4 py-2 text-center font-semibold text-md">{name}</h1>
       </div>
@@ -21,7 +21,7 @@ function AdvertCardType({
         <i class="fa-solid fa-clock mr-1"></i>
         <div className="ml-2">
           <h1 className="text-sm font-semibold">Tarih</h1>
-          <h1 className="pb-2">
+          <h1 className="pb-2 text-xs">
             {start} - {end}
           </h1>
         </div>
@@ -32,14 +32,14 @@ function AdvertCardType({
             <i class="fa-solid fa-wallet mr-1"></i>
             <div className="ml-2">
               <h1 className="text-sm font-semibold">Bütçe</h1>
-              <h1 className="pb-2">{budget} ₺</h1>
+              <h1 className="pb-2 text-xs">{budget} ₺</h1>
             </div>
           </div>
           <div className="typeArea flex items-center justify-start mr-4 w-1/2">
             <i class="fa-solid fa-address-card mr-1"></i>
             <div className="ml-2">
               <h1 className="text-sm font-semibold">Reklam Türü</h1>
-              <h1 className="pb-2">
+              <h1 className="pb-2 text-xs">
                 {type === "1" ? "Gönderi Reklamı" : "Profil Reklamı"}
               </h1>
             </div>
@@ -50,14 +50,14 @@ function AdvertCardType({
             <i class="fa-solid fa-eye mr-1"></i>
             <div className="ml-2">
               <h1 className="text-sm font-semibold">Görüntülenme</h1>
-              <h1 className="pb-2">{viewNumber}</h1>
+              <h1 className="pb-2 text-xs">{viewNumber}</h1>
             </div>
           </div>
           <div className="clickArea flex items-center justify-start mr-4 w-1/2">
             <i class="fa-solid fa-computer-mouse mr-1"></i>
             <div className="ml-2">
               <h1 className="text-sm font-semibold">Tıklanma Sayısı</h1>
-              <h1 className="pb-2">{clickNumber}</h1>
+              <h1 className="pb-2 text-xs">{clickNumber}</h1>
             </div>
           </div>
         </div>
@@ -66,14 +66,14 @@ function AdvertCardType({
             <i class="fa-solid fa-circle-check mr-1"></i>
             <div className="ml-2">
               <h1 className="text-sm font-semibold">Satış Sayısı</h1>
-              <h1 className="pb-2">{sellNumber}</h1>
+              <h1 className="pb-2 text-xs">{sellNumber}</h1>
             </div>
           </div>
           <div className="sellArea flex items-center justify-start mr-4 w-1/2">
             <i class="fa-solid fa-money-check-dollar mr-1"></i>
             <div className="ml-2">
               <h1 className="text-sm font-semibold">Ciro</h1>
-              <h1 className="pb-2">{ciro} ₺</h1>
+              <h1 className="pb-2 text-xs">{ciro} ₺</h1>
             </div>
           </div>
         </div>

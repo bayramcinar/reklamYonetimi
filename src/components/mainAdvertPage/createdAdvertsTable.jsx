@@ -70,7 +70,7 @@ function CreatedAdvertsTable() {
             </Link>
           </div>
         </div>
-        <div className="tableArea m-4 px-4 mt-0 lg:mt-4 lg:pb-5">
+        <div className="tableArea my-4 px-4 mt-0 lg:mt-4 lg:pb-5">
           <table className="rounded-xl w-full ">
             {!isMobile && (
               <thead className="text-sm">

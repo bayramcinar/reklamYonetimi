@@ -36,7 +36,7 @@ const AdvertTypes = ({ isOpen, onClose }) => {
   return (
     <div className={modalClass}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 lg:w-auto lg:max-w-[1000px] lg:min-w-[1000px ]">
+        <div className="relative mx-auto md:mx-9 px-auto lg:px-5 bg-white rounded-2xl animate__animated animate__fadeInDown w-80 lg:w-auto lg:max-w-[1000px] lg:min-w-[1000px] lg:max-h-[650px]">
           <div>
             <div className="flex flex-col max-w-[1200px] px-3  mx-auto rounded-lg bg-bgWhite">
               <div className="flex flex-col md:flex-row justify-between items-center gap-x-2 lg:gap-x-5 mt-3 md:mt-10 text-xs lg:text-sm">
@@ -113,7 +113,7 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
-              <div className="pb-4 lg:pb-10">
+              <div className="pb-4 lg:pb-5">
                 <div className="tabs tab-group flex justify-center items-center relative">
                   <button
                     className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out "

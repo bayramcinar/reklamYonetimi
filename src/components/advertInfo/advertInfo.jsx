@@ -6,6 +6,7 @@ import img2 from "../../img/cover.png";
 import img1 from "../../img/cover2.png";
 import img3 from "../../img/cover3.png";
 import Senario from "./senario";
+import AdvertTypeInfo from "../createAdvert/advertTypeInfo";
 
 const AdvertInfo = ({ onSubmit }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -387,7 +388,7 @@ const AdvertInfo = ({ onSubmit }) => {
               </div>
               {(selectedOption === "1" || selectedOption === "") && (
                 <div className="lg:w-2/3">
-                  <AdvertTypeModule
+                  <AdvertTypeInfo
                     img={img2}
                     title={"Profil Reklamı"}
                     q1={[
@@ -413,7 +414,7 @@ const AdvertInfo = ({ onSubmit }) => {
 
               {selectedOption === "2" && (
                 <div className="lg:w-2/3">
-                  <AdvertTypeModule
+                  <AdvertTypeInfo
                     img={img1}
                     title={"Gönderi Reklamı"}
                     q1={[
@@ -436,7 +437,7 @@ const AdvertInfo = ({ onSubmit }) => {
               )}
               {selectedOption === "3" && (
                 <div className="lg:w-2/3">
-                  <AdvertTypeModule
+                  <AdvertTypeInfo
                     img={img3}
                     title={"Genel Reklam"}
                     q1={[

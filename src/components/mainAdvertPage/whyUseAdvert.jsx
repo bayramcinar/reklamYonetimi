@@ -43,7 +43,7 @@ function WhyUseAdvert() {
                 kazancınızda artış sağlayabilirsiniz!
               </h1>
             </div>
-            <div className="flex-col mx-auto lg:mx-0 lg:ml-auto lg:text-[1vw] xl:text-[0.9vw] text-sm mt-3 lg:mt-0">
+            <div className="flex-col mx-auto lg:mx-0 lg:ml-auto text-sm mt-3 lg:mt-0">
               <button
                 type="button"
                 onClick={openModal}

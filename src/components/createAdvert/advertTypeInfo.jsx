@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function AdvertTypeModule({ img, q1, q2, q3, q4, title }) {
+function AdvertTypeInfo({ img, q1, q2, q3, q4, title }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -30,12 +30,12 @@ function AdvertTypeModule({ img, q1, q2, q3, q4, title }) {
 
   return (
     <>
-      <div className="flex-col md:flex lg:flex-row justify-center items-stretch px-3 pb-5 gap-5 lg:max-h-[480px]">
-        <div className="flex-col border rounded-lg mb-4 lg:mb-0 imgArea lg:flex-grow lg:w-1/4">
+      <div className="flex-col md:flex lg:flex-row justify-center items-stretch px-3 pb-5 gap-5">
+        <div className="flex-col border rounded-lg mb-4 lg:mb-0 imgArea lg:flex-grow lg:w-1/3">
           {!isMobile && (
             <div className="flex justify-center items-center h-full p-1">
               <img
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
                 src={img}
                 alt="gönderi reklamı"
               />
@@ -58,53 +58,53 @@ function AdvertTypeModule({ img, q1, q2, q3, q4, title }) {
             </h1>
           )}
           <div className="p-3 pt-0">
-            <h3 className="font-bold md:text-[1.2vw] lg:text-[1vw] xl:text-[0.80vw] text-sm p-1">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               Nedir ?
             </h3>
             <div className="whyUse px-1 lg:px-2">
               {q1.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
-                  <h1 className="md:text-[1.15vw] lg:text-[0.95vw] xl:text-[0.75vw] text-xs ">
+                  <h1 className="md:text-[1.2vw] lg:text-[1vw] xl:text-[0.8vw] text-xs ">
                     {item}
                   </h1>
                 </div>
               ))}
             </div>
-            <h3 className="font-bold md:text-[1.2vw] lg:text-[1vw] xl:text-[0.80vw] text-sm  p-1">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm  p-1 lg:p-2">
               Neden Kullanılmalıdır ?
             </h3>
             <div className="whyUse px-1 lg:px-2">
               {q2.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
-                  <h1 className="md:text-[1.15vw] lg:text-[0.95vw] xl:text-[0.75vw]  text-xs ">
+                  <h1 className="md:text-[1.2vw] lg:text-[1vw] xl:text-[0.8vw] text-xs ">
                     {item}
                   </h1>
                 </div>
               ))}
             </div>
-            <h3 className="font-bold md:text-[1.2vw] lg:text-[1vw] xl:text-[0.80vw] text-sm p-1">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               Nerede Yayınlanır ?
             </h3>
             <div className="whyUse px-1 lg:px-2">
               {q3.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
-                  <h1 className="md:text-[1.15vw] lg:text-[0.95vw] xl:text-[0.75vw]  text-xs ">
+                  <h1 className="md:text-[1.2vw] lg:text-[1vw] xl:text-[0.8vw] text-xs ">
                     {item}
                   </h1>
                 </div>
               ))}
             </div>
-            <h3 className="font-bold md:text-[1.2vw] lg:text-[1vw] xl:text-[0.80vw] text-sm p-1">
+            <h3 className="font-bold md:text-[1.3vw] lg:text-[1.1vw] xl:text-[0.90vw] text-sm p-1 lg:p-2">
               İpucu
             </h3>
             <div className="whyUse px-1 lg:px-2">
               {q4.map((item, index) => (
                 <div className="madde flex py-1" key={index}>
                   <i className="fa-solid fa-circle text-[7px] text-premiumOrange flex items-center justify-center mr-2"></i>
-                  <h1 className="md:text-[1.15vw] lg:text-[0.95vw] xl:text-[0.75vw]  text-xs ">
+                  <h1 className="md:text-[1.2vw] lg:text-[1vw] xl:text-[0.8vw] text-xs ">
                     {item}
                   </h1>
                 </div>
@@ -172,4 +172,4 @@ function AdvertTypeModule({ img, q1, q2, q3, q4, title }) {
   );
 }
 
-export default AdvertTypeModule;
+export default AdvertTypeInfo;

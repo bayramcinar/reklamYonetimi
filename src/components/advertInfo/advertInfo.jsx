@@ -93,7 +93,6 @@ const AdvertInfo = ({ onSubmit }) => {
                         <option value="">Reklam Tipini Seçiniz</option>
                         <option value="1">Profil Reklamı</option>
                         <option value="2">Gönderi Reklam</option>
-                        <option value="3">Genel Reklamı</option>
                       </select>
                       {formik.touched.reklamTipi &&
                         formik.errors.reklamTipi && (
@@ -431,31 +430,6 @@ const AdvertInfo = ({ onSubmit }) => {
                     q3={["Ofistik anasayfası", "Sosyal medya keşfet sayfası"]}
                     q4={[
                       "Gönderi reklamından etkili şekilde faydalanmak için gönderinizin kalitesinden,açıklama kısmının yeterli ve dikkat çekici olduğundan emin olun.",
-                    ]}
-                  />
-                </div>
-              )}
-              {selectedOption === "3" && (
-                <div className="lg:w-2/3">
-                  <AdvertTypeInfo
-                    img={img3}
-                    title={"Genel Reklam"}
-                    q1={[
-                      "Belirtilen reklam bütçenizin Ofistik reklam algoritması tarafından yönetilerek size en uygun reklam tipini uygulayan reklam modelidir.",
-                    ]}
-                    q2={[
-                      "Hizmet verdiğiniz sektörde öne çıkmanızı sağlar.",
-                      "Reklam bütçeniz en etkin ve doğru şekilde kullanılır.",
-                      "Profil yapınıza ve reklam bütçenize bağlı olarak hem gönderi hem profil reklamı kullanaılabilir.",
-                      "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
-                      "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
-                      "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
-                    ]}
-                    q3={[
-                      "Profil tipinize ve reklam bütçenize bağlı olarak değişim göstermektedir.",
-                    ]}
-                    q4={[
-                      "Genel reklamdan etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
                     ]}
                   />
                 </div>

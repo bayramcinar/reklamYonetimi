@@ -143,20 +143,6 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                       Gönderi Reklamı
                     </h1>
                   </button>
-                  <button
-                    className="tabs px-3 lg:px-10 relative md:text-[1.3vw] lg:text-[1.2vw] xl:text-[0.9vw] text-xs group transition-all duration-300 ease-in-out"
-                    onClick={() => handleClick(2)}
-                  >
-                    <h1
-                      className={`p-3 hover:text-premiumOrange ${
-                        activeLink === 2
-                          ? "border-b-2 border-premiumOrange text-premiumOrange font-semibold "
-                          : "text-gray-500"
-                      } `}
-                    >
-                      Genel Reklam
-                    </h1>
-                  </button>
                 </div>
 
                 <div className="border mt-2 lg:mt-4"></div>
@@ -201,28 +187,6 @@ const AdvertTypes = ({ isOpen, onClose }) => {
                     ]}
                     q4={[
                       "Profil reklamından etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
-                    ]}
-                  />
-                )}
-                {activeLink === 2 && (
-                  <AdvertTypeModule
-                    img={img3}
-                    q1={[
-                      "Belirtilen reklam bütçenizin Ofistik reklam algoritması tarafından yönetilerek size en uygun reklam tipini uygulayan reklam modelidir.",
-                    ]}
-                    q2={[
-                      "Hizmet verdiğiniz sektörde öne çıkmanızı sağlar.",
-                      "Reklam bütçeniz en etkin ve doğru şekilde kullanılır.",
-                      "Profil yapınıza ve reklam bütçenize bağlı olarak hem gönderi hem profil reklamı kullanaılabilir.",
-                      "Artan profil trafiğinizle birlikte isim bilinirliğinizi arttırabilir,hizmet alanlar ile etkileşime girebilirsiniz.",
-                      "Ofistik reklam algoritması sayesinde verdiğiniz hizmet grubu için arama yapan ve hizmet verme olasılığınız yüksek olan doğru hedef kitleyi yakalarsınız.",
-                      "Verdiğiniz reklamların performansını kolaylıkla takipo edip reklam verimliliğinizi arttırabilirsiniz.",
-                    ]}
-                    q3={[
-                      "Profil tipinize ve reklam bütçenize bağlı olarak değişim göstermektedir.",
-                    ]}
-                    q4={[
-                      "Genel reklamdan etkili şekilde faydalanmak için profilinizin tüm bölümlerinin yeterince dolu ve açıklayıcı olduğundan emin olun.",
                     ]}
                   />
                 )}

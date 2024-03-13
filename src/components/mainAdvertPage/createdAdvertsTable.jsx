@@ -156,8 +156,8 @@ function CreatedAdvertsTable() {
                           <div className="flex items-center justify-center">
                             <h1 className="text-sm text-gray-400">
                               {item.reklamTipi === "1"
-                                ? "Hizmet Reklamı"
-                                : "Profil Reklamı"}
+                                ? "Profil Reklamı"
+                                : "Gönderi Reklamı"}
                             </h1>
                           </div>
                         </td>

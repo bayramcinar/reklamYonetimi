@@ -106,7 +106,7 @@ function MainCreateAdvert({
             )}
             total={postList}
             selectedItems={
-              valuesForContent.reklamTipi === "1"
+              valuesForContent.reklamTipi === "2"
                 ? initialValueAdded.hizmetler
                 : []
             }

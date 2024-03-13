@@ -105,7 +105,7 @@ function ItemList({
               </h1>
             </div>
           </div>
-          {initialValues.reklamTipi !== "3" && (
+          {initialValues.reklamTipi !== "1" && (
             <div className="selectedItems lg:flex p-3 lg:p-6">
               <div className="rounded-full flex items-center justify-center w-[10vw] h-[10vw] lg:w-[4vw] lg:h-[4vw] mx-auto bg-premiumOrangeBg text-white">
                 <i className="fa-solid fa-boxes-stacked  m-3 lg:m-6 text-xs lg:text-lg"></i>
@@ -123,7 +123,7 @@ function ItemList({
         </div>
       </div>
       <div className="tableArea my-4 mx-6 text-xs md:text-[1vw] lg:text-[1vw] xl:text-[0.8vw]">
-        {initialValues.reklamTipi !== "3" && (
+        {initialValues.reklamTipi !== "1" && (
           <div className="relative ml-auto hidden lg:flex items-center justify-end my-4">
             <input
               type="text"
@@ -138,7 +138,7 @@ function ItemList({
           </div>
         )}
         <table className="rounded-xl w-full">
-          {initialValues.reklamTipi === "3" && (
+          {initialValues.reklamTipi === "1" && (
             <div className="">
               <div className="imgArea flex items-center justify-center">
                 <img
@@ -156,7 +156,7 @@ function ItemList({
               </div>
             </div>
           )}
-          {initialValues.reklamTipi === "1" && !isMobile && (
+          {initialValues.reklamTipi === "2" && !isMobile && (
             <thead className="text-xs md:text-sm">
               <tr className="sticky top-0 bg-lightGray text-gray-600">
                 <th className="py-3 px-1">Seç</th>
@@ -172,7 +172,7 @@ function ItemList({
           <tbody>
             {currentItems.map(
               (item, index) =>
-                (initialValues.reklamTipi === "1" && !isMobile && (
+                (initialValues.reklamTipi === "2" && !isMobile && (
                   <tr key={index}>
                     <td className="px-2 py-3 flex items-center justify-center">
                       <input
@@ -219,7 +219,7 @@ function ItemList({
                     </td>
                   </tr>
                 )) ||
-                (initialValues.reklamTipi === "1" && isMobile && (
+                (initialValues.reklamTipi === "2" && isMobile && (
                   <CardType
                     comment={item.comment}
                     date={item.postDate}
@@ -237,7 +237,7 @@ function ItemList({
             )}
           </tbody>
         </table>
-        {initialValues.reklamTipi !== "3" && (
+        {initialValues.reklamTipi !== "1" && (
           <div className="lg:flex justify-between m-3 text-sm md:text-[1vw] lg:text-[1vw] xl:text-[0.8vw]">
             <div className="flex items-center justify-center">
               <select

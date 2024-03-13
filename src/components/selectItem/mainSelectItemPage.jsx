@@ -15,7 +15,7 @@ function MainSelectItemPage({ initialValues, setInitialValueAdded, postList }) {
   setInitialValueAdded(initalvalueAdded);
   return (
     <div className="w-full">
-      {initialValues.reklamTipi === "1" && (
+      {initialValues.reklamTipi === "2" && (
         <div className="w-full">
           <div className="headerArea py-5">
             <div className="border-b-2 border-gray-100 flex w-full px-5">
